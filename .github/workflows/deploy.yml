@@ -1,0 +1,49 @@
+name: Deploy on GitHub Pages
+
+on:
+  #testpush:
+  #  branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      project_path:
+        description: 'The path to the Blazor project'
+        required: false
+        default: '.'
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0.x'
+      - name: Substitute base href
+        run: sed -i 's/base href="\/"/base href="\/${{ github.event.repository.name }}\/"/' ${{ inputs.project_path }}/${{ github.event.repository.name }}/wwwroot/index.html
+        shell: bash
+      - name: Setup SPA 404 page redirection
+        run: |
+          cp ${{ inputs.project_path }}/${{ github.event.repository.name }}/wasm/404.html ${{ inputs.project_path }}/${{ github.event.repository.name }}/wwwroot
+          cp ${{ inputs.project_path }}/${{ github.event.repository.name }}/wasm/redirect.js ${{ inputs.project_path }}/${{ github.event.repository.name }}/wwwroot
+          sed -i '/blazor.webassembly.js/i \    <script src="redirect.js"><\/script>' ${{ inputs.project_path }}/${{ github.event.repository.name }}/wwwroot/index.html
+        shell: bash
+      - name: Publish application
+        run: dotnet publish -c Release -o ${{ runner.temp }}/${{ github.event.repository.name }}
+        shell: bash
+      - name: Create gh-pages branch
+        run: |
+          git checkout --orphan gh-pages
+          git clean -fdx
+          git rm -rf .
+          cp -r ${{ runner.temp }}/${{ github.event.repository.name }}/wwwroot/. .
+          touch .nojekyll
+        shell: bash
+      - name: Commit and push
+        run: |
+          git add .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -m 'Deploy application to GitHub Pages'
+          git push -f -u origin gh-pages
+        shell: bash
