@@ -1,0 +1,154 @@
+﻿@inject ClipboardService ClipboardService
+
+@*<button class="@buttonData.ButtonClass" disabled="@buttonData.IsDisabled"
+        @onclick="ToClipboard" id="@Id">
+    <i class="@buttonData.FontAwesomeClass"></i> @buttonData.ButtonText
+</button>*@
+
+@*Icon="@Icons.Material.Filled.ContentCopy" *@
+@*
+<MudIconButton Variant="Variant.Text" Color="Color.Primary" Size="Size.Small" Disabled=@IsDisabled @onclick="ToClipboard" id="@Id">@Text</MudIconButton>
+
+<MudButton>
+
+</MudButton>*@
+
+<MudButton Variant="Variant.Text" Color="Color.Primary" Disabled="@IsDisabled" @onclick="ToClipboard">@buttonData.ButtonText</MudButton>
+
+@*<MudPopover OverflowBehavior="OverflowBehavior.FlipNever" Open="@_isOpen" AnchorOrigin="Origin.TopCenter" TransformOrigin="Origin.BottomCenter" Class="pa-4">
+    <MudText Typo="Typo.body2" Class="px-1 py-1">@resultText</MudText>
+
+</MudPopover>*@
+
+
+
+@*    <div class="@GetLocation()" style="top:0; left:0;">
+    <MudIcon Icon="@GetIcon()" Color="Color.Secondary" Class="" />
+    </div>*@
+@*    <div class="d-flex flex-column">
+        <MudText>Copied!</MudText>
+        <MudButton OnClick="@ToggleOpen" Class="ml-auto mr-n3 mb-1" Color="Color.Error">Close</MudButton>
+    </div>*@
+
+@code {
+
+
+    [Parameter] public string Id { get; set; } = "CopyToClipboard-" + Guid.NewGuid().ToString();
+    [Parameter] public string SuccessButtonClass { get; set; } = "btn btn-success";
+
+    [Parameter] public string InfoButtonClass { get; set; } = "btn btn-info";
+    [Parameter] public string ErrorButtonClass { get; set; } = "btn btn-danger";
+
+    [Parameter] public string CopyToClipboardText { get; set; } = "Copy to clipboard";
+    [Parameter] public string CopiedToClipboardText { get; set; } = "Copied!";
+    [Parameter] public string ErrorText { get; set; } = "Failed.";
+
+    [Parameter] public string FontAwesomeCopyClass { get; set; } = "fa fa-clipboard";
+    [Parameter] public string FontAwesomeCopiedClass { get; set; } = "fa fa-check";
+    [Parameter] public string FontAwesomeErrorClass { get; set; } = "fa fa-exclamation-circle";
+
+    [Parameter] public bool IsDisabled { get; set; } = false;
+
+    [Parameter] public string Text { get; set; }
+    [Parameter] public string ButtonText { get; set; }
+
+    record ButtonData(bool IsDisabled, string ButtonText, string ButtonClass, string FontAwesomeClass);
+
+    private string resultText = "";
+
+    ButtonData buttonData;
+
+    public bool _isOpen = false;
+
+    public void ToggleOpen()
+    {
+        if (_isOpen)
+            _isOpen = false;
+        else
+            _isOpen = true;
+    }
+
+    protected override void OnInitialized()
+    {
+
+        //if (string.IsNullOrEmpty(Text))
+        //{
+        //    buttonData = new ButtonData(IsDisabled, CopiedToClipboardText, SuccessButtonClass, FontAwesomeCopiedClass);
+        //}
+
+        buttonData = new ButtonData(IsDisabled, ButtonText, SuccessButtonClass, FontAwesomeCopiedClass);
+        
+    }
+
+    public async Task ToClipboard()
+    {
+
+
+        var originalData = buttonData;
+        try
+        {
+            await ClipboardService.WriteTextAsync(Text);
+
+            buttonData = new ButtonData(true, CopiedToClipboardText,
+                                    SuccessButtonClass, FontAwesomeCopiedClass);
+            await TriggerButtonState();
+            buttonData = originalData;
+        }
+        catch
+        {
+            buttonData = new ButtonData(true, ErrorText,
+                                    ErrorButtonClass, FontAwesomeErrorClass);
+            await TriggerButtonState();
+            buttonData = originalData;
+        }
+    }
+
+    private async Task TriggerButtonState()
+    {
+        StateHasChanged();
+        await Task.Delay(TimeSpan.FromMilliseconds(1500));
+    }
+
+    //private async Task FadePopover()
+    //{
+    //    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    //    _isOpen = false;
+    //}
+
+    //public Origin TransformOrigin { get; set; } = Origin.BottomCenter;
+    //public Origin AnchorOrigin { get; set; } = Origin.TopCenter;
+
+    //public string GetLocation()
+    //{
+    //    string align = "";
+    //    string justify = "";
+    //    string[] pos = TransformOrigin.ToDescriptionString().Split("-");
+
+    //    if (pos[0] == "center")
+    //    {
+    //        align = "align-center";
+    //    }
+    //    else if (pos[0] == "top")
+    //    {
+    //        align = "align-start";
+    //    }
+    //    else if (pos[0] == "bottom")
+    //    {
+    //        align = "align-end";
+    //    }
+    //    if (pos[1] == "left")
+    //    {
+    //        justify = "justify-start";
+    //    }
+    //    else if (pos[1] == "right")
+    //    {
+    //        justify = "justify-end";
+    //    }
+    //    else if (pos[1] == "center")
+    //    {
+    //        justify = "justify-center";
+    //    }
+
+    //    return $"absolute mud-height-full mud-width-full d-flex {align} {justify}";
+    //}
+}

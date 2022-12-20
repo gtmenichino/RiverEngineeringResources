@@ -1,0 +1,279 @@
+﻿
+
+<MudPaper Elevation="3" MaxWidth="300px">
+
+    <MudStack>
+        <MudPaper Elevation="0">
+            <MudItem>
+                <MudTreeView Items="TreeItems" MultiSelection="true" @bind-SelectedValues="SelectedValues" @bind-ActivatedValue="ActivatedValue">
+
+                    <ItemTemplate>
+
+                        <MudStack Class="ma-0 pa-0" Row="true">
+
+
+                            <MudTreeViewItem Class="ma-0 pa-0" @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
+                                             Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.caption">
+
+                            </MudTreeViewItem>
+
+                        </MudStack>
+
+                    </ItemTemplate>
+                </MudTreeView>
+            </MudItem>
+        </MudPaper>
+
+        <MudPaper Elevation="0">
+            <MudItem>
+
+                <MudPaper Class="@isHidden()" MaxWidth="292px" Elevation="0">
+                    <MudText Style="overflow-wrap:break-word; object-fit:contain" Typo="@Typo.subtitle2">@GetDesc(ActivatedValue?.Title)</MudText>
+                </MudPaper>
+
+            </MudItem>
+        </MudPaper>
+
+    </MudStack>
+
+</MudPaper>
+
+
+@code {
+    public string SearchTags()
+    {
+        return "";
+    }
+
+    //[Parameter]
+    //public List<RiverEngineeringResources.Pages.Resources.MyResource> MyResources { get; set; }
+
+    //public List<RiverEngineeringResources.Pages.Resources.MyResource> MyResources = new List<RiverEngineeringResources.Pages.Resources.MyResource>();
+    //public List<RiverEngineeringResources.Pages.Resources.customTag> MyTags = new List<RiverEngineeringResources.Pages.Resources.customTag>();
+
+    private MudTreeView<TreeItemData> mi;
+
+    private TreeItemData ActivatedValue { get; set; }
+
+    private HashSet<TreeItemData> SelectedValues { get; set; }
+
+    private HashSet<TreeItemData> TreeItems { get; set; } = new HashSet<TreeItemData>();
+
+    private string isHidden()
+    {
+        if (ActivatedValue is null)
+        {
+            return "invisible d-flex flex-wrap ml-4 mr-4";
+        }
+        else
+        {
+            return "visible d-flex flex-wrap ml-4 mr-4";
+        }
+    }
+
+
+    public class TreeItemData
+    {
+        public string Title { get; set; }
+
+        public string Icon { get; set; }
+
+        public int? Number { get; set; }
+
+        public bool IsExpanded { get; set; }
+
+        public HashSet<TreeItemData> TreeItems { get; set; }
+
+        public TreeItemData(string title, string icon, int? number = null)
+        {
+            Title = title;
+            Icon = icon;
+            Number = number;
+        }
+    }
+
+    public bool cardHidden()
+    {
+        if (string.IsNullOrEmpty(ActivatedValue?.Title))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void updateTree(List<RiverEngineeringResources.Pages.Resources.MyResource> MyResourceList)
+    {
+        var query = MyResourceList.SelectMany(x => x.affiliations)
+        .GroupBy(s => s.databaseName)
+        .Select(g => new { DBName = g.Key, Count = g.Count() });
+
+        
+
+        foreach (var result in query)
+        {
+            RiverEngineeringResources.Pages.Resources.affiliation b = new RiverEngineeringResources.Pages.Resources.affiliation(result.DBName);
+            Console.WriteLine("Name: {0}, Count: {1}", result.DBName, result.Count);
+
+            int count1 = 0;
+            string name1 = b.classification;
+            if (TreeItems.Where(x => x.Title == name1) != null && TreeItems.Where(x => x.Title == name1).Count() == 0)
+            {
+                TreeItems.Add(new TreeItemData(name1, Icons.Filled.Email, count1)
+                    {
+                        IsExpanded = true,
+                        TreeItems = new HashSet<TreeItemData>()
+                    });
+            }
+
+            TreeItemData classificationNode = TreeItems.Where(x => x.Title == name1).FirstOrDefault();
+
+            int count2 = 0;
+            string? name2 = b.category;
+            if (classificationNode.TreeItems == null || classificationNode.TreeItems.Where(x => x.Title == name2) != null && classificationNode.TreeItems.Where(x => x.Title == name2).Count() == 0)
+            {
+                classificationNode.TreeItems.Add(new TreeItemData(name2, Icons.Filled.Group, count2)
+                    {
+                        IsExpanded = true,
+                        TreeItems = new HashSet<TreeItemData>()
+                    });
+            }
+
+            TreeItemData categoryNode = classificationNode.TreeItems.Where(x => x.Title == name2).FirstOrDefault();
+
+            int count3 = result.Count;
+            string? name3 = b.subcategory;
+            if (categoryNode.TreeItems == null || categoryNode.TreeItems.Where(x => x.Title == name3) != null && categoryNode.TreeItems.Where(x => x.Title == name3).Count() == 0)
+            {
+                categoryNode.TreeItems.Add(new TreeItemData(name3, Icons.Filled.Group, count3));
+            }
+
+        }
+
+        StateHasChanged();
+
+        //FIX IT HERE
+
+        //for (int i = 0; i <= MyResources.classificationDict.Count - 1; i++)
+        //{
+        //    int count1 = 0;
+        //    string name1 = "empty";
+        //    name1 = MyResources.classificationDict.ElementAt(i).Key.ToString();
+        //    MyResources.classificationDict.categoryDict.TryGetValue(name1, out count1);
+        //    if (TreeItems.Where(x => x.Title == name1) != null && TreeItems.Where(x => x.Title == name1).Count() == 0)
+        //    {
+        //        TreeItems.Add(new TreeItemData(name1, Icons.Filled.Email)
+        //            {
+        //                IsExpanded = true,
+        //                TreeItems = new HashSet<TreeItemData>()
+        //            });
+        //    }
+
+        //    TreeItemData classificationNode = TreeItems.Where(x => x.Title == name1).FirstOrDefault();
+
+
+        //    HashSet<TreeItemData> tish1 = new HashSet<TreeItemData>();
+        //    for (int j = 0; j <= MyResources.classificationDict.categoryDict.Count - 1; j++)
+        //    {
+        //        int count2 = 0;
+        //        string? name2 = "empty";
+        //        name2 = MyResources.classificationDict.categoryDict.ElementAt(j).Key.ToString();
+        //        MyResources.classificationDict.categoryDict.TryGetValue(name2, out count2);
+
+        //        if (classificationNode.TreeItems == null || classificationNode.TreeItems.Where(x => x.Title == name2) != null && classificationNode.TreeItems.Where(x => x.Title == name2).Count() == 0)
+        //        {
+        //            classificationNode.TreeItems.Add(new TreeItemData(name2, Icons.Filled.Group, count2)
+        //                {
+        //                    IsExpanded = true,
+        //                    TreeItems = new HashSet<TreeItemData>()
+        //                });
+        //        }
+
+        //        TreeItemData categoryNode = classificationNode.TreeItems.Where(x => x.Title == name2).FirstOrDefault();
+        //        for (int k = 0; k <= MyResources.classificationDict.categoryDict.subcategoryDict.Count - 1; k++)
+        //        {
+        //            int count3 = 0;
+        //            string? name3 = "empty";
+        //            name3 = MyResources.classificationDict.categoryDict.subcategoryDict.ElementAt(k).Key.ToString();
+        //            MyResources.classificationDict.categoryDict.TryGetValue(name3, out count3);
+
+
+        //            if (categoryNode.TreeItems == null || categoryNode.TreeItems.Where(x => x.Title == name3) != null && categoryNode.TreeItems.Where(x => x.Title == name3).Count() == 0)
+        //            {
+        //                categoryNode.TreeItems.Add(new TreeItemData(name3, Icons.Filled.Group, count3));
+        //            }
+        //        }
+
+        //    }
+        //}
+
+
+
+    }
+
+
+    //NOT SURE IF ON-INITIALIZED IS BEST HERE
+    protected override void OnInitialized()
+    {
+
+        //}
+
+        //TreeItems.Add(new TreeItemData("Knowledge Base", Icons.Filled.Email)
+        //    {
+        //        IsExpanded = true,
+        //        TreeItems = new HashSet<TreeItemData>()
+        //    {
+        //        new TreeItemData("Hydrology", Icons.Filled.Group, 90),
+        //        new TreeItemData("Hydraulics", Icons.Filled.Info, 2294),
+        //        new TreeItemData("Geomorphlogy", Icons.Filled.QuestionAnswer, 3566),
+        //        new TreeItemData("Physicochemical", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Biology/Ecology", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Social", Icons.Filled.LocalOffer, 733)
+        //    }
+        //    });
+        //TreeItems.Add(new TreeItemData("Evaluation", Icons.Filled.Email)
+        //    {
+        //        IsExpanded = true,
+        //        TreeItems = new HashSet<TreeItemData>()
+        //    {
+        //        new TreeItemData("Hydrology", Icons.Filled.Group, 90),
+        //        new TreeItemData("Hydraulics", Icons.Filled.Info, 2294),
+        //        new TreeItemData("Sediment Transport", Icons.Filled.QuestionAnswer, 3566),
+        //        new TreeItemData("Geomorphology", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Physicochemical", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Biology/Ecology", Icons.Filled.LocalOffer, 733)
+        //    }
+        //    });
+        //TreeItems.Add(new TreeItemData("Design Theory", Icons.Filled.Email)
+        //    {
+        //        IsExpanded = true,
+        //        TreeItems = new HashSet<TreeItemData>()
+        //    {
+        //        new TreeItemData("Hydraulic Geometry", Icons.Filled.Group, 90),
+        //        new TreeItemData("Natural Channel Design", Icons.Filled.Info, 2294),
+        //        new TreeItemData("Sediment Transport", Icons.Filled.QuestionAnswer, 3566),
+        //        new TreeItemData("Geomorphology", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Physicochemical", Icons.Filled.LocalOffer, 733),
+        //        new TreeItemData("Biology/Ecology", Icons.Filled.LocalOffer, 733)
+        //    }
+        //    });
+        //TreeItems.Add(new TreeItemData("Evaluation", Icons.Filled.Delete));
+        //TreeItems.Add(new TreeItemData("Design Theory", Icons.Filled.Label));
+
+        //TreeItems.Add(new TreeItemData("Actions/Goals", Icons.Filled.Label));
+    }
+
+    public int GetSelectedSum()
+    {
+        return SelectedValues?.Sum(i => i.Number ?? 0) ?? 0;
+    }
+
+    public string GetDesc(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            return "";
+        }
+
+        return name + ": This is a description about the currently selected item.  It can be a simple explanation, or something more complex if needed.";
+    }
+}

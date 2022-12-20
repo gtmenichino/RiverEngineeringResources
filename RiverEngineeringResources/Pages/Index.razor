@@ -1,7 +1,146 @@
-﻿@page "/"
+﻿@inject SharedData SharedData
+
+@page "/"
 
 <PageTitle>Index</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudStack Row="false">
+
+        <MudPaper Elevation="0" Outlined="true">
+
+            <MudCarousel Class="mud-width-full" ArrowsPosition="Position.Bottom" Style="height:400px;" AutoCycleTime="@timeSpan" ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+                <MudCarouselItem Class="mb-12" Transition="transition">
+                    <div class="d-flex" style="height:350px; width:100%">
+                        <MudPaper Elevation="0" Class="d-flex flex-grow-1 mud-theme-primary align-center px-8 py-4" Style="height:100%; width:30%">
+                            @*                            <MudPaper Class="align-self-center py-4 flex-1 mud-theme-secondary" />*@
+                            <MudStack>
+                                <MudText Class="align-self-start" Typo="Typo.h4" Style="color:white; font:italic">
+                                    Mission
+                                </MudText>
+                                <MudText Typo="Typo.body1" Style="color:white">
+                                    A one-stop shop for river engineering resources, providing links to key resources for analysis and design.
+                                    <br />
+                                    It is intended as a tool for (1) practictioners, (2) researchers, and (3) aspiring river engineers.
+                                </MudText>
+                            </MudStack>
+
+
+                        </MudPaper>
+                        <MudPaper Elevation="0" Class="justify-end flex-grow-1" Style="height:100%; width:70%">
+                            <MudImage Style="width:100%" ObjectFit="ObjectFit.Fill" Src="images/1_3x2.jpg" Height="350" Alt="" Elevation="25" />
+                        </MudPaper>
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Class="mb-12" Transition="transition">
+                    <div class="d-flex" style="height:350px; width:100%">
+                        <MudPaper Elevation="0" Class="d-flex flex-grow-1 align-center px-8 py-4" Style="height:100%; width:60%; background-color:darkgreen">
+                            @*                            <MudPaper Class="align-self-center py-4 flex-1 mud-theme-secondary" />*@
+                            <MudStack>
+                                <MudText Typo="Typo.h4" Style="color:white">
+                                    Focus
+                                </MudText>
+                                <MudText Class="gap-4" Typo="Typo.body1" Style="color:white;">
+                                    These resources focus on engineering contexts of hydrology, hydraulics, sediment transport and geomorphology.
+                                    <br />
+                                    Physico-chemical, biological, and social resources are complied incidentially.
+                                    <br />
+                                    Resources are selected based on their relevance to river engineering projects and frequency in practice.
+                                    <br />
+                                    The scope is limited to topics (1) within the stream corridor and (2) no larger in scale than a river reach.
+                                </MudText>
+                            </MudStack>
+
+
+                        </MudPaper>
+                        <MudPaper Elevation="0" Class="justify-end flex-grow-1" Style="height:100%; width:40%">
+                            <MudImage Style="width:100%" ObjectFit="ObjectFit.Fill" Src="images/2_3x2.jpg" Height="350" Alt="" Elevation="25" />
+                        </MudPaper>
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Class="mb-12" Transition="transition">
+                    <div class="d-flex" style="height:350px; width:100%">
+                        <MudPaper Elevation="0" Class="d-flex flex-grow-1 align-center px-8 py-4" Style="height:100%; width:50%; background-color:darkcyan">
+                            @*                            <MudPaper Class="align-self-center py-4 flex-1 mud-theme-secondary" />*@
+                            <MudStack>
+                                <MudText Typo="Typo.h4" Style="color:white">
+                                    Why
+                                </MudText>
+                                <MudText Typo="Typo.body1" Style="color:white">
+                                    River Engineering is the study and practice of human intervention between water and the landscape.
+                                    <br />
+                                    Water resources are critical in meeting a wide range of environmental, social, and economic needs.
+                                    <br />
+                                    Over the last couple centuries, the science and practice has advanced from the improved understanding of technical processes.
+                                    <br />
+                                    Additionally, river engineering has evolved into an inherently multi-disciplinary field.
+                                    <br />
+                                    To help river engineers navigate river engineering science and practice, this website provides key resources.
+                                </MudText>
+                            </MudStack>
+
+
+                        </MudPaper>
+                        <MudPaper Elevation="0" Class="d-flex justify-end flex-grow-1" Style="height:100%; width:50%">
+                            <MudImage Style="width:100%" ObjectFit="ObjectFit.Fill" Src="images/3_3x2.jpg" Height= "350" Alt="" Elevation="25" />
+                        </MudPaper>
+                    </div>
+                </MudCarouselItem>
+
+            </MudCarousel>
+
+
+            @*Class="pa-16 ma-2"*@
+            @*            <MudTabs Elevation="0" Rounded="true" Centered="true">
+            <MudTabPanel Text="Mission">
+            <MudCard Elevation="3">
+            <MudCardContent>
+            <MudText Typo="Typo.subtitle1">A one-stop shop for river engineering resources, providing links to key resources for analysis and design.  It is intended as a tool for (1) practictioners, (2) researchers, and (3) aspiring river engineers.</MudText>
+            </MudCardContent>
+            </MudCard>
+            </MudTabPanel>
+            <MudTabPanel Text="Focus">
+            <MudCard Elevation="3">
+            <MudCardContent>
+            <MudText Typo="Typo.subtitle1">These resources focus on engineering contexts of hydrology, hydraulics, sediment transport and geomorphology. Physico-chemical, biological, and social resources are complied incidentially.  Resources are selected based on their relevance to river engineering projects and frequency in practice.  To narrow the number of resources, the scope is limited to topics (1) within the stream corridor and (2) no larger in scale than a river reach (e.g., no watershed analyses or river networks).</MudText>
+            </MudCardContent>
+            </MudCard>
+            </MudTabPanel>
+            <MudTabPanel Text="Why">
+            <MudCard Elevation="3">
+            <MudCardContent>
+            <MudText Typo="Typo.subtitle1">River Engineering is the study and practice of human intervention between water and the landscape.  River engineering projects are critical to managing water resources to meet a wide range of environmental, social, and economic needs.  Over the last couple centuries, the science and practice has advanced from the improved understanding of technical processes.  Additionally, river engineering has evolved into an inherently multi-disciplinary field.  To help river engineers navigate centuries of river engineering science and practice, this website provides references and access to key resources.</MudText>
+            </MudCardContent>
+            </MudCard>
+            </MudTabPanel>
+            </MudTabs>*@
+        </MudPaper>
+
+        <MudItem Class="d-flex justify-center py-4 mb-16 mb-md-0">
+            <MudButton Style="text-transform:none; font-weight:bold; font-size:medium; font-family:Arial, Helvetica, sans-serif" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Href="resources" OnClick="resPageClicked">Get started</MudButton>
+        </MudItem>
+
+    </MudStack>
+</MudContainer>
+
+
+@code {
+    //private bool arrows = true;
+    //private bool bullets = true;
+    //private bool enableSwipeGesture = true;
+    //private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+    private TimeSpan timeSpan = new TimeSpan(0, 0, 10);
+
+    public void resPageClicked()
+    {
+        SharedData.SetResourcesPageSelected(true);
+    }
+
+}
+
+@*
 <MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
 <MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+
+*@

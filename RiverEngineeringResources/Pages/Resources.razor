@@ -1,0 +1,2431 @@
+﻿@page "/resources"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@inject SharedData SharedData
+
+<PageTitle>Resources</PageTitle>
+
+<style>
+    input {
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: darkgray
+    }
+
+        input:focus {
+            border-color: dodgerblue;
+            border-width: 0 0 2px;
+            outline: 1px dotted #ffffff
+        }
+</style>
+
+
+<MudPaper Elevation="0" Class="d-flex flex-row flex-grow-1 gap-4" Outlined="false">
+
+    <MudOverlay @bind-Visible="citeOverlayVisible" LightBackground="true" AutoClose="false">
+
+        <MudPaper Class="d-flex flex-wrap gap-4" Elevation="3">
+            @*    <MudPaper Class="mud-theme-primary" Width="256px" Height="64px"/>
+            <MudPaper Class="mud-theme-primary" Width="256px" Height="64px"/>
+            <MudPaper Class="mud-theme-primary" Width="256px" Height="64px"/>*@
+            @*            <MudCard>
+            <MudText Style="max-width:400px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial">MLA: @selectedResource.Citation</MudText>
+
+            </MudCard>*@
+
+            <MudCard Elevation="0">
+                <MudCardHeader>
+                    @*                    <CardHeaderAvatar>
+                    <MudIcon Icon="@GetSelectedResourceIconType(context.Item)" Title=@context.Item.Type Size="Size.Medium" Color="Color.Default"></MudIcon>
+                    </CardHeaderAvatar>*@
+                    <CardHeaderContent>
+                        <MudText Style="@titleText">@selectedResource.Title</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton OnClick="@closeCiteOverlay" Icon="@Icons.Material.Filled.Close" Size="Size.Medium" Color="Color.Default"></MudIconButton>
+                    </CardHeaderActions>
+                </MudCardHeader>
+                <MudCardContent>
+
+                    <MudGrid>
+                        <MudItem Class="d-flex justify-end flex-grow-1 gap-4">
+                            <MudText Style="max-width:100px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial">MLA</MudText>
+                        </MudItem>
+                        <MudItem Class="d-flex justify-start flex-grow-1 gap-4">
+                            <MudText Style="max-width:400px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial">@selectedResource.Citation</MudText>
+                        </MudItem>
+                    </MudGrid>
+
+
+                    @*                    <div style="text-align:center">
+                    <a href="#" onclick="return false;">
+                    <MudLink Class="d-flex flex-wrap" @onclick='(() => NavigateToNewTab(context.Item.Website))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@context.Item.Website</MudLink>
+                    </a>
+                    </div>*@
+
+                </MudCardContent>
+                <MudCardActions>
+                    <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@selectedResource.Citation" IsDisabled="@copyCitationHiddenNew(selectedResource)" ButtonText="Copy Citation"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+                    @*<RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@context.Item.Website" IsDisabled="@copyUrlHiddenNew(context.Item)" ButtonText="Copy URL"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>*@
+
+                </MudCardActions>
+            </MudCard>
+        </MudPaper>
+
+
+
+    </MudOverlay>
+
+    @*<DocsTreeview @ref="myTree"></DocsTreeview>*@
+    <MudGrid>
+
+        <MudItem xs="12">
+            @*Class="d-flex justify-center flex-grow-1 gap-4"*@
+            <MudTabs Centered="true" Elevation="0" Rounded="true" @ref="tabs">
+                @*Style="border-bottom:solid; border-bottom-width:thin; border-bottom-color:gray"*@
+                @*Class="d-flex justify-center flex-grow-1 gap-4"*@
+
+                <MudTabPanel Text="Documents">
+                    <MudPaper Elevation="0" Outlined="true">
+                        <MudGrid Class="justify-center pa-3">
+                            @*<MudPaper Elevation="3">*@
+
+
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                @*Class="border-dotted border-r"*@
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base"))' Color='@getTagColor("Documents_Knowledge Base")' Underline="Underline.Hover" Style="@headerText">Knowledge Base</MudLink>
+                                    </a>
+                                </div>
+
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Hydrology"))' Color='@getTagColor("Documents_Knowledge Base_Hydrology")' Underline="Underline.Hover" Style="@subheaderText">Hydrology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Hydraulics"))' Color='@getTagColor("Documents_Knowledge Base_Hydraulics")' Underline="Underline.Hover" Style="@subheaderText">Hydraulics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Geomorphology"))' Color='@getTagColor("Documents_Knowledge Base_Geomorphology")' Underline="Underline.Hover" Style="@subheaderText">Geomorphology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Physico chemical"))' Color='@getTagColor("Documents_Knowledge Base_Physico chemical")' Underline="Underline.Hover" Style="@subheaderText">Physicochemical</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Biological Ecology"))' Color='@getTagColor("Documents_Knowledge Base_Biological Ecology")' Underline="Underline.Hover" Style="@subheaderText">Biology/Ecology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base_Social"))' Color='@getTagColor("Documents_Knowledge Base_Social")' Underline="Underline.Hover" Style="@subheaderText">Social</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            @*                            <MudDivider Vertical="true" FlexItem="true">
+
+                            </MudDivider>*@
+                            @*</MudPaper>*@
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation"))' Color='@getTagColor("Documents_Evaluation")' Underline="Underline.Hover" Style="@headerText">Evaluation</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Hydrology"))' Color='@getTagColor("Documents_Evaluation_Hydrology")' Underline="Underline.Hover" Style="@subheaderText">Hydrology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Hydraulics"))' Color='@getTagColor("Documents_Evaluation_Hydraulics")' Underline="Underline.Hover" Style="@subheaderText">Hydraulics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Sediment Transport"))' Color='@getTagColor("Documents_Evaluation_Sediment Transport")' Underline="Underline.Hover" Style="@subheaderText">Sediment Transport</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Geomorphology"))' Color='@getTagColor("Documents_Evaluation_Geomorphology")' Underline="Underline.Hover" Style="@subheaderText">Geomorphology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Physico chemical"))' Color='@getTagColor("Documents_Evaluation_Physico chemical")' Underline="Underline.Hover" Style="@subheaderText">Physicochemical</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation_Biological Ecology"))' Color='@getTagColor("Documents_Evaluation_Biological Ecology")' Underline="Underline.Hover" Style="@subheaderText">Biology/Ecology</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            @*                            <MudDivider Vertical="true" FlexItem="true">
+
+                            </MudDivider>*@
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory"))' Color='@getTagColor("Documents_Design Theory")' Underline="Underline.Hover" Style="@headerText">Design Theory</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Hydraulic Geometry"))' Color='@getTagColor("Documents_Design Theory_Hydraulic Geometry")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic Geometry</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Natural Channel Design"))' Color='@getTagColor("Documents_Design Theory_Natural Channel Design")' Underline="Underline.Hover" Style="@subheaderText">Natural Channel Design</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Stable ch design and Stabilization"))' Color='@getTagColor("Documents_Design Theory_Stable ch design and Stabilization")' Underline="Underline.Hover" Style="@subheaderText">Stable ch design and Stabilization</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Threshold channel design"))' Color='@getTagColor("Documents_Design Theory_Threshold channel design")' Underline="Underline.Hover" Style="@subheaderText">Threshold channel design</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Alluvial Channel Design"))' Color='@getTagColor("Documents_Design Theory_Alluvial Channel Design")' Underline="Underline.Hover" Style="@subheaderText">Alluvial Channel Design</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Analytical Design"))' Color='@getTagColor("Documents_Design Theory_Analytical Design")' Underline="Underline.Hover" Style="@subheaderText">Analytical Design</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+
+
+
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("Documents_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Aesthetics Recreation Education"))' Color='@getTagColor("Documents_Actions and Goals_Aesthetics Recreation Education")' Underline="Underline.Hover" Style="@subheaderText">Aesthetics Recreation Education</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Bank Stabilization"))' Color='@getTagColor("Documents_Actions and Goals_Bank Stabilization")' Underline="Underline.Hover" Style="@subheaderText">Bank Stabilization</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Channel Reconfiguration"))' Color='@getTagColor("Documents_Actions and Goals_Channel Reconfiguration")' Underline="Underline.Hover" Style="@subheaderText">Channel Reconfiguration</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Dam removal retrofit"))' Color='@getTagColor("Documents_Actions and Goals_Dam removal retrofit")' Underline="Underline.Hover" Style="@subheaderText">Dam removal retrofit</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Aquatic organism passage"))' Color='@getTagColor("Documents_Actions and Goals_Aquatic organism passage")' Underline="Underline.Hover" Style="@subheaderText">Aquatic organism passage</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Floodplain Reconnection"))' Color='@getTagColor("Documents_Actions and Goals_Floodplain Reconnection")' Underline="Underline.Hover" Style="@subheaderText">Floodplain Reconnection</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Flow Modification"))' Color='@getTagColor("Documents_Actions and Goals_Flow Modification")' Underline="Underline.Hover" Style="@subheaderText">Flow Modification</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Habitat Improvement"))' Color='@getTagColor("Documents_Actions and Goals_Instream Habitat Improvement")' Underline="Underline.Hover" Style="@subheaderText">Instream Habitat Improvement</MudLink>
+                                    </a>
+                                </div>
+
+                            </MudItem>
+
+
+                            <MudItem Style="border-color:lightgray" xs="2">
+
+                                <div style="text-align:start; margin-left:12px">
+                                    <a hidden href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink Class="invisible" OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("Documents_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
+                                    </a>
+                                </div>
+
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Species Management"))' Color='@getTagColor("Documents_Actions and Goals_Instream Species Management")' Underline="Underline.Hover" Style="@subheaderText">Instream Species Management</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Land Acquisition"))' Color='@getTagColor("Documents_Actions and Goals_Land Acquisition")' Underline="Underline.Hover" Style="@subheaderText">Land Acquisition</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Riparian Management"))' Color='@getTagColor("Documents_Actions and Goals_Riparian Management")' Underline="Underline.Hover" Style="@subheaderText">Riparian Management</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Stormwater Management"))' Color='@getTagColor("Documents_Actions and Goals_Stormwater Management")' Underline="Underline.Hover" Style="@subheaderText">Stormwater Management</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Water Quality Management"))' Color='@getTagColor("Documents_Actions and Goals_Water Quality Management")' Underline="Underline.Hover" Style="@subheaderText">Water Quality Management</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Flood Risk Management"))' Color='@getTagColor("Documents_Actions and Goals_Flood Risk Management")' Underline="Underline.Hover" Style="@subheaderText">Flood Risk Management</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Navigation Channels"))' Color='@getTagColor("Documents_Actions and Goals_Navigation Channels")' Underline="Underline.Hover" Style="@subheaderText">Navigation Channels</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Large wood"))' Color='@getTagColor("Documents_Actions and Goals_Large wood")' Underline="Underline.Hover" Style="@subheaderText">Large wood</MudLink>
+                                    </a>
+                                </div>
+
+                            </MudItem>
+
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a hidden href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink Class="invisible" OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("Documents_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
+                                    </a>
+                                </div>
+
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Grade control"))' Color='@getTagColor("Documents_Actions and Goals_Grade control")' Underline="Underline.Hover" Style="@subheaderText">Grade control</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_River training"))' Color='@getTagColor("Documents_Actions and Goals_River training")' Underline="Underline.Hover" Style="@subheaderText">River training</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Reservoir Operation"))' Color='@getTagColor("Documents_Actions and Goals_Reservoir Operation")' Underline="Underline.Hover" Style="@subheaderText">Reservoir Operation</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Beaver Dam Analog"))' Color='@getTagColor("Documents_Actions and Goals_Beaver Dam Analog")' Underline="Underline.Hover" Style="@subheaderText">Beaver Dam Analog</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Stage 0 Condition"))' Color='@getTagColor("Documents_Actions and Goals_Stage 0 Condition")' Underline="Underline.Hover" Style="@subheaderText">Stage 0 Condition</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Legacy Sed Removal Valley Rest"))' Color='@getTagColor("Documents_Actions and Goals_Legacy Sed Removal Valley Rest")' Underline="Underline.Hover" Style="@subheaderText">Legacy Sed Removal Valley Rest</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Regenerative Stormwater Conv"))' Color='@getTagColor("Documents_Actions and Goals_Regenerative Stormwater Conv")' Underline="Underline.Hover" Style="@subheaderText">Regenerative Stormwater Conv</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_In stream Structures"))' Color='@getTagColor("Documents_Actions and Goals_In stream Structures")' Underline="Underline.Hover" Style="@subheaderText">In stream Structures</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+
+
+                            @*<MudItem Style="d-flex justify-space-around flex-grow-1" xs="6">
+
+                            <MudStack Row="false">
+                            <div style="text-align:start; margin-left:12px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
+                            </a>
+                            </div>
+
+                            <MudGrid Class="gap-0">
+                            <MudItem Class="ma=0 pa=0 gap=0" xs="4">
+
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Aesthetics Recreation Education"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aesthetics Recreation Education</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Bank Stabilization"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bank Stabilization</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Channel Reconfiguration"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Channel Reconfiguration</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Dam removal retrofit"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Dam removal retrofit</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Aquatic organism passage"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aquatic organism passage</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Floodplain Reconnection"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Floodplain Reconnection</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Flow Modification"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flow Modification</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Habitat Improvement"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Instream Habitat Improvement</MudLink>
+                            </a>
+                            </div>
+                            </MudItem>
+                            <MudItem Class="ma=0 pa=0 gap=0" xs="4">
+
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Species Management"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Instream Species Management</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Land Acquisition"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Land Acquisition</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Riparian Management"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Riparian Management</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Stormwater Management"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stormwater Management</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Water Quality Management"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Water Quality Management</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Flood Risk Management"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flood Risk Management</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Navigation Channels"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Navigation Channels</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Large wood"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Large wood</MudLink>
+                            </a>
+                            </div>
+                            </MudItem>
+                            <MudItem Class="ma=0 pa=0 gap=0" xs="4">
+
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Grade control"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Grade control</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_River training"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">River training</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Reservoir Operation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Reservoir Operation</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Beaver Dam Analog"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Beaver Dam Analog</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Stage 0 Condition"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stage 0 Condition</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Legacy Sed Removal Valley Rest"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Legacy Sed Removal Valley Rest</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Regenerative Stormwater Conv"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Regenerative Stormwater Conv</MudLink>
+                            </a>
+                            </div>
+                            <div style="text-align:start; margin-left:18px">
+                            <a href="#" style="display:inline-block" onclick="return false;">
+                            <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_In stream Structures"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">In stream Structures</MudLink>
+                            </a>
+                            </div>
+                            </MudItem>
+                            </MudGrid>
+                            </MudStack>
+
+                            </MudItem>*@
+
+                        </MudGrid>
+                    </MudPaper>
+                </MudTabPanel>
+                <MudTabPanel Text="Models/Tools">
+                    <MudPaper Elevation="0" Outlined="true">
+                        <MudGrid Class="justify-center pa-3">
+                            @*<MudPaper Elevation="3">*@
+
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Data Sources</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Climate"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Climate</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Soils and Geology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Soils and Geology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Hydrography and Floodplains"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydrography and Floodplains</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quantity"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Water Quantity</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quality"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Water Quality</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Topography and Bathymetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Topography and Bathymetry</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Vegetation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Vegetation</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Land Use and Land Cover"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Land Use and Land Cover</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Aerial Photogrammetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            @*</MudPaper>*@
+                            <MudItem Style="border-color:lightgray" xs="2">
+
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Hydrology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Stream gages"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stream gages</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Download data"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Download data</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Visualize time series"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Visualize time series</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Compute statistics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Compute statistics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Ungaged gage transfer regional regressions"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Ungaged gage transfer regional regressions</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Bankfull Regional Curves"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bankfull Regional Curves</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Frequency"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flood Frequency</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flow Duration"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flow Duration</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Rainfall Runoff Analysis"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Rainfall Runoff Analysis</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Routing"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flood Routing</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Peak flows"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Peak flows</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Hydraulics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Normal depth for 1D steady uniform flow</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Critical depth for 1D steady uniform flow</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_1D hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">1D hydraulics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_2D Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">2D Hydraulics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Computational Fluid Dynamics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Computational Fluid Dynamics</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Stormwater and Pipe Flows"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stormwater and Pipe Flows</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic roughness"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic roughness</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Rating curve"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Rating curve</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic parameters"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic parameters</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Simple backwater profiles"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Simple backwater profiles</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_SW GW Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">SW GW Hydraulics</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Sediment Transport</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Particle size analysis"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Particle size analysis</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Pebble counts and bar samples"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Pebble counts and bar samples</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Incipient motion"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Incipient motion</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment competence"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment competence</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Supply Yield"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment Supply Yield</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Transport Capacity"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment Transport Capacity</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Effective discharge"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Effective discharge</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Scour"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Scour</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Aerial Photogrammetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Bed and Bank Erosion"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bed and Bank Erosion</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Geomorphology</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Hydraulic geometry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic geometry</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Planform geometry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Planform geometry</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Bed evolution"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bed evolution</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Channel change indices"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Channel change indices</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Geomorphic Features"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Geomorphic Features</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                            <MudItem Style="border-color:lightgray" xs="2">
+                                <div style="text-align:start; margin-left:12px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Actions and goals</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Natural Channel Design"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Natural Channel Design</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Instream Structures"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Instream Structures</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Large Wood"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Large Wood</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Stabilization"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stabilization</MudLink>
+                                    </a>
+                                </div>
+                                <div style="text-align:start; margin-left:18px">
+                                    <a href="#" style="display:inline-block" onclick="return false;">
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Restoration Planning Site Evaluation</MudLink>
+                                    </a>
+                                </div>
+                            </MudItem>
+                        </MudGrid>
+                    </MudPaper>
+                </MudTabPanel>
+            </MudTabs>
+        </MudItem>
+
+        <MudItem xs="12">
+            <MudStack Class="justify-center pt-2 mb-n2 gap-0" Row="true">
+
+                <div style="display:flex">
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,""))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">Resources</MudLink>
+                        </a>
+                    </div>
+
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
+
+                <div style="@breadcrumb1style()">
+
+
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb1Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb1Text</MudLink>
+                        </a>
+                    </div>
+
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
+
+                <div style="@breadcrumb2style()">
+
+
+
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb2Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb2Text</MudLink>
+                        </a>
+                    </div>
+
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
+
+
+                <div style="@breadcrumb3style()">
+
+
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb3Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb3Text</MudLink>
+                        </a>
+                    </div>
+                </div>
+
+            </MudStack>
+
+        </MudItem>
+
+
+        <MudItem xs="12">
+
+            <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="2" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" ShowFilterIcons="false" QuickFilter="@_quickFilter"
+                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="true" OverscanCount="10" FixedHeader="true">
+                <ToolBarContent>
+                    @*<MudText Typo="Typo.h6">Resources</MudText>
+                    <MudSpacer />*@
+
+                    @*Alternatives if the search box starts going slow*@
+                    @*                    <div class="input-group mb-3" style="width:35%;">
+                    <MudIcon Icon="@Icons.Material.Filled.Search" Size="Size.Small"></MudIcon>
+                    <input type="text" class="form-control" placeholder="Search" value="@_searchString" @onchange="@FilterChanged">
+                    <div class="input-group-append">
+                    <span class="input-group-text bg-primary" id="basic-addon1">
+                    </span>
+                    </div>
+                    </div>*@
+
+                    @*Alternatives if the search box starts going slow*@
+                    @*                    <div class="docs-section-content-inner relative d-flex flex-grow-1 flex-wrap justify-center align-center px-8 pb-8 pt-2">
+                    <div class="mud-input-control mud-input-input-control">
+                    <div class="mud-input-control-input-container">
+                    <div class="mud-input mud-input-text mud-input-underline">
+                    <input class="mud-input-slot mud-input-root mud-input-root-text" type="text" inputmode="text" maxlength="524288" aria-invalid="false" _bl_26="">
+                    <div class="mud-input-slot mud-input-root mud-input-root-text" style="display:none" tabindex="-1" _bl_27="">
+                    </div>
+                    </div>
+                    <label class="mud-input-label mud-input-label-animated mud-input-label-text mud-input-label-inputcontrol" for="mudinput-f12b2c21-6334-4302-82bd-0b96c9e271a7">Standard</label>
+                    </div>
+                    </div>
+                    </div>*@
+                    @*                    <div>
+                    <MudSwitch @bind-Checked="@Basic_Switch1" Color="Color.Primary" Label="Virt"/>
+                    <MudSwitch @bind-Checked="@Basic_Switch2" Color="Color.Primary" Label="Quick"/>
+                    </div>*@
+                    @*                    <div>
+                    <MudIconButton Icon="@Icons.Material.Filled.Search" aria-label="filter"></MudIconButton>
+                    </div>*@
+
+
+                    @*<div>*@
+                    <MudGrid>
+                        <MudItem xs="4">
+
+                        </MudItem>
+                        <MudItem xs="4">
+                            <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
+
+                                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="false"
+                                              AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="1000" IconSize="Size.Medium"></MudTextField>
+
+                                <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Medium" OnClick="@openFilters" aria-label="filter"></MudIconButton>
+                            </MudStack>
+                        </MudItem>
+                        <MudItem Class="d-flex justify-end flex-grow-1" xs="4">
+
+                            <MudPaper Class="d-inline justify-end flex-grow-0" Elevation="0">
+                                @*<MudText>Sort by:</MudText>*@
+                                <MudSelect @bind-Text="_sortName" Clearable="true" SelectedValuesChanged="@sortFilterChanged" Class="flex-shrink-1 flex-grow-0" Label="Sort by:" Dense="true" FullWidth="false" Style="max-width:200px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial" T="string" AnchorOrigin="Origin.BottomCenter">
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Title A-Z")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Title Z-A")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Year New to Old")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Year Old to New")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Author A-Z")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Author Z-A")" />
+                                </MudSelect>
+                            </MudPaper>
+
+                        </MudItem>
+
+                    </MudGrid>
+
+
+
+
+                    @*                    <MudPaper Class="d-flex justify-center flex-grow-1 gap-4">
+                    <MudStack Row="true">
+                    <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Medium" OnClick="@openFilters" aria-label="filter"></MudIconButton>
+
+
+
+                    <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="false"
+                    AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="1000" IconSize="Size.Medium"></MudTextField>
+                    </MudStack>
+                    </MudPaper>
+
+                    <MudDivider></MudDivider>
+
+                    <MudPaper Class="d-inline justify-end gap-4" Elevation="0">
+                    <MudSelect T="string" Label="Sort by:" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem Value="@("Title A-Z")" />
+                    <MudSelectItem Value="@("Title Z-A")" />
+                    <MudSelectItem Value="@("Year Newest to Oldest")" />
+                    <MudSelectItem Value="@("Year Oldest to Newest")" />
+                    <MudSelectItem Value="@("Author A-Z")" />
+                    <MudSelectItem Value="@("Author Z-A")" />
+                    </MudSelect>
+                    </MudPaper>*@
+
+
+
+                </ToolBarContent>
+
+                <ColGroup>
+                    @*                    <col style="width:50%; max-width:50%; min-width:50%" />
+                    <col style="width:10%; max-width:10%; min-width:10%" />
+                    <col style="width:30%; max-width:30%; min-width:30%" />
+                    <col style="width:10%; max-width:10%; min-width:10%" />
+                    <col style="width:0%; max-width:0%; min-width:0%" />*@
+                </ColGroup>
+                <Columns>
+                    @*<SelectColumn T="MyResource" />*@
+                    <Column T="MyResource" Field="Title" Hidden="true" />
+                    <Column T="MyResource" Field="Year" Hidden="true" />
+                    <Column T="MyResource" Field="Author" Hidden="true" />
+                    <Column T="MyResource" Field="Tags" Hidden="true" />
+                </Columns>
+
+                <ChildRowContent>
+
+                    <MudPaper Elevation="0">
+
+                        <MudStack Class="" Row="true">
+
+                            <MudText Class="d-flex flex-wrap align-self-center" Style="color:#1a0dab; font-size:11px; font-weight:normal;font-family:Arial; text-transform:uppercase">[@context.Item.Type]</MudText>
+                            @*<MudIcon Icon="@GetSelectedResourceIconType(context.Item)" Title=@context.Item.Type Size="Size.Medium" Color="Color.Default"></MudIcon>
+
+                            @*<MudText Style="@titleText">@context.Item.Website</MudText>*@
+                            <MudLink Class="d-flex flex-wrap" Style="color:#1a0dab; font-size:17px; font-weight:normal;font-family:Arial" Href="@context.Item.Website" Target="_blank" Color="Color.Tertiary" Underline="@GetHoverableTitleLink(context.Item)">@context.Item.Title</MudLink>
+                        </MudStack>
+
+                        <MudStack Row="true">
+                            <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author - @context.Item.Year - @context.Item.AvailableAt</MudText>
+                            @*                        <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author + " - " + @context.Item.Year + " - " + @context.Item.Publisher</MudText>
+                            <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author + " - " + @context.Item.Year + " - " + @context.Item.Publisher</MudText>
+                            <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author + " - " + @context.Item.Year + " - " + @context.Item.Publisher</MudText>*@
+                        </MudStack>
+
+                        <MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.DescriptionClip</MudText>
+
+                        @*<MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.LastTags</MudText>*@
+
+                        @*                        <MudText Class="d-flex flex-wrap" Style="@breadcrumbText">@context.Item.Citation</MudText>
+                        <div style="text-align:center">
+                        <a href="#" onclick="return false;">
+                        <MudLink Class="d-flex flex-wrap" @onclick='(() => NavigateToNewTab(context.Item.Website))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@context.Item.Website</MudLink>
+                        </a>
+                        </div>*@
+
+                        <MudStack Row="true">
+
+                            @*                            <MudIcon Class="d-flex flex-wrap" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial" Icon="Icon.Outlined.Label">
+                            Tags
+                            </MudIcon>*@
+                            @*                            <MudButton Class="d-inline ma-0 pa-0 gap-0" Variant="Variant.Text" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">
+                            Tags
+                            </MudButton>
+                            <MudButton Class="d-inline ma-0 pa-0 gap-0" Variant="Variant.Text" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none">
+                            Cite
+                            </MudButton>
+                            <MudButton Class="d-inline ma-0 pa-0 gap-0" Variant="Variant.Text" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none">
+                            Google Scholar
+                            </MudButton>*@
+
+
+                            <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                    <MudLink Class="d-inline" OnClick='@((args) => toggleTags(args,context.Item))' Color="@getTagLabelColor(context.Item)" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Tags(@context.Item.TagsCount)</MudLink>
+                                </a>
+                            </div>
+
+                            <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                    <MudLink Class="d-inline" OnClick='@((args) => openCiteOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Cite</MudLink>
+                                </a>
+                            </div>
+
+@*                            <div style="text-align:center">*@
+                                @*<MudLink Class="d-inline" Href="@openGoogleScholar(context.Item)" Color="Color.Tertiary" Underline="Underline.Hover" Target="_blank" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Google Scholar</MudLink>*@
+@*                                <MudLink Class="d-inline" OnClick='@((args) => StartEditingItem(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Target="_blank" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Edit</MudLink>
+                            </div>*@
+
+                        </MudStack>
+
+                        @*                        <MudStack Row="true">
+                        <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@context.Item.Citation" IsDisabled="@copyCitationHiddenNew(context.Item)" ButtonText="Copy Citation"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+                        <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@context.Item.Website" IsDisabled="@copyUrlHiddenNew(context.Item)" ButtonText="Copy URL"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+                        </MudStack>*@
+
+                    </MudPaper>
+
+                    @*                                        <MudCard Elevation="0">
+                    <MudCardHeader>
+                    <CardHeaderAvatar>
+                    <MudIcon Icon="@GetSelectedResourceIconType(context.Item)" Title=@context.Item.Type Size="Size.Medium" Color="Color.Default"></MudIcon>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                    <MudText Style="@titleText">@context.Item.Title</MudText>
+                    </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+
+                    <MudText Class="d-flex flex-wrap" Style="@breadcrumbText">@context.Item.Citation</MudText>
+                    <div style="text-align:center">
+                    <a href="#" onclick="return false;">
+                    <MudLink Class="d-flex flex-wrap" @onclick='(() => NavigateToNewTab(context.Item.Website))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@context.Item.Website</MudLink>
+                    </a>
+                    </div>
+
+                    </MudCardContent>
+                    <MudCardActions>
+                    <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@context.Item.Citation" IsDisabled="@copyCitationHiddenNew(context.Item)" ButtonText="Copy Citation"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+                    <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@context.Item.Website" IsDisabled="@copyUrlHiddenNew(context.Item)" ButtonText="Copy URL"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+
+                    </MudCardActions>
+                    </MudCard>*@
+
+                </ChildRowContent>
+                @*
+                <PagerContent>
+                <MudDataGridPager T="MyResource" />
+                </PagerContent>*@
+            </MudDataGrid>
+
+
+            @*MUDDATAGRID WORKING*@
+            @*            <MudDataGrid Class="" Elevation="3" Style="column-fill:balance-all; grid-template-columns:none" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" ShowFilterIcons="false" QuickFilter="@_quickFilter"
+            Hideable="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="true" Bordered="false" Height="300px" Virtualize="false" OverscanCount="15" FixedHeader="true">
+            <ToolBarContent>
+            <MudText Typo="Typo.h6">Resources</MudText>
+            <MudSpacer />
+
+            <MudStack Row="true">
+            <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Medium" OnClick="@openFilters" aria-label="filter"></MudIconButton>
+
+            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="false"
+            AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="1000" IconSize="Size.Medium"></MudTextField>
+            </MudStack>
+
+
+            </ToolBarContent>
+
+            <ColGroup>
+            <col style="width:50%; max-width:50%; min-width:50%" />
+            <col style="width:10%; max-width:10%; min-width:10%" />
+            <col style="width:30%; max-width:30%; min-width:30%" />
+            <col style="width:10%; max-width:10%; min-width:10%" />
+            <col style="width:0%; max-width:0%; min-width:0%" />
+            </ColGroup>
+            <Columns>
+            <Column T="MyResource" Field="Title" />
+            <Column T="MyResource" Field="Year" />
+            <Column T="MyResource" Field="Author" />
+            <Column T="MyResource" Field="TagsCount" Title="Tags" Sortable="false" />
+            <Column T="MyResource" Field="Tags" Title="Tags2" Hidden="true" />
+            </Columns>
+
+
+            <PagerContent>
+            <MudDataGridPager T="MyResource" />
+            </PagerContent>
+            </MudDataGrid>*@
+
+
+
+
+
+
+            @*            <MudTable Style="column-fill:balance-all; grid-template-columns:none" Elevation="3" Items="MyResourceList" @ref="mudTable" RowClassFunc="@SelectedRowClassFunc" Dense="true" Hover="true" Bordered="false" Striped="false" Height="300px" Virtualize="false" FixedHeader="true" Filter="new Func<MyResource,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+
+            <ToolBarContent>
+            <MudText Typo="Typo.h6">Resources</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString1" Placeholder="Search" Immediate="false" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+
+            <HeaderContent>
+            <MudTh>Title</MudTh>
+            <MudTh>Year</MudTh>
+            <MudTh>Author</MudTh>
+            </HeaderContent>
+
+            <ColGroup>
+            <col style="width:50%; max-width:50%; min-width:50%" />
+            <col style="width:20%; max-width:20%; min-width:20%" />
+            <col style="width:30%; max-width:30%; min-width:30%" />
+            </ColGroup>
+
+            <RowTemplate>
+
+            <MudTd DataLabel="Title">@context.Title</MudTd>
+            <MudTd DataLabel="Year">@context.Year</MudTd>
+            <MudTd DataLabel="Author">@context.Author</MudTd>
+            </RowTemplate>
+
+            <PagerContent>
+            <MudTablePager />
+            </PagerContent>
+
+            </MudTable>*@
+        </MudItem>
+
+        <MudItem xs="12">
+
+            <MudCard Class="@isHidden()" Elevation="3">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudIcon Icon="@GetSelectedResourceIconType(selectedResource)" Title=@selectedTypeMudDataGrid() Size="Size.Large" Color="Color.Default"></MudIcon>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Style="@titleText">@selectedTitleMudDataGrid()</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+
+                    <MudText Class="d-flex flex-wrap" Style="@breadcrumbText">@selectedLastTags()</MudText>
+
+                    <MudText Class="d-flex flex-wrap" Style="@breadcrumbText">@selectedCitationMudDataGrid()</MudText>
+                    <div style="text-align:center">
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex flex-wrap" @onclick='(() => NavigateToNewTab(selectedWebsiteMudDataGrid()))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@selectedWebsiteMudDataGrid()</MudLink>
+                        </a>
+                    </div>
+
+                </MudCardContent>
+                <MudCardActions>
+                    <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@selectedCitationMudDataGrid()" IsDisabled="@copyCitationHidden()" ButtonText="Copy Citation"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+                    <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@selectedWebsiteMudDataGrid()" IsDisabled="@copyUrlHidden()" ButtonText="Copy URL"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+
+                </MudCardActions>
+            </MudCard>
+
+
+            <MudStack>
+
+            </MudStack>
+
+        </MudItem>
+    </MudGrid>
+
+</MudPaper>
+
+
+
+
+
+@*Alternatives if the search box starts going slow*@
+@*                    <div class="input-group mb-3" style="width:35%;">
+                    <MudIcon Icon="@Icons.Material.Filled.Search" Size="Size.Small"></MudIcon>
+                    <input type="text" class="form-control" placeholder="Search" value="@_searchString" @onchange="@FilterChanged">
+                    <div class="input-group-append">
+                    <span class="input-group-text bg-primary" id="basic-addon1">
+                    </span>
+                    </div>
+                    </div>*@
+
+@*Alternatives if the search box starts going slow*@
+@*                    <div class="docs-section-content-inner relative d-flex flex-grow-1 flex-wrap justify-center align-center px-8 pb-8 pt-2">
+                    <div class="mud-input-control mud-input-input-control">
+                    <div class="mud-input-control-input-container">
+                    <div class="mud-input mud-input-text mud-input-underline">
+                    <input class="mud-input-slot mud-input-root mud-input-root-text" type="text" inputmode="text" maxlength="524288" aria-invalid="false" _bl_26="">
+                    <div class="mud-input-slot mud-input-root mud-input-root-text" style="display:none" tabindex="-1" _bl_27="">
+                    </div>
+                    </div>
+                    <label class="mud-input-label mud-input-label-animated mud-input-label-text mud-input-label-inputcontrol" for="mudinput-f12b2c21-6334-4302-82bd-0b96c9e271a7">Standard</label>
+                    </div>
+                    </div>
+                    </div>*@
+@*                    <div>
+                    <MudSwitch @bind-Checked="@Basic_Switch1" Color="Color.Primary" Label="Virt"/>
+                    <MudSwitch @bind-Checked="@Basic_Switch2" Color="Color.Primary" Label="Quick"/>
+                    </div>*@
+@*                    <div>
+                    <MudIconButton Icon="@Icons.Material.Filled.Search" aria-label="filter"></MudIconButton>
+                    </div>*@
+
+
+
+
+@code {
+    public MudBlazor.Color getTagLabelColor(MyResource item)
+    {
+        if (tagsVisible == true && !(selectedResource == null) && selectedResource == item)
+        {
+            return MudBlazor.Color.Secondary;
+        }
+        return MudBlazor.Color.Tertiary;
+
+    }
+
+    public MudBlazor.Color getTagColor(string tagName1)
+    {
+        if (tagsVisible == true && !(selectedResource == null) && !(string.IsNullOrEmpty(selectedResource.Tags)) && !(String.IsNullOrEmpty(tagName1)))
+        {
+            //List<string> taglist = selectedResource.Tags.Split(",").ToList();
+            if (selectedResource.affiliations.Where(x => x.databaseName == tagName1).Count() > 0)
+            {
+                return MudBlazor.Color.Secondary;
+            }
+        }
+        return MudBlazor.Color.Dark;
+    }
+
+    public void StartEditingItem(MouseEventArgs args, MyResource theItem)
+    {
+        mudDataGrid.SetEditingItemAsync(theItem);
+        
+    }
+
+    public string openGoogleScholar(MyResource selRes)
+    {
+        string link1 = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C10&q=";
+        string link2 = "&btnG=";
+        Uri uri = new Uri(link1 + selRes.Title + link2);
+        return uri.AbsoluteUri;
+    }
+
+    //public async Task NavigateToNewTab(string url)
+    //{
+    //    await JSRuntime.InvokeVoidAsync("open", url, "_blank");
+    //}
+
+    private bool tagsVisible;
+    public async Task toggleTags(MouseEventArgs args, MyResource selRes)
+    {
+        if (selectedResource == selRes)
+        {
+            selectedResource = null;
+            tagsVisible = false;
+        }
+        else
+        {
+            selectedResource = selRes;
+            tagsVisible = true;
+        }
+        //StateHasChanged();
+    }
+
+    private bool citeOverlayVisible;
+    public void openCiteOverlay(MouseEventArgs args, MyResource selRes)
+    {
+        if (!(string.IsNullOrEmpty(selRes.Citation)))
+        {
+            //turn off tags so the selected resource is correct
+            if (tagsVisible == true)
+            {
+                tagsVisible = false;
+            }
+            selectedResource = selRes;
+            citeOverlayVisible = true;
+            StateHasChanged();
+        }
+
+    }
+    public void closeCiteOverlay()
+    {
+
+        citeOverlayVisible = false;
+        selectedResource = null;
+        StateHasChanged();
+    }
+
+    private string _sortName = "";
+    private void sortFilterChanged()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+        if (!string.IsNullOrEmpty(_sortName))
+        {
+
+
+            switch (_sortName)
+            {
+                //case "Best Match":
+                //    mudDataGrid.SortDefinitions.Clear();
+                //    return;
+                case "Title A-Z":
+                    mudDataGrid.SetSortAsync("Title", SortDirection.Ascending, _sortByTitle);
+                    return;
+                case "Title Z-A":
+                    mudDataGrid.SetSortAsync("Title", SortDirection.Descending, _sortByTitle);
+                    return;
+                case "Year New to Old":
+                    mudDataGrid.SetSortAsync("Year", SortDirection.Ascending, _sortByYear);
+                    return;
+                case "Year Old to New":
+                    mudDataGrid.SetSortAsync("Year", SortDirection.Descending, _sortByYear);
+                    return;
+                case "Author A-Z":
+                    mudDataGrid.SetSortAsync("Author", SortDirection.Ascending, _sortByAuthor);
+                    return;
+                case "Author Z-A":
+                    mudDataGrid.SetSortAsync("Author", SortDirection.Descending, _sortByAuthor);
+                    return;
+                default:
+                    mudDataGrid.SortDefinitions.Clear();
+                    return;
+
+            }
+        }
+        else
+        {
+            mudDataGrid.SortDefinitions.Clear();
+            return;
+        }
+
+    }
+
+    private Func<MyResource, object> _sortByTitle => x =>
+    {
+        return x.Title;
+    };
+    private Func<MyResource, object> _sortByYear => x =>
+    {
+        return x.Year;
+    };
+    private Func<MyResource, object> _sortByAuthor => x =>
+    {
+        return x.Author;
+    };
+
+    private string filtersOnStyle()
+    {
+        if (mudDataGrid == null || mudDataGrid.FilterDefinitions.Count() == 0)
+        {
+            return Icons.Material.Outlined.FilterAlt;
+        }
+        else
+        {
+            return Icons.Material.Filled.FilterAlt;
+
+        }
+
+    }
+    private void openFilters()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+        mudDataGrid.OpenFilters();
+    }
+
+    private string _dummy;
+    private string _searchString = "";
+    private bool _sortNameByLength;
+    private MudDataGrid<MyResource>? mudDataGrid;
+    private List<string> _events = new();
+
+
+    protected void FilterChanged(ChangeEventArgs args)
+    {
+        _searchString = args.Value.ToString();
+        //table.ReloadServerData();
+        //Console.WriteLine("Changed: args.Value.ToString()");
+
+    }
+
+
+    // custom sort by name length
+    private Func<MyResource, object> _sortBy => x =>
+    {
+        //if (_sortNameByLength)
+        //    return x.Title.Length;
+        //else
+        return x.Title;
+    };
+    // quick filter - filter gobally across multiple columns with the same input
+    private Func<MyResource, bool> _quickFilter => x =>
+    {
+
+        string searchDBname = "";
+        if (!String.IsNullOrEmpty(breadcrumb3Dbname))
+        {
+            searchDBname = breadcrumb3Dbname;
+        }
+        else if (!String.IsNullOrEmpty(breadcrumb2Dbname))
+        {
+            searchDBname = breadcrumb2Dbname;
+        }
+        else if (!String.IsNullOrEmpty(breadcrumb1Dbname))
+        {
+            searchDBname = breadcrumb1Dbname;
+        }
+        else
+        {
+
+        }
+
+        if (x.Tags != null)
+        {
+            if (!String.IsNullOrEmpty(searchDBname))
+            {
+                if (string.IsNullOrWhiteSpace(_searchString) && x.Tags.Contains(searchDBname))
+                    return true;
+                if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase) && x.Tags.Contains(searchDBname))
+                    return true;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(_searchString))
+                    return true;
+                if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+
+        //if (string.IsNullOrWhiteSpace(_searchString))
+        //    return true;
+        //if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        //    return true;
+
+        //if (x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        //    return true;
+
+        //if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchString))
+        //    return true;
+
+        return false;
+    };
+
+
+    void selectedItemChanged(MyResource item)
+    {
+        //_events.Insert(0, $"Event = SelectedItemsChanged, Data = {System.Text.Json.JsonSerializer.Serialize(items)}");
+
+        if (mudDataGrid == null)
+        {
+            selectedResource = null;
+            //clickedEvents.Add("Selected Row: None");
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+            //return string.Empty;
+        }
+        else if (item != null)
+        {
+
+            //clickedEvents.Add($"Selected Row: {rowNumber}");
+            selectedResource = item;
+            //selectedTitle = item.Title;
+            //selectedType = item.Type;
+            //selectedWebsite = item.Website;
+            //selectedCitation = item.Citation;
+            //return "selected";
+        }
+        else
+        {
+            selectedResource = null;
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+
+            //return string.Empty;
+        }
+
+    }
+
+    //// events
+    //void RowClicked(DataGridRowClickEventArgs<MyResource> args)
+    //{
+    //    _events.Insert(0, $"Event = RowClick, Index = {args.RowIndex}, Data = {System.Text.Json.JsonSerializer.Serialize(args.Item)}");
+    //}
+
+    //    void SelectedItemsChanged(HashSet<MyResource> items)
+    //{
+    //    _events.Insert(0, $"Event = SelectedItemsChanged, Data = {System.Text.Json.JsonSerializer.Serialize(items)}");
+    //}
+
+    //    private string MySelectedRowClassFuncMudDataGrid(MyResource document, int rowNumber)
+    //{
+    //    if (selectedRowNumber == rowNumber)
+    //    {
+    //        selectedRowNumber = -1;
+    //        //clickedEvents.Add("Selected Row: None");
+    //        return string.Empty;
+    //    }
+    //    else if (mudDataGrid.SelectedItem != null && mudDataGrid.SelectedItem.Equals(document))
+    //    {
+    //        selectedRowNumber = rowNumber;
+    //        //clickedEvents.Add($"Selected Row: {rowNumber}");
+    //        return "selected";
+    //    }
+    //    else
+    //    {
+    //        return string.Empty;
+    //    }
+    //}
+
+    //private string SelectedRowClassFuncMudDataGrid(MyResource document, int rowNumber)
+    //{
+    //    if (selectedRowNumber == rowNumber)
+    //    {
+    //        selectedRowNumber = -1;
+    //        //clickedEvents.Add("Selected Row: None");
+    //        return string.Empty;
+    //    }
+    //    else if (mudDataGrid.SelectedItem != null && mudDataGrid.SelectedItem.Equals(document))
+    //    {
+    //        selectedRowNumber = rowNumber;
+    //        //clickedEvents.Add($"Selected Row: {rowNumber}");
+    //        return "selected";
+    //    }
+    //    else
+    //    {
+    //        return string.Empty;
+    //    }
+    //}
+
+
+    private MyResource? selectedResource;
+
+    private string selectedLastTags()
+    {
+
+        int count = 0;
+        string tagsCombined = "";
+        if (mudDataGrid != null && selectedResource != null)
+        {
+
+            for (int i = 0; i <= selectedResource.affiliations.Count - 1; i++)
+            {
+                //BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+                //string classification = selectedResource.affiliations[i].classification.ToString();
+                string cat = selectedResource.affiliations[i].category.ToString();
+                string subcat = selectedResource.affiliations[i].subcategory.ToString();
+                if (!string.IsNullOrEmpty(subcat))
+                {
+                    if (!tagsCombined.Contains(subcat))
+                    {
+                        tagsCombined += subcat + ",";
+                    }
+                }
+                else if (!string.IsNullOrEmpty(cat))
+                {
+                    if (!tagsCombined.Contains(cat))
+                    {
+                        tagsCombined += cat + ",";
+                    }
+                }
+                else
+                {
+                    string classif = selectedResource.affiliations[i].classification.ToString();
+                    if (!tagsCombined.Contains(classif))
+                    {
+                        tagsCombined += classif + ",";
+                    }
+                }
+            }
+
+            //string theTags = string.Join(",",selectedResource.affiliations)
+            if (tagsCombined.EndsWith(","))
+            {
+                tagsCombined = tagsCombined.Substring(0, tagsCombined.Length - 1);
+            }
+            count = selectedResource.affiliations.Count() - 1;
+            tagsCombined = "Tags (" + count.ToString() + "): " + tagsCombined;
+
+        }
+        return tagsCombined;
+    }
+
+    //private string selectedTitle = "";
+    //private string selectedType = "";
+    //private string selectedWebsite = "";
+    //private string selectedCitation = "";
+    //private string selectedTags = "";
+    //private string selectedTagsCount = "";
+    //private string selectedYear = "";
+
+    private string selectedTitleMudDataGrid()
+    {
+        if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Title))
+        {
+            return selectedResource.Title;
+        }
+        else
+        {
+            return "";
+        }
+    }
+    private string selectedTypeMudDataGrid()
+    {
+        if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Type))
+        {
+            return selectedResource.Type;
+        }
+        else
+        {
+            return "";
+        }
+    }
+    private string selectedWebsiteMudDataGrid()
+    {
+        if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Website))
+        {
+            return selectedResource.Website;
+        }
+        else
+        {
+            return "";
+        }
+    }
+    private string selectedCitationMudDataGrid()
+    {
+        if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Citation))
+        {
+            return selectedResource.Citation;
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    //private string selectedCitationMudDataGrid()
+    //{
+    //    if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Tags))
+    //    {
+    //        return selectedResource.;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+
+
+
+}
+
+
+@code {
+
+    public async Task NavigateToNewTab(string url)
+    {
+        await JSRuntime.InvokeVoidAsync("open", url, "_blank");
+    }
+}
+
+@code {
+    public bool copyCitationHiddenNew(MyResource selRes)
+    {
+        if (mudDataGrid == null || selRes == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selRes.Citation))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool copyUrlHiddenNew(MyResource selRes)
+    {
+        if (mudDataGrid == null || selRes == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selRes.Website))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public bool copyCitationHidden()
+    {
+        if (mudDataGrid == null || selectedResource == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selectedResource.Citation))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool copyUrlHidden()
+    {
+        if (mudDataGrid == null || selectedResource == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selectedResource.Website))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string breadcrumb1Text = "";
+    public string breadcrumb1Dbname = "";
+    public string breadcrumb2Text = "";
+    public string breadcrumb2Dbname = "";
+    public string breadcrumb3Text = "";
+    public string breadcrumb3Dbname = "";
+
+    private string breadcrumb1style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb1Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+    private string breadcrumb2style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb2Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+    private string breadcrumb3style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb3Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+}
+
+@code {
+    MudTabs? tabs;
+    MudTabPanel panel01;
+    MudTabPanel panel02;
+    MudTabPanel panel03;
+
+    private string hoveredLinkDBname = "";
+    public void setHoveredLinkDBname(string HoveredName)
+    {
+        hoveredLinkDBname = HoveredName;
+    }
+    public void removeHoveredLinkDBname()
+    {
+        //if(hoveredLinkDBname==UnHoveredName)
+        //{
+        //    hoveredLinkDBname = "";
+        //}
+        hoveredLinkDBname = "";
+    }
+
+    string headerText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small; font-weight:bold";
+    string subheaderText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small";
+
+    string titleText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
+    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium";
+
+    public string getLinkHeaderText(string dbname)
+    {
+        if (hoveredLinkDBname == dbname)
+        {
+            return "text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
+        }
+        else
+        {
+            return "text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:normal";
+        }
+    }
+
+    void Activate(int index)
+    {
+        tabs.ActivatePanel(index);
+    }
+
+    void Activate(MudTabPanel panel)
+    {
+        tabs.ActivatePanel(panel);
+    }
+
+    void Activate(object id)
+    {
+        tabs.ActivatePanel(id);
+    }
+
+    public void searchTag(MouseEventArgs args, string searchName)
+    {
+        //Console.WriteLine("Search: " + searchName);
+        if (String.IsNullOrEmpty(searchName))
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+            return;
+        }
+
+        string[] partArray = searchName.Split("_");
+        if (partArray == null)
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+            return;
+        }
+
+        List<string> partList = partArray.ToList();
+
+        if (partList.Count == 1)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+        else if (partList.Count == 2)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = partList[1];
+            breadcrumb2Dbname = partList[0] + "_" + partList[1];
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+        else if (partList.Count == 3)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = partList[1];
+            breadcrumb2Dbname = partList[0] + "_" + partList[1];
+            breadcrumb3Text = partList[2];
+            breadcrumb3Dbname = partList[0] + "_" + partList[1] + "_" + partList[2];
+        }
+        else
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+
+
+        //List<BreadcrumbItem> temp = new List<BreadcrumbItem>();
+        //for (int i = 0; i <= partList.ToList().Count - 1; i++)
+        //{
+        //    BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+        //}
+        //{
+        //new BreadcrumbItem("Home", href: "#"),
+        //new BreadcrumbItem("Link 1", href: "#"),
+        //new BreadcrumbItem("Link 2", href: null, disabled: true)
+        //};
+
+
+    }
+
+}
+
+
+@code {
+
+    private string isHidden()
+    {
+        if (mudDataGrid != null && mudDataGrid.SelectedItem != null)
+        {
+            return "visible";
+        }
+        else
+        {
+            return "invisible";
+        }
+    }
+
+
+    //bool _drawerOpen = true;
+
+    //void DrawerToggle()
+    //{
+    //    _drawerOpen = !_drawerOpen;
+    //}
+
+    //private void deselect()
+    //{
+    //    mudTable.SelectedItem = null;
+    //}
+}
+
+
+@code
+{
+    private int[] pageSizeOptions = new int[] { 100 };
+}
+
+
+<style>
+    .selected {
+        background-color: #1E88E5 !important;
+    }
+
+        .selected > td {
+            color: white !important;
+        }
+
+            .selected > td .mud-input {
+                color: white !important;
+            }
+</style>
+
+@code {
+    private int selectedRowNumber = -1;
+    private List<string> clickedEvents = new();
+    private MudTable<MyResource> mudTable;
+
+    private void MyRowClickEvent(TableRowClickEventArgs<MyResource> tableRowClickEventArgs)
+    {
+        //clickedEvents.Add("Row has been clicked");
+    }
+
+    private string SelectedRowClassFunc(MyResource document, int rowNumber)
+    {
+        if (selectedRowNumber == rowNumber)
+        {
+            selectedRowNumber = -1;
+            //clickedEvents.Add("Selected Row: None");
+            selectedResource = null;
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+            return string.Empty;
+        }
+        else if (mudTable.SelectedItem != null && mudTable.SelectedItem.Equals(document))
+        {
+            selectedRowNumber = rowNumber;
+            //clickedEvents.Add($"Selected Row: {rowNumber}");
+
+            selectedResource = mudTable.SelectedItem;
+            //selectedTitle = document.Title;
+            //selectedType = document.Type;
+            //selectedWebsite = document.Website;
+            //selectedCitation = document.Citation;
+
+            return "selected";
+        }
+        else
+        {
+            selectedResource = null;
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+            return string.Empty;
+        }
+    }
+
+    //private string selectedTitle()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Title;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedType()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Type;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedWebsite()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Website;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedCitation()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Citation;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+}
+
+
+@code {
+
+    private MudBlazor.Underline GetHoverableTitleLink(MyResource selRes)
+    {
+        if (selRes == null)
+        {
+            return Underline.None;
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(selRes.Website))
+            {
+                return Underline.None;
+            }
+            else
+            {
+                return Underline.Hover;
+            }
+        }
+    }
+
+    private string GetSelectedResourceIconType(MyResource selRes)
+    {
+        if (selRes == null)
+        {
+            return "";
+        }
+
+        if (string.IsNullOrEmpty(selRes.Type))
+        {
+            return "";
+        }
+        switch (selRes.Type.ToLowerInvariant())
+        {
+            case "book":
+                return Icons.Material.Filled.Book;
+            case "pdf":
+                return Icons.Material.Filled.PictureAsPdf;
+            case "website":
+                return Icons.Material.Filled.Laptop;
+            default:
+                return "";
+        }
+    }
+
+    [Parameter] public string Text { get; set; }
+
+    private void CopyIt(string theText)
+    {
+        Text = theText;
+        CopyTextToClipboard();
+    }
+
+    private async Task CopyTextToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("copyClipboard", Text);
+    }
+
+
+    private DocsTreeview myTree;
+    private MyResource[]? MyResourcesArray;
+    public List<MyResource>? MyResourceList;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        MyResourcesArray = await Http.GetFromJsonAsync<MyResource[]>("sample-data/RiverEngResources.json");
+
+        //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
+        //MyTags = MyTagsArray.ToList();
+
+        for (int i = 0; i <= MyResourcesArray.ToList().Count - 1; i++)
+        {
+            //MyResources.addResource(ref MyResourcesArray[i]);
+
+            if (string.IsNullOrEmpty(MyResourcesArray[i].Tags))
+            {
+                continue;
+            }
+            List<string> affs = MyResourcesArray[i].Tags.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            MyResourcesArray[i].TagsCount = affs.Count();
+
+            if (affs != null && affs.Count > 0)
+            {
+                for (int j = 0; j <= affs.Count - 1; j++)
+                {
+                    affiliation a = new affiliation(affs[j]);
+                    MyResourcesArray[i].affiliations.Add(a);
+                }
+            }
+
+            //generate the last tags
+
+            int count = 0;
+            string tagsCombined = "";
+
+            if (mudDataGrid != null && MyResourcesArray[i] != null)
+            {
+
+                for (int j = 0; j <= MyResourcesArray[i].affiliations.Count - 1; j++)
+                {
+                    //BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+                    //string classification = selectedResource.affiliations[i].classification.ToString();
+                    string cat = MyResourcesArray[i].affiliations[j].category.ToString();
+                    string subcat = MyResourcesArray[i].affiliations[j].subcategory.ToString();
+                    if (!string.IsNullOrEmpty(subcat))
+                    {
+                        if (!tagsCombined.Contains(subcat))
+                        {
+                            tagsCombined += subcat + ",";
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(cat))
+                    {
+                        if (!tagsCombined.Contains(cat))
+                        {
+                            tagsCombined += cat + ",";
+                        }
+                    }
+                    else
+                    {
+                        string classif = MyResourcesArray[i].affiliations[j].classification.ToString();
+                        if (!tagsCombined.Contains(classif))
+                        {
+                            tagsCombined += classif + ",";
+                        }
+                    }
+                }
+
+                //string theTags = string.Join(",",selectedResource.affiliations)
+                if (tagsCombined.EndsWith(","))
+                {
+                    tagsCombined = tagsCombined.Substring(0, tagsCombined.Length - 1);
+                }
+                count = MyResourcesArray[i].affiliations.Count() - 1;
+                tagsCombined = "Tags (" + count.ToString() + "): " + tagsCombined;
+
+            }
+            MyResourcesArray[i].LastTags = tagsCombined;
+
+
+        }
+
+        MyResourceList = MyResourcesArray.ToList();
+
+        //myTree.updateTree(MyResourceList);
+
+
+    }
+
+
+    public class MyResource
+    {
+        //public string? ShortTitle { get { return ShortText(Title); } }
+        //public string? ShortAuthor { get { return ShortText(Author); } }
+        //public string? ShortType { get { return ShortText(Type); } }
+        //public int? ShortYear { get { return ShortNumber(Year); } }
+        //public string? ShortWebsite { get { return ShortText(Website, 20); } }
+        //public string? ShortCitation { get { return ShortText(Citation, 20); } }
+
+
+
+        public string? Title { get; set; }
+        public string? Author { get; set; }
+        public string? Type { get; set; }
+        public string? Citation { get; set; }
+        public string? Website { get; set; }
+        public int? Year { get; set; }
+        public string? Tags { get; set; }
+        public string? AvailableAt { get; set; } = "books.google.com";
+        public string? Description { get; set; } = "Water in its different forms has always been a source of wonder, curiosity and practical concern for humans everywhere. Hydrology: An Introduction presents a coherent introduction to the fundamental principles of hydrology, based on the course that Wilfried Brutsaert has taught at Cornell University for the last thirty years. Hydrologic phenomena are dealt with at spatial and temporal scales at which they occur in nature. The physics and mathematics necessary to describe these phenomena are introduced and developed, and readers will require a working knowledge of calculus and basic fluid mechanics.";
+        public string? DescriptionClip
+        {
+            get
+            {
+                if (Description.Length > 170)
+                {
+                    return Description.Substring(0, 170) + "...";
+                }
+                else
+                {
+                    return Description;
+                }
+            }
+        }
+
+        public int? TagsCount { get; set; }
+        public string? LastTags { get; set; }
+
+
+        public List<affiliation> affiliations = new List<affiliation>();
+
+    }
+
+    public class affiliation
+    {
+        public string databaseName;
+        public string classification;
+        public string category;
+        public string subcategory;
+
+        public affiliation(string dbName)
+        {
+            databaseName = dbName;
+
+            List<string> parts = databaseName.Split("_", StringSplitOptions.RemoveEmptyEntries).ToList();
+            classification = parts.FirstOrDefault();
+            category = parts[1];
+            subcategory = parts.LastOrDefault();
+        }
+    }
+
+    public static int? ShortNumber(int? Val)
+    {
+        if (string.IsNullOrEmpty(Val.ToString()))
+        {
+            return 1999;
+        }
+        else
+        {
+            return Val;
+        }
+    }
+    public static string? ShortText(string? Text, int digits = 50)
+    {
+        if (!string.IsNullOrEmpty(Text) && (Text.Length > digits))
+        {
+            return Text.Substring(0, digits) + "...";
+        }
+        else
+        {
+            return Text;
+        }
+    }
+
+
+    private string searchString1 = "";
+    private MyResource selectedItem1 = null;
+    private HashSet<MyResource> selectedItems = new HashSet<MyResource>();
+
+    private bool FilterFunc1(MyResource Document) => FilterFunc(Document, searchString1);
+
+    private bool FilterFunc(MyResource Document, string searchString)
+    {
+        string searchDBname = "";
+        if (!String.IsNullOrEmpty(breadcrumb3Dbname))
+        {
+            searchDBname = breadcrumb3Dbname;
+        }
+        else if (!String.IsNullOrEmpty(breadcrumb2Dbname))
+        {
+            searchDBname = breadcrumb2Dbname;
+        }
+        else if (!String.IsNullOrEmpty(breadcrumb1Dbname))
+        {
+            searchDBname = breadcrumb1Dbname;
+        }
+        else
+        {
+
+        }
+
+        if (Document.Tags != null)
+        {
+            if (!String.IsNullOrEmpty(searchDBname))
+            {
+                if (string.IsNullOrWhiteSpace(searchString) && Document.Tags.Contains(searchDBname))
+                    return true;
+                if (Document.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase) && Document.Tags.Contains(searchDBname))
+                    return true;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(searchString))
+                    return true;
+                if (Document.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+
+
+        //if (!string.IsNullOrEmpty(Document.Author))
+        //{
+        //    if (Document.Author.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //        return true;
+        //}
+        //if (!string.IsNullOrEmpty(Document.Year.ToString()))
+        //{
+        //    if (Document.Year.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //        return true;
+        //}
+
+        //if (Document.Author.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //    return true;
+        //if ($"{Document.Number} {Document.Position} {Document.Molar}".Contains(searchString))
+        //    return true;
+        return false;
+    }
+
+    DataGridFilterMode _filterMode = DataGridFilterMode.Simple;
+    DataGridFilterCaseSensitivity _caseSensitivity = DataGridFilterCaseSensitivity.Default;
+
+}
+
+
+
+
+
+

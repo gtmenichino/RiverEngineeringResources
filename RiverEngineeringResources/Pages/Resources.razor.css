@@ -1,0 +1,35 @@
+﻿a {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover {
+        font-weight: 900;
+    }
+
+
+.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eed;
+}
+
+.breadcrumb-item {
+    display: inline;
+    font-size: 18px;
+}
+
+.breadcrumb li + li:before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
+.breadcrumb-item a {
+    color: #2e4053;
+    text-decoration: none;
+}
+
+    .breadcrumb-item a:hover {
+        color: red;
+    }
