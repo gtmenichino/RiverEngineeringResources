@@ -9,7 +9,6 @@ on:
         description: 'The path to the Blazor project'
         required: false
         default: '.'
-
 jobs:
   deploy:
     name: Deploy
