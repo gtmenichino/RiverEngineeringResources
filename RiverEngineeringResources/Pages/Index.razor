@@ -89,35 +89,10 @@
 
             </MudCarousel>
 
-
-            @*Class="pa-16 ma-2"*@
-            @*            <MudTabs Elevation="0" Rounded="true" Centered="true">
-            <MudTabPanel Text="Mission">
-            <MudCard Elevation="3">
-            <MudCardContent>
-            <MudText Typo="Typo.subtitle1">A one-stop shop for river engineering resources, providing links to key resources for analysis and design.  It is intended as a tool for (1) practictioners, (2) researchers, and (3) aspiring river engineers.</MudText>
-            </MudCardContent>
-            </MudCard>
-            </MudTabPanel>
-            <MudTabPanel Text="Focus">
-            <MudCard Elevation="3">
-            <MudCardContent>
-            <MudText Typo="Typo.subtitle1">These resources focus on engineering contexts of hydrology, hydraulics, sediment transport and geomorphology. Physico-chemical, biological, and social resources are complied incidentially.  Resources are selected based on their relevance to river engineering projects and frequency in practice.  To narrow the number of resources, the scope is limited to topics (1) within the stream corridor and (2) no larger in scale than a river reach (e.g., no watershed analyses or river networks).</MudText>
-            </MudCardContent>
-            </MudCard>
-            </MudTabPanel>
-            <MudTabPanel Text="Why">
-            <MudCard Elevation="3">
-            <MudCardContent>
-            <MudText Typo="Typo.subtitle1">River Engineering is the study and practice of human intervention between water and the landscape.  River engineering projects are critical to managing water resources to meet a wide range of environmental, social, and economic needs.  Over the last couple centuries, the science and practice has advanced from the improved understanding of technical processes.  Additionally, river engineering has evolved into an inherently multi-disciplinary field.  To help river engineers navigate centuries of river engineering science and practice, this website provides references and access to key resources.</MudText>
-            </MudCardContent>
-            </MudCard>
-            </MudTabPanel>
-            </MudTabs>*@
         </MudPaper>
 
         <MudItem Class="d-flex justify-center py-4 mb-16 mb-md-0">
-            <MudButton Style="text-transform:none; font-weight:bold; font-size:medium; font-family:Arial, Helvetica, sans-serif" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Href="resources" OnClick="resPageClicked">Get started</MudButton>
+            <MudButton Style="text-transform:none; font-weight:bold; font-size:medium; font-family:Arial, Helvetica, sans-serif" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Href="resources">Get started</MudButton>
         </MudItem>
 
     </MudStack>
@@ -125,6 +100,11 @@
 
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        SharedData.SetHomePageSelected();
+    }
+
     //private bool arrows = true;
     //private bool bullets = true;
     //private bool enableSwipeGesture = true;
@@ -132,10 +112,10 @@
     private Transition transition = Transition.Slide;
     private TimeSpan timeSpan = new TimeSpan(0, 0, 10);
 
-    public void resPageClicked()
-    {
-        SharedData.SetResourcesPageSelected(true);
-    }
+    //public void resPageClicked()
+    //{
+    //    SharedData.SetResourcesPageSelected(true);
+    //}
 
 }
 

@@ -5,12 +5,28 @@ namespace RiverEngineeringResources
     public class SharedData
     {
         public bool ResourcesPageSelected { get; private set; }
+        public bool Resources2PageSelected { get; private set; }
 
         public event Action OnChange;
 
-        public void SetResourcesPageSelected(bool val)
+        public void SetResourcesPageSelected()
         {
-            ResourcesPageSelected = val;
+            ResourcesPageSelected = true;
+            Resources2PageSelected = false;
+            NotifyStateChanged();
+        }
+
+        public void SetResources2PageSelected()
+        {
+            Resources2PageSelected = true;
+                    ResourcesPageSelected = false;
+                NotifyStateChanged();
+        }
+
+        public void SetHomePageSelected()
+        {
+            ResourcesPageSelected = false;
+            Resources2PageSelected = false;
             NotifyStateChanged();
         }
 

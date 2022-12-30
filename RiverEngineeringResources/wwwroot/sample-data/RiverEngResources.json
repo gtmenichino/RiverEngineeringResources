@@ -1,1195 +1,1256 @@
 ﻿[
   {
     "Title": "A View of the River",
-    "Author": "Leopold",
-    "Type": "book",
-    "Citation": "Leopold, Luna Bergere. A View of the River. Harvard University Press, 1994.",
+    "Author": "LB Leopold",
+    "File_Format": "book",
+    "APA_Citation": "Leopold, L. B. (1994). A View of the River. Harvard University Press.",
+    "Link": "https:\/\/books.google.com\/books?hl=en&lr=&id=QWDQ7ezcjbcC&oi=fnd&pg=PP13&dq=A+View+of+the+River&ots=MmkHjaJEgl&sig=CR3GXmkVIcu1YLiOmoNadirOV7I",
     "Year": 1994,
+    "Description": "With the Midwest under water, America had a chance to see how effectively it had\" improved\" its rivers. We've straightened and dredged them, revetted and rerouted them, made",
+    "Association": "Harvard University Press",
+    "Link_Owner": "books.google.com",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry"
   },
   {
     "Title": "Analytical Stream Restoration Design Review Checklist",
-    "Author": "Harman",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "Author": "R Starr, W Harman",
+    "File_Format": "pdf",
+    "APA_Citation": "Starr, R. and W. Harman. 2015. Analytical Design Review Checklist Version 3. U.S. Fish and Wildlife Service, Chesapeake Bay Field Office, Annapolis, MD. CBFO-S15-02.",
+    "Link": "https:\/\/stream-mechanics.com\/wp-content\/uploads\/2012\/01\/Analytical-Design.pdf",
     "Year": 2015,
-    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_In stream Structures"
+    "Description": "The Analytical Design approach is a subset of the broader Alluvial Channel Design Methodology described in Chapter 9 of the United States Department of Agriculture, Natural Resources Conservation Service, National Engineering Handbook (NEH) 654. The theory supporting the Analytical Approach is that channel dimensions can be calculated from physically-based equations including continuity, hydraulic resistance, and sediment transport.",
+    "Association": "USFWS CBFO",
+    "Link_Owner": "stream-mechanics.com",
+    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Analytical Design,Documents__In stream Structures"
   },
   {
     "Title": "Applied Hydrology",
-    "Author": "Chow",
-    "Type": "pdf",
-    "Citation": "Te Chow, Ven. Applied hydrology. Tata McGraw-Hill Education, 2010.",
+    "Author": "VP Singh, D Eng",
+    "File_Format": "pdf",
+    "APA_Citation": "Singh, V. P., & Eng, D. (2017). Handbook of applied hydrology. McGraw-Hill Education.",
+    "Link": "https:\/\/www.accessengineeringlibrary.com\/content\/book\/9780071835091",
     "Year": 2010,
+    "Description": "This industry-standard resource has been completely revised for the first time since Ven Te Chow's classic edition was published over 50 years ago. Compiled by a colleague of the late Dr. Chow and featuring chapter contributions from a \"who's who\" of international hydrology",
+    "Association": "McGraw-Hill",
+    "Link_Owner": "accessengineeringlibrary.com",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Evaluation_Hydrology"
   },
   {
     "Title": "Applied River Morphology",
-    "Author": "Rosgen",
-    "Type": "book",
-    "Citation": "Rosgen, David L., and Hilton Lee Silvey. Applied river morphology. Vol. 1481. Pagosa Springs, CO: Wildland Hydrology, 1996.",
+    "Author": "DL Rosgen, HL Silvey",
+    "File_Format": "book",
+    "APA_Citation": "Rosgen, D., & Silvey, H. L. (1996). Applied river morphology: Pagosa Springs. Colorado, Wildland Hydrology, 1481.",
+    "Link": "https:\/\/books.google.com\/books\/about\/Applied_River_Morphology.html?id=TIHuAAAAMAAJ",
     "Year": 1996,
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Actions and Goals_In stream Structures"
+    "Description": "For use in: watershed management applications, ecosystem assessment, cumulative effects analysis, fish habitat evaluation, assessment of river condition, river restoration, communication regarding river systems. This book is a generous and detailed explanation of the stream classification system and how it might be used to incorporate the observed processes of river mechanics into restoration designs that enhance the beauty and health of channels.",
+    "Association": "Wildland Hydrology",
+    "Link_Owner": "books.google.com",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents__In stream Structures"
   },
   {
     "Title": "Bank Stabilization Design Guidelines",
-    "Author": "Baird",
-    "Type": "pdf",
-    "Citation": "Baird, D. C., et al. \"Bank stabilization design guidelines.\" Reclamation: Managing water in the west (2015): 319.",
-    "Website": "https:\/\/www.usbr.gov\/tsc\/techreferences\/mands\/mands-pdfs\/A-BankStab-final6-25-2015.pdf",
+    "Author": "DC Baird, L Fotherby, CC Klumpp, SM Sculock",
+    "File_Format": "pdf",
+    "APA_Citation": "Baird, D. C., Fotherby, L., Klumpp, C. C., & Sculock, S. M. (2015). Bank stabilization design guidelines. Reclamation: Managing water in the west, 319.",
+    "Link": "https:\/\/www.usbr.gov\/tsc\/techreferences\/mands\/mands-pdfs\/A-BankStab-final6-25-2015.pdf",
     "Year": 2015,
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Description": "A goal of these guidelines is to increase considerations of sustainability and longterm feasibility, and to increase environmental effectiveness in bank stabilization designs. Most of the bank protection methods presented in this manual can be applied in ways that meet all three measures of a successful design: feasibility, sustainability and environmental effectiveness.",
+    "Association": "USBR",
+    "Link_Owner": "usbr.gov",
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Stable ch design and Stabilization,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Floodplain Reconnection,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Channel Restoration Design for Meandering Rivers",
-    "Author": "USACE ERDC",
-    "Type": "pdf",
-    "Citation": "Soar, Philip J., and Colin R. Thorne. Channel restoration design for meandering rivers. ENGINEER RESEARCH AND DEVELOPMENT CENTER VICKSBURG MS COASTAL AND HYDRAULICSLAB, 2001.",
-    "Website": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/handle\/11681\/1800",
+    "Author": "PJ Soar, CR Thorne",
+    "File_Format": "pdf",
+    "APA_Citation": "Soar, Philip J., and Colin R. Thorne. Channel restoration design for meandering rivers. ENGINEER RESEARCH AND DEVELOPMENT CENTER VICKSBURG MS COASTAL AND HYDRAULICSLAB, 2001.",
+    "Link": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/handle\/11681\/1800",
     "Year": 2001,
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "Description": "A framework for channel restoration design is presented that attempts to bridge the divide between reconnaissance level geomorphological designs at one extreme and numerical modeling of hydrodynamics, sediment transport and morphological change at the other. Reestablishing equilibrium between the sediment supply and available transport capacity in the restored reach is the primary objective of the design framework. A geomorphic engineering approach is presented, which recognizes that the river is ultimately the best restorer of its natural morphology and should be allowed to participate in its own recovery. This is accomplished through designing an approximate channel mould, based on the broad dimensions of the river, and then allowing the river itself to develop the intricate cross-sectional detail and intra-reach morphological features to complete the recovery process. Geomorphic engineering provides a practical solution by striking a balance between empirical-statistical and analytical process-based methods.",
+    "Association": "USACE ERDC",
+    "Link_Owner": "erdc-library.erdc.dren.mil",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Classification of Natural Rivers",
-    "Author": "Rosgen",
-    "Type": "pdf",
-    "Citation": "Rosgen, David L. \"A classification of natural rivers.\" Catena 22.3 (1994): 169-199.",
-    "Website": "https:\/\/www.sciencedirect.com\/science\/article\/abs\/pii\/0341816294900019",
+    "Author": "DL Rosgen",
+    "File_Format": "pdf",
+    "APA_Citation": "Rosgen, D. L. (1994). A classification of natural rivers. Catena, 22(3), 169-199.",
+    "Link": "https:\/\/www.sciencedirect.com\/science\/article\/abs\/pii\/0341816294900019",
     "Year": 1994,
+    "Description": "A classification system for natural rivers is presented in which a morphological arrangement of stream characteristics is organized into relatively homogeneous stream types. This paper describes morphologically similar stream reaches that are divided into 7 major stream type categories that differ in entrenchment, gradient, width\/depth ratio, and sinuosity in various landforms. Within each major category are six additional types delineated by dominate channel materials from bedrock to silt\/clay along a continuum of gradient ranges. Recent stream type data used to further define classification interrelationships were derived from 450 rivers throughout the U.S, Canada, and New Zealand. Data used in the development of this classification involved a great diversity of hydro-physiographic\/geomorphic provinces from small to large rivers and in catchments from headwater streams in the mountains to the coastal plains.",
+    "Association": "Elsevier",
+    "Link_Owner": "sciencedirect.com",
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Geomorphology,Documents_Design Theory_Natural Channel Design"
   },
   {
     "Title": "Computational Design Tool for Evaluating the Stability of Large Wood Structures",
-    "Author": "USFS",
-    "Type": "pdf",
-    "Citation": "Rafferty, Michael. \"Computational design tool for evaluating the stability of large wood structures.\" USDA Technical Note TN-103.2 (2017).",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/assets\/rafferty_usfs_nsaec_tn-103-2_stabilitylargewoodstructurestool.pdf",
+    "Author": "M Rafferty",
+    "File_Format": "pdf",
+    "APA_Citation": "Rafferty, Michael. \"Computational design tool for evaluating the stability of large wood structures.\" USDA Technical Note TN-103.2 (2017).",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/assets\/rafferty_usfs_nsaec_tn-103-2_stabilitylargewoodstructurestool.pdf",
     "Year": 2017,
-    "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_In stream Structures"
+    "Description": "Large logs are often placed in streams to benefit aquatic and riparian-dependent fish and wildlife. When specifying the type of large wood structure to be used, restoration practitioners, planners, and local residents need to be assured that the constructed structures will likely remain in place under the expected conditions.",
+    "Association": "USFS NSAEC",
+    "Link_Owner": "fs.usda.gov",
+    "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Analytical Design,Documents__In stream Structures"
   },
   {
     "Title": "Design for Stream Restoration",
-    "Author": "Shields & Doyle",
-    "Type": "pdf",
-    "Citation": "Shields Jr, F. Douglas, et al. \"Design for stream restoration.\" Journal of Hydraulic Engineering 129.8 (2003): 575-584.",
-    "Website": "https:\/\/ascelibrary.org\/doi\/10.1061\/%28ASCE%290733-9429%282003%29129%3A8%28575%29",
+    "Author": "FD Shields Jr, RR Copeland, PC Klingeman, MW Doyle, A Simon",
+    "File_Format": "pdf",
+    "APA_Citation": "Shields Jr, F. D., Copeland, R. R., Klingeman, P. C., Doyle, M. W., & Simon, A. (2003). Design for stream restoration. Journal of Hydraulic Engineering, 129(8), 575-584.",
+    "Link": "https:\/\/ascelibrary.org\/doi\/abs\/10.1061\/(ASCE)0733-9429(2003)129:8(575)",
     "Year": 2003,
+    "Description": "Stream restoration, or more properly rehabilitation, is the return of a degraded stream ecosystem to a close approximation of its remaining natural potential. Many types of practices (dam removal, levee breaching, modified flow control, vegetative methods for streambank erosion control, etc.) are useful, but this paper focuses on channel reconstruction. A tension exists between restoring natural fluvial processes and ensuring stability of the completed project. Sedimentation analyses are a key aspect of design since many projects fail due to erosion or sedimentation. Existing design approaches range from relatively simple ones based on stream classification and regional hydraulic geometry relations to more complex two- and three-dimensional numerical models. Herein an intermediate approach featuring application of hydraulic engineering tools for assessment of watershed geomorphology, channel-forming discharge analysis, and hydraulic analysis in the form of one-dimensional flow and sediment transport computations is described.",
+    "Association": "USACE ERDC",
+    "Link_Owner": "ascelibrary.org",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design"
   },
   {
     "Title": "EPA National Rivers and Stream Assessments",
     "Author": "EPA",
-    "Type": "pdf",
-    "Website": "https:\/\/www.epa.gov\/national-aquatic-resource-surveys\/nrsa",
+    "File_Format": "website",
+    "APA_Citation": "National Rivers and Streams Assessment. (2022, June 17). US EPA. https:\/\/www.epa.gov\/national-aquatic-resource-surveys\/nrsa",
+    "Link": "https:\/\/www.epa.gov\/national-aquatic-resource-surveys\/nrsa",
     "Year": 2019,
+    "Description": "The National Rivers and Streams Assessment (NRSA) is a collaborative survey that provides information on the ecological condition of the nation’s rivers and streams and the key stressors that affect them, both on a national and an ecoregional scale.",
+    "Association": "EPA",
+    "Link_Owner": "epa.gov",
     "Tags": "Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology"
   },
   {
     "Title": "EPA Rapid Bioassessment Protocols for use in Streams and Wadeable Rivers",
-    "Author": "EPA",
-    "Type": "pdf",
-    "Citation": "Barbour, Michael T. \"Rapid Bioassessment Protocols For Use in Steams and Wadeable Rivers: Periphyton.\" Benthic macroinvertebrates and Fish (2001).",
-    "Website": "https:\/\/www.epa.gov\/wqc\/rapid-bioassessment-protocols-use-streams-and-wadeable-rivers-periphyton-benthic",
+    "Author": "MT Barbour",
+    "File_Format": "pdf",
+    "APA_Citation": "Barbour, M. T. (2001). Rapid Bioassessment Protocols for Use in Steams and Wadeable Rivers: Periphyton. Benthic Macroinvertebrates and Fish.",
+    "Link": "https:\/\/www.epa.gov\/wqc\/rapid-bioassessment-protocols-use-streams-and-wadeable-rivers-periphyton-benthic",
     "Year": 1999,
+    "Description": "The Rapid Bioassessment Protocols (RBPs) are essentially a synthesis of existing methods that have been employed by various State Water Resource Agencies (e.g., Ohio Environmental Protection Agency [EPA], Florida Department of Environmental Protection [DEP], Delaware Department of Natural Resources and Environmental Control [DNREC], Massachusetts DEP, Kentucky DEP, and Montana Department of Environmental Quality [DEQ]). Protocols for 3 aquatic assemblages (i.e., periphyton, benthic macroinvertebrates, fish) and habitat assessment are presented. All of these protocols have been tested in streams in various parts of the country.",
+    "Association": "EPA",
+    "Link_Owner": "epa.gov",
     "Tags": "Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology"
   },
   {
-    "Title": "Estimation of Roughness Coefficients",
-    "Author": "Coon",
-    "Type": "pdf",
-    "Citation": "Coon, William F. Estimation of roughness coefficients for natural stream channels with vegetated banks. Vol. 2441. US Geological Survey, 1998.",
-    "Website": "https:\/\/pubs.usgs.gov\/wsp\/2339\/report.pdf",
+    "Title": "Estimation of roughness coefficients for natural stream channels with vegetated banks",
+    "Author": "WF Coon",
+    "File_Format": "pdf",
+    "APA_Citation": "Coon, W. F. (1998). Estimation of roughness coefficients for natural stream channels with vegetated banks (Vol. 2441). US Geological Survey.",
+    "Link": "https:\/\/pubs.er.usgs.gov\/publication\/wsp2441",
     "Year": 1998,
+    "Description": "Roughness coefficients for 21 stream sites in New York state are presented. The site-specific relation between roughness coefficent and flow depth varies in a predictable manner, depending on energy gradient, relative smoothness (Rd50), and channel-vegetation density. The percentage of wetted perimeter that is vegetated is a useful indicator of when streambank vegetation can affect the roughness coefficient. To estimate the magnitude of this effect requires evaluation of the density and percent of submergence of vegetation.",
+    "Association": "USGS",
+    "Link_Owner": "pubs.usgs.gov",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Fluvial Processes in Geomorphology",
-    "Author": "Leopold",
-    "Type": "book",
-    "Citation": "Leopold, Luna B., et al. Fluvial processes in geomorphology. Courier Dover Publications, 2020.",
+    "Author": "LB Leopold, MG Wolman, JP Miller, EE Wohl",
+    "File_Format": "book",
+    "APA_Citation": "Leopold, L. B., Wolman, M. G., Miller, J. P., & Wohl, E. E. (2020). Fluvial processes in geomorphology. Courier Dover Publications.",
+    "Link": "https:\/\/books.google.com\/books?hl=en&lr=&id=vnb2DwAAQBAJ&oi=fnd&pg=PA3&dq=Leopold,+Luna+B.,+et+al.+Fluvial+processes+in+geomorphology.+Courier+Dover+Publications,+2020.&ots=zmWOXEvn48&sig=oMiMrHgFiKRNsaI1Mqd5Zy9p-is",
     "Year": 2020,
+    "Description": "Its primary emphasis is on subjects that were the focus of the authors' studies in both field and laboratory. Part I deals with the process of change in the evolving landscape. Part II explores process and form, and Part III, the effects of time. In Part I, the relation of geomorphology to field problems is analyzed in studies of a mountain block in a semiarid climate, a meandering river cut into bedrock, and benches along a sea coast. Part Two contains studies of weathering, climate, and such denudational processes as flooding and erosion.",
+    "Association": "Courier Dover",
+    "Link_Owner": "books.google.com",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry"
   },
   {
     "Title": "Fluvial Processes in River Engineering",
-    "Author": "Chang",
-    "Type": "book",
-    "Citation": "Chang, Howard H. Fluvial processes in river engineering. 1992.",
+    "Author": "HH Chang",
+    "File_Format": "book",
+    "APA_Citation": "Chang, H. H. (1992). Fluvial processes in river engineering.",
+    "Link": "https:\/\/trid.trb.org\/view\/387444",
     "Year": 1992,
+    "Description": "This text collects and collates the significant advances in analytical methods for alluvial channel design, river morphology, and mathematical simulation of river channel changes. It presents a complete analytical treatment of river morphology and its responses to environmental and human-made changes from the engineering point of view. For professionals in flood control, bridge design, irrigation and waterways, this book is a current, comprehensive refresher and reference.",
+    "Association": "National Academies",
+    "Link_Owner": "trid.trb.org",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design"
   },
   {
     "Title": "Functional objectives for stream restoration",
     "Author": "Fischenich",
-    "Type": "pdf",
-    "Citation": "Fischenich, J. \"Functional objectives for stream restoration.\" (2006).",
-    "Website": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/bitstream\/11681\/3962\/1\/TN-EMRRP-SR-52.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "Fischenich, J. C. (2006). Functional objectives for stream restoration. ENGINEER RESEARCH AND DEVELOPMENT CENTER VICKSBURG MS.",
+    "Link": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/bitstream\/11681\/3962\/1\/TN-EMRRP-SR-52.pdf",
     "Year": 2006,
+    "Description": "The National Research Council (1996) defined restoration as “the return of the form and function of an ecosystem to its predisturbance condition…” This definition presents two challenges when working in today’s environment.",
+    "Association": "USACE ERDC",
+    "Link_Owner": "erdc-library.erdc.dren.mil",
     "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Function-based rapid stream assessment methodology",
-    "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "Author": "R Starr, W Harman, S Davis",
+    "File_Format": "pdf",
+    "APA_Citation": "Starr, R., W. Harman, S. Davis. 2015. FINAL DRAFT Function-Based Rapid Field Stream Assessment Methodology. U. S. Fish and Wildlife Service, Chesapeake Bay Field Office, Annapolis, MD. CAFE S15-06.",
+    "Link": "https:\/\/stream-mechanics.com\/wp-content\/uploads\/2012\/01\/Rapid-Assessment-Methodology.pdf",
     "Year": 2015,
+    "Description": "The primary purpose of this methodology is to provide MDE regulators with a function-based rapid stream assessment methodology to verify existing and proposed stream function-based conditions submitted by stream restoration permit applicants. However, it can be used for a variety of other purposes.",
+    "Association": "USFWS CBFO",
+    "Link_Owner": "stream-mechanics.com",
     "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology"
   },
   {
     "Title": "Function-Based Stream Restoration Project Process Guidelines with Appendices",
-    "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "Author": "W Harman, R Starr, M Carter, K Tweedy, M Clemmons, K Suggs, C Miller",
+    "File_Format": "#REF!",
+    "APA_Citation": "pdf",
+    "Link": "https:\/\/www.epa.gov\/sites\/default\/files\/2015-08\/documents\/a_function_based_framework_for_stream_assessment_3.pdf",
     "Year": 2015,
+    "Description": "Stream restoration efforts have increased significantly in the US over the past few decades and are now recognized as a billion-dollar industry. These restoration efforts stem from centuries of abuse as humans continue to alter the riverine landscape for a variety of purposes, including farming, logging, mining and development on the floodplain, and the subsequent need for channelization and flood control. These activities have significantly diminished the natural functions of our stream corridors.",
+    "Association": "EPA",
+    "Link_Owner": "epa.gov",
     "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology"
   },
   {
     "Title": "Geomorphic Classification of Rivers",
     "Author": "Mongtomery & Buffington",
-    "Type": "pdf",
-    "Citation": "Buffington, J. M., and D. R. Montgomery. \"Geomorphic classification of rivers.\" In: Shroder, J.; Wohl, E., ed. Treatise on Geomorphology; Fluvial Geomorphology, Vol. 9. San Diego, CA: Academic Press. p. 730-767. (2013): 730-767.",
-    "Website": "https:\/\/www.fs.fed.us\/rm\/pubs_other\/rmrs_2013_buffington_j001.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "Buffington, J. M., and D. R. Montgomery. \"Geomorphic classification of rivers.\" In: Shroder, J.; Wohl, E., ed. Treatise on Geomorphology; Fluvial Geomorphology, Vol. 9. San Diego, CA: Academic Press. p. 730-767. (2013): 730-767.",
+    "Link": "https:\/\/www.fs.fed.us\/rm\/pubs_other\/rmrs_2013_buffington_j001.pdf",
     "Year": 2013,
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Guidance for Stream Restoration",
     "Author": "Yochum",
-    "Type": "pdf",
-    "Citation": "Yochum, Steven E. Guidance for Stream Restoration. US Department of Agriculture, Forest Service, National Stream & Aquatic Ecology Center, 2020.",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/assets\/yochumreynolds_2020_tn-102-5_guidancestreamrestoration-508.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "Yochum, Steven E. Guidance for Stream Restoration. US Department of Agriculture, Forest Service, National Stream & Aquatic Ecology Center, 2020.",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/assets\/yochumreynolds_2020_tn-102-5_guidancestreamrestoration-508.pdf",
     "Year": 2020,
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Aesthetics Recreation Education,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Dam removal retrofit,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Flow Modification,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Riparian Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Flood Risk Management,Documents_Actions and Goals_Navigation Channels,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_Reservoir Operation,Documents_Actions and Goals_Beaver Dam Analog,Documents_Actions and Goals_Stage 0 Condition,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Aesthetics Recreation Education,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Dam removal retrofit,Documents__Aquatic organism passage,Documents__Floodplain Reconnection,Documents__Flow Modification,Documents__Instream Habitat Improvement,Documents__Instream Species Management,Documents__Riparian Management,Documents__Water Quality Management,Documents__Flood Risk Management,Documents__Navigation Channels,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__Reservoir Operation,Documents__Beaver Dam Analog,Documents__Stage 0 Condition,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Guide for Selecting Manning's Roughness Coefficients (Cowan Methodology)",
     "Author": "Acrement",
-    "Type": "pdf",
-    "Citation": "Arcement, George J., and Verne R. Schneider. \"Guide for selecting Manning's roughness coefficients for natural channels and flood plains.\" (1989).",
-    "Website": "https:\/\/pubs.er.usgs.gov\/publication\/wsp2339",
+    "File_Format": "pdf",
+    "APA_Citation": "Arcement, George J., and Verne R. Schneider. \"Guide for selecting Manning's roughness coefficients for natural channels and flood plains.\" (1989).",
+    "Link": "https:\/\/pubs.er.usgs.gov\/publication\/wsp2339",
     "Year": 1989,
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Guide for Selecting Manning's Roughness Coefficients for Natural Channels and Flood Plains (Cowan)",
     "Author": "Cowan",
-    "Type": "website",
-    "Citation": "USGS",
-    "Website": "https:\/\/pubs.er.usgs.gov\/publication\/wsp2339",
+    "File_Format": "website",
+    "APA_Citation": "USGS",
+    "Link": "https:\/\/pubs.er.usgs.gov\/publication\/wsp2339",
     "Tags": "Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Guide to Effective Monitoring of Aquatic and Riparian Resources",
     "Author": "USDA",
-    "Type": "pdf",
-    "Citation": "Kershner, J. L., et al. \"Guide to effective monitoring of aquatic and riparian resources. RMRSGTR-121.\" US Department of Agriculture, Forest Service, Rocky Mountain Research Station, Fort Collins, Colorado (2004).",
-    "Website": "https:\/\/www.fs.fed.us\/rm\/pubs\/rmrs_gtr121.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "Kershner, J. L., et al. \"Guide to effective monitoring of aquatic and riparian resources. RMRSGTR-121.\" US Department of Agriculture, Forest Service, Rocky Mountain Research Station, Fort Collins, Colorado (2004).",
+    "Link": "https:\/\/www.fs.fed.us\/rm\/pubs\/rmrs_gtr121.pdf",
     "Year": 2004,
     "Tags": "Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology"
   },
   {
     "Title": "Guidelines for determining flow frequency Bulletin 17C",
     "Author": "USACE, USGS, USBR",
-    "Type": "pdf",
-    "Citation": "England, J.F., Jr., Cohn, T.A., Faber, B.A., Stedinger, J.R., Thomas, W.O., Jr., Veilleux, A.G., Kiang, J.E., and Mason, R.R., Jr., 2018, Guidelines for determining flood flow frequency—Bulletin 17C (ver. 1.1, May 2019): U.S. Geological Survey Techniques and Methods, book 4, chap. B5, 148",
+    "File_Format": "pdf",
+    "APA_Citation": "England, J.F., Jr., Cohn, T.A., Faber, B.A., Stedinger, J.R., Thomas, W.O., Jr., Veilleux, A.G., Kiang, J.E., and Mason, R.R., Jr., 2018, Guidelines for determining flood flow frequency—Bulletin 17C (ver. 1.1, May 2019): U.S. Geological Survey Techniques and Methods, book 4, chap. B5, 148",
     "Year": 2019,
     "Tags": "Documents_Evaluation_Hydrology"
   },
   {
     "Title": "Hydraulic Design of Stream Restoration Projects",
     "Author": "Copeland",
-    "Type": "pdf",
-    "Citation": "Copeland, Ronald R., et al. Hydraulic design of stream restoration projects. ENGINEER RESEARCH AND DEVELOPMENT CENTER VICKSBURG MS COASTAL AND HYDRAULICSLAB, 2001.",
-    "Website": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/handle\/11681\/7554",
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Stormwater Management,Documents_Misc_Particularly helpful"
+    "File_Format": "pdf",
+    "APA_Citation": "Copeland, Ronald R., et al. Hydraulic design of stream restoration projects. ENGINEER RESEARCH AND DEVELOPMENT CENTER VICKSBURG MS COASTAL AND HYDRAULICSLAB, 2001.",
+    "Link": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/handle\/11681\/7554",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Stormwater Management,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Hyporheic Restoration in Streams and Rivers",
     "Author": "Hester",
-    "Type": "pdf",
-    "Citation": "Hester, Erich T., and Michael N. Gooseff. \"Hyporheic restoration in streams and rivers.\" Stream restoration in dynamic fluvial systems: Scientific approaches, analyses, and tools 194 (2011): 167-187.",
-    "Website": "https:\/\/agupubs.onlinelibrary.wiley.com\/doi\/10.1029\/2010GM000966",
+    "File_Format": "pdf",
+    "APA_Citation": "Hester, Erich T., and Michael N. Gooseff. \"Hyporheic restoration in streams and rivers.\" Stream restoration in dynamic fluvial systems: Scientific approaches, analyses, and tools 194 (2011): 167-187.",
+    "Link": "https:\/\/agupubs.onlinelibrary.wiley.com\/doi\/10.1029\/2010GM000966",
     "Year": 2011,
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology"
   },
   {
     "Title": "Lane's Balance: The importance of fluvial morphology in hydraulic engineering",
     "Author": "Lane",
-    "Type": "pdf",
-    "Citation": "Lane, E. W. \"The importance of fluvial morphology in hydraulic engineering: Proceedings–American Society of Civil Engineers, v. 81.\" (1955): 745-17.",
-    "Website": "https:\/\/semspub.epa.gov\/work\/01\/554355.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "Lane, E. W. \"The importance of fluvial morphology in hydraulic engineering: Proceedings–American Society of Civil Engineers, v. 81.\" (1955): 745-17.",
+    "Link": "https:\/\/semspub.epa.gov\/work\/01\/554355.pdf",
     "Year": 1955,
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Manning’s n Values for Various Land Covers To Use for Dam Breach Analyses by NRCS in Kansas",
-    "Type": "pdf",
-    "Citation": "NRCS",
-    "Website": "https:\/\/www.wcc.nrcs.usda.gov\/ftpref\/wntsc\/H&H\/HecRAS\/NEDC\/lectures\/docs\/Manning%92s%20n-values%20for%20Kansas%20Dam%20Breach%20Analyses%20-%20Adopted%20071216.pdf",
+    "File_Format": "pdf",
+    "APA_Citation": "NRCS",
+    "Link": "https:\/\/www.wcc.nrcs.usda.gov\/ftpref\/wntsc\/H&H\/HecRAS\/NEDC\/lectures\/docs\/Manning%92s%20n-values%20for%20Kansas%20Dam%20Breach%20Analyses%20-%20Adopted%20071216.pdf",
     "Year": 2007,
     "Tags": "Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Moving Beyond the Banks: Hyporheic Restoration Is Fundamental to Restoring Ecological Services and Functions of Streams",
     "Author": "Hester",
-    "Type": "pdf",
-    "Citation": "Hester, Erich T., and Michael N. Gooseff. \"Moving beyond the banks: Hyporheic restoration is fundamental to restoring ecological services and functions of streams.\" (2010): 1521-1525.",
-    "Website": "https:\/\/pubs.acs.org\/doi\/10.1021\/es902988n",
+    "File_Format": "pdf",
+    "APA_Citation": "Hester, Erich T., and Michael N. Gooseff. \"Moving beyond the banks: Hyporheic restoration is fundamental to restoring ecological services and functions of streams.\" (2010): 1521-1525.",
+    "Link": "https:\/\/pubs.acs.org\/doi\/10.1021\/es902988n",
     "Year": 2010,
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology"
   },
   {
     "Title": "National Large Wood Manual - Guidelines",
     "Author": "USBR",
-    "Type": "pdf",
-    "Citation": "Bureau of Reclamation and U.S. Army Corps of Engineers. 2015. National Large Wood Manual: Assessment, Planning, Design, and Maintenance of Large Wood in Fluvial Ecosystems: Restoring Process, Function, and Structure. 628 pages + Appendix. Available: www.usbr.gov\/pn\/.",
-    "Website": "https:\/\/www.usbr.gov\/research\/projects\/detail.cfm?id=2754",
+    "File_Format": "pdf",
+    "APA_Citation": "Bureau of Reclamation and U.S. Army Corps of Engineers. 2015. National Large Wood Manual: Assessment, Planning, Design, and Maintenance of Large Wood in Fluvial Ecosystems: Restoring Process, Function, and Structure. 628 pages + Appendix. Available: www.usbr.gov\/pn\/.",
+    "Link": "https:\/\/www.usbr.gov\/research\/projects\/detail.cfm?id=2754",
     "Year": 2014,
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents__Bank Stabilization,Documents__Instream Habitat Improvement,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "National Large Wood Manual: Assessment, Planning, Design, and Maintenance of Large Wood in Fluvial Ecosystems: Restoring Process, Function, and Structure (USBR)",
     "Author": "USBR",
-    "Type": "pdf",
-    "Citation": "Bureau of Reclamation and U.S. Army Corps of Engineers. 2015. National Large Wood Manual: Assessment, Planning, Design, and Maintenance of Large Wood in Fluvial Ecosystems: Restoring Process, Function, and Structure. 628 pages + Appendix. Available: www.usbr.gov\/pn\/.",
-    "Website": "https:\/\/www.usbr.gov\/research\/projects\/detail.cfm?id=2754",
+    "File_Format": "pdf",
+    "APA_Citation": "Bureau of Reclamation and U.S. Army Corps of Engineers. 2015. National Large Wood Manual: Assessment, Planning, Design, and Maintenance of Large Wood in Fluvial Ecosystems: Restoring Process, Function, and Structure. 628 pages + Appendix. Available: www.usbr.gov\/pn\/.",
+    "Link": "https:\/\/www.usbr.gov\/research\/projects\/detail.cfm?id=2754",
     "Year": 2016,
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents__Bank Stabilization,Documents__Instream Habitat Improvement,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "National Stream and Aquatic Ecology Center",
     "Author": "USFS",
-    "Type": "website",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "website",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Year": 2020,
-    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents__Bank Stabilization,Documents__Aquatic organism passage,Documents__Instream Habitat Improvement,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Natural Channel Design Review Checklist",
     "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "File_Format": "pdf",
+    "APA_Citation": "Starr, R. R. (2008). Natural Channel Design Review Checklist.",
+    "Link": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
     "Year": 2016,
     "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Design Theory_Stable ch design and Stabilization"
   },
   {
     "Title": "NEH - Part 630 - Hydrology",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Citation": "NRCS, USDA. \"Part 630 Hydrology National Engineering Handbook.\" USDA-NRCS (United States Department of Agriculture-Natural Resources Conservation Service) (2009).",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043063",
+    "File_Format": "pdf",
+    "APA_Citation": "NRCS, USDA. \"Part 630 Hydrology National Engineering Handbook.\" USDA-NRCS (United States Department of Agriculture-Natural Resources Conservation Service) (2009).",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043063",
     "Year": 2009,
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Evaluation_Hydrology"
   },
   {
     "Title": "NEH - Part 654 - Stream Restoration Design",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Website": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=21433",
+    "File_Format": "pdf",
+    "Link": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=21433",
     "Year": 2007
   },
   {
     "Title": "NEH - Section 5 - Hydraulics",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Citation": "United States Soil Conservation Service. \"National engineering handbook.\" Hydraulics Section 5 (1956).",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/hydrology\/?cid=stelprdb1044422",
+    "File_Format": "pdf",
+    "APA_Citation": "United States Soil Conservation Service. \"National engineering handbook.\" Hydraulics Section 5 (1956).",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/hydrology\/?cid=stelprdb1044422",
     "Year": 1956,
     "Tags": "Documents_Knowledge Base_Hydraulics"
   },
   {
     "Title": "NEH 650 - Field Engineering Handbook",
     "Author": "NEH",
-    "Type": "pdf",
-    "Citation": "Kent, Kenneth M. \"National engineering handbook.\" Field Engineering Handbook Section 650 (2021).",
-    "Website": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=21429",
+    "File_Format": "pdf",
+    "APA_Citation": "Kent, Kenneth M. \"National engineering handbook.\" Field Engineering Handbook Section 650 (2021).",
+    "Link": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=21429",
     "Year": 2021,
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "NEH- Part 653 - Stream Corridor Restoration Handbook",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Citation": "FISRWG (10\/1998). Stream Corridor Restoration: Principles, Processes, and Practices.  By the Federal Interagency Stream Restoration Working Group (FISRWG)(15 Federal agencies of the US gov't). GPO Item No. 0120-A; SuDocs No. A 57.6\/2:EN 3\/PT.653. ISBN-0-934213-59-3.",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/restoration\/?cid=stelprdb1043244",
+    "File_Format": "pdf",
+    "APA_Citation": "FISRWG (10\/1998). Stream Corridor Restoration: Principles, Processes, and Practices. By the Federal Interagency Stream Restoration Working Group (FISRWG)(15 Federal agencies of the US gov't). GPO Item No. 0120-A; SuDocs No. A 57.6\/2:EN 3\/PT.653. ISBN-0-934213-59-3.",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/restoration\/?cid=stelprdb1043244",
     "Year": 1998
   },
   {
     "Title": "NRCS Stream Restoration Design Details",
     "Author": "USDA NRCS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Year": 2020,
-    "Tags": "Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Tags": "Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Instream Habitat Improvement,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Open Channel Flow",
     "Author": "Henderson",
-    "Type": "book",
-    "Citation": "Henderson, Francis Martin. \"Open channel flow.\" (1996).",
+    "File_Format": "book",
+    "APA_Citation": "Henderson, Francis Martin. \"Open channel flow.\" (1996).",
     "Year": 1966,
     "Tags": "Documents_Knowledge Base_Hydraulics"
   },
   {
     "Title": "Open-Channel Hydraulics",
     "Author": "Chow",
-    "Type": "book",
-    "Citation": "Chow, Ven Te. \"Open-channel hydraulics. Caldwell.\" (1959).",
+    "File_Format": "book",
+    "APA_Citation": "Chow, Ven Te. \"Open-channel hydraulics. Caldwell.\" (1959).",
     "Year": 1959,
     "Tags": "Documents_Knowledge Base_Hydraulics"
   },
   {
     "Title": "Oregon NRCS Stream Restoration Design Details",
     "Author": "USDA NRCS Oregon",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/or\/technical\/engineering\/?cid=nrcs142p2_045909",
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/or\/technical\/engineering\/?cid=nrcs142p2_045909",
     "Year": 2020,
-    "Tags": "Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Tags": "Documents__Channel Reconfiguration,Documents__Instream Habitat Improvement,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Pebble Count",
     "Author": "Wolman",
-    "Type": "pdf",
-    "Website": "https:\/\/andrewsforest.oregonstate.edu\/sites\/default\/files\/lter\/data\/studies\/gs002\/Wolman_Pebble_Count.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/andrewsforest.oregonstate.edu\/sites\/default\/files\/lter\/data\/studies\/gs002\/Wolman_Pebble_Count.pdf",
     "Tags": "Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Photographic Guidance for Selecting Flow Resistance Coefficients in High-Gradient Channels",
     "Author": "Yochum",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-technotes.html",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-technotes.html",
     "Year": 2020,
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Rapid Stream Restoration Monitoring Protocol",
     "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
     "Tags": "Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Biological Ecology"
   },
   {
     "Title": "Recommendations of the Expert Panel to Define Removal Rates for Individual Stream Restoration Projects (Center for Watershed Protection)",
     "Author": "Center for Watershed Protection",
-    "Type": "pdf",
-    "Website": "https:\/\/owl.cwp.org\/?s=Stream+restoration+projects",
-    "Tags": "Documents_Knowledge Base_Physico chemical,Documents_Evaluation_Physico chemical,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Actions and Goals_Stormwater Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Legacy Sed Removal Valley Rest,Documents_Actions and Goals_Regenerative Stormwater Conv,Documents_Actions and Goals_In stream Structures"
+    "File_Format": "pdf",
+    "Link": "https:\/\/owl.cwp.org\/?s=Stream+restoration+projects",
+    "Tags": "Documents_Knowledge Base_Physico chemical,Documents_Evaluation_Physico chemical,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents__Stormwater Management,Documents__Water Quality Management,Documents__Legacy Sed Removal Valley Rest,Documents__Regenerative Stormwater Conv,Documents__In stream Structures"
   },
   {
     "Title": "Regenerative Storm Conveyance Design Review Checklist",
     "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
-    "Tags": "Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_Regenerative Stormwater Conv"
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "Tags": "Documents__Bank Stabilization,Documents__Grade control,Documents__Regenerative Stormwater Conv"
   },
   {
     "Title": "Regenerative Stormwater Conveyance Design",
     "Author": "Center for Watershed Protection",
-    "Type": "pdf",
-    "Website": "https:\/\/www.chesapeakebay.net\/channel_files\/25884\/epa_1_rcope_rsc_uswg.pdf",
-    "Tags": "Documents_Design Theory_Threshold channel design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_Regenerative Stormwater Conv"
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.chesapeakebay.net\/channel_files\/25884\/epa_1_rcope_rsc_uswg.pdf",
+    "Tags": "Documents_Design Theory_Threshold channel design,Documents__Bank Stabilization,Documents__Grade control,Documents__Regenerative Stormwater Conv"
   },
   {
     "Title": "Regenerative Stormwater Conveyance Design - Step Pool Conveyance Systems",
     "Author": "Anne Arundel County",
-    "Type": "pdf",
-    "Website": "https:\/\/www.aacounty.org\/departments\/public-works\/wprp\/watershed-assessment-and-planning\/step-pool-conveyance-systems\/",
-    "Tags": "Documents_Design Theory_Threshold channel design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_Regenerative Stormwater Conv"
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.aacounty.org\/departments\/public-works\/wprp\/watershed-assessment-and-planning\/step-pool-conveyance-systems\/",
+    "Tags": "Documents_Design Theory_Threshold channel design,Documents__Bank Stabilization,Documents__Grade control,Documents__Regenerative Stormwater Conv"
   },
   {
     "Title": "Regional Hydraulic Geometry Curves",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/?cid=nrcs143_015052",
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/?cid=nrcs143_015052",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Evaluation_Hydrology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Regional Regressions by State",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/water.usgs.gov\/osw\/programs\/nss\/pubs.html",
+    "File_Format": "website",
+    "Link": "https:\/\/water.usgs.gov\/osw\/programs\/nss\/pubs.html",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Evaluation_Hydrology,Documents_Design Theory_Hydraulic Geometry,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "River Restoration Toolbox by IOWA DNR",
     "Author": "IOWA DNR",
-    "Type": "html",
-    "Website": "https:\/\/www.iowadnr.gov\/Environmental-Protection\/Water-Quality\/River-Restoration\/River-Restoration-Toolbox",
+    "File_Format": "html",
+    "Link": "https:\/\/www.iowadnr.gov\/Environmental-Protection\/Water-Quality\/River-Restoration\/River-Restoration-Toolbox",
     "Year": 2021,
-    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Actions and Goals_Aesthetics Recreation Education,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Dam removal retrofit,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Riparian Management,Documents_Actions and Goals_Stormwater Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Actions and Goals_Aesthetics Recreation Education,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Dam removal retrofit,Documents__Aquatic organism passage,Documents__Floodplain Reconnection,Documents__Instream Habitat Improvement,Documents__Riparian Management,Documents__Stormwater Management,Documents__Water Quality Management,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Rosgen Natural Channel Design (NEH 654-Ch11)",
     "Author": "Rosgen",
-    "Type": "pdf",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
-    "Tags": "Documents_Design Theory_Natural Channel Design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Stormwater Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
+    "Tags": "Documents_Design Theory_Natural Channel Design,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Floodplain Reconnection,Documents__Instream Habitat Improvement,Documents__Stormwater Management,Documents__Water Quality Management,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Rosgen Natural Channel Design Checklist",
     "Author": "Harman",
-    "Type": "pdf",
-    "Website": "https:\/\/www.epa.gov\/sites\/production\/files\/2015-07\/documents\/ncd_review_checklist.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.epa.gov\/sites\/production\/files\/2015-07\/documents\/ncd_review_checklist.pdf",
     "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Natural Channel Design"
   },
   {
     "Title": "Roughness Characteristics of Natural Channels (Photographic Manning N)",
     "Author": "Barnes",
-    "Type": "pdf",
-    "Website": "https:\/\/pubs.usgs.gov\/wsp\/wsp_1849\/pdf\/wsp_1849.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/pubs.usgs.gov\/wsp\/wsp_1849\/pdf\/wsp_1849.pdf",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Evaluation_Hydraulics"
   },
   {
     "Title": "Sampling Surface and Subsurface Particle-Size Distributions in Wadable Gravel-and Cobble-Bed Streams for Analyses in Sediment Transport, Hydraulics, and Streambed Monitoring",
     "Author": "USFS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fs.usda.gov\/treesearch\/pubs\/4580",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fs.usda.gov\/treesearch\/pubs\/4580",
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Science base and tools for evaluating stream engineering, management, and restoration proposals",
     "Author": "NOAA",
-    "Type": "website",
-    "Website": "https:\/\/repository.library.noaa.gov\/view\/noaa\/4020",
+    "File_Format": "website",
+    "Link": "https:\/\/repository.library.noaa.gov\/view\/noaa\/4020",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Sediment Transfer Primer",
     "Author": "Wilcock",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fs.fed.us\/rm\/pubs\/rmrs_gtr226.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fs.fed.us\/rm\/pubs\/rmrs_gtr226.pdf",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design"
   },
   {
     "Title": "Sedimentation Engineering: Processes, Measurements, Modeling, and Practice",
     "Author": "ASCE",
-    "Type": "book",
-    "Website": "https:\/\/ascelibrary.org\/doi\/book\/10.1061\/9780784408148",
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Flood Risk Management,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "File_Format": "book",
+    "Link": "https:\/\/ascelibrary.org\/doi\/book\/10.1061\/9780784408148",
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Floodplain Reconnection,Documents__Flood Risk Management,Documents__Grade control,Documents__River training,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stability Thresholds for Stream Restoration Materials",
     "Author": "Fischenich",
-    "Type": "pdf",
-    "Website": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/bitstream\/11681\/3947\/1\/TN-EMRRP-SR-29.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/erdc-library.erdc.dren.mil\/jspui\/bitstream\/11681\/3947\/1\/TN-EMRRP-SR-29.pdf",
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Threshold channel design"
   },
   {
     "Title": "Stream and Watershed Restoration: A Guide to Restoring Riverine Processes and Habitats",
     "Author": "Roni",
-    "Type": "book",
-    "Website": "https:\/\/onlinelibrary.wiley.com\/doi\/book\/10.1002\/9781118406618",
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Actions and Goals_Aesthetics Recreation Education,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Riparian Management,Documents_Actions and Goals_Stormwater Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Flood Risk Management,Documents_Misc_Particularly helpful"
+    "File_Format": "book",
+    "Link": "https:\/\/onlinelibrary.wiley.com\/doi\/book\/10.1002\/9781118406618",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Actions and Goals_Aesthetics Recreation Education,Documents__Bank Stabilization,Documents__Aquatic organism passage,Documents__Floodplain Reconnection,Documents__Instream Habitat Improvement,Documents__Instream Species Management,Documents__Riparian Management,Documents__Stormwater Management,Documents__Water Quality Management,Documents__Flood Risk Management,Documents_Misc_Particularly helpful"
   },
   {
-    "Title": "Stream Corridor Restoration Handbook (Part 653) in National Engineering Handbook ",
+    "Title": "Stream Corridor Restoration Handbook (Part 653) in National Engineering Handbook",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Website": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=34826",
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Stormwater Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Flood Risk Management,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "File_Format": "pdf",
+    "Link": "https:\/\/directives.sc.egov.usda.gov\/viewerFS.aspx?hid=34826",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Aquatic organism passage,Documents__Floodplain Reconnection,Documents__Instream Habitat Improvement,Documents__Instream Species Management,Documents__Stormwater Management,Documents__Water Quality Management,Documents__Flood Risk Management,Documents__Large wood,Documents__Grade control,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Corridor Restoration Working Group CAD Design Details",
     "Author": "USDA Stream Corridor Restoration Design Working Group",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043249",
-    "Tags": "Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Dam removal retrofit,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043249",
+    "Tags": "Documents__Bank Stabilization,Documents__Dam removal retrofit,Documents__Large wood,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Stream Corridor Restoration Working Group Resources",
     "Author": "USDA NRCS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043249",
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Bank Stabilization"
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1043249",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Bank Stabilization"
   },
   {
     "Title": "Stream Functions Pyramid - A Function-Based Framework for Stream Assessment & Restoration Projects",
     "Author": "Projects",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
     "Year": 2015,
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Habitat Restoration Guidelines",
     "Author": "Washington FWS",
-    "Type": "pdf",
-    "Website": "https:\/\/wdfw.wa.gov\/publications\/01374",
+    "File_Format": "pdf",
+    "Link": "https:\/\/wdfw.wa.gov\/publications\/01374",
     "Year": 2012,
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Actions and Goals_Aesthetics Recreation Education,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Riparian Management,Documents_Actions and Goals_Water Quality Management,Documents_Actions and Goals_Flood Risk Management,Documents_Actions and Goals_Large wood,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Knowledge Base_Social,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Actions and Goals_Aesthetics Recreation Education,Documents__Bank Stabilization,Documents__Aquatic organism passage,Documents__Instream Habitat Improvement,Documents__Instream Species Management,Documents__Riparian Management,Documents__Water Quality Management,Documents__Flood Risk Management,Documents__Large wood,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Mechanics Resources",
     "Author": "Harman",
-    "Type": "website",
-    "Website": "https:\/\/stream-mechanics.com\/resources\/",
+    "File_Format": "website",
+    "Link": "https:\/\/stream-mechanics.com\/resources\/",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport"
   },
   {
     "Title": "Stream modules: Spreadsheet tools for river evaluation, assessment and monitoring",
     "Author": "Mecklenburg",
-    "Type": "website",
-    "Website": "https:\/\/ascelibrary.org\/doi\/10.1061\/40856%28200%29349",
+    "File_Format": "website",
+    "Link": "https:\/\/ascelibrary.org\/doi\/10.1061\/40856%28200%29349",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization"
   },
   {
     "Title": "Stream Restoration Design (Part 654) in National Engineering Handbook",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Citation": "Li, Ming-Han. \"Stream Restoration Design Handbook (National Engineering Handbook, 210-VI, Part 654), JM Bernard, J. Fripp, K. Robinson (Eds.), US Department of Agriculture, Natural Resources Conservation Service, 2007.\" (2008): 97-98.",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
-    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Floodplain Reconnection,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures,Documents_Misc_Particularly helpful"
+    "File_Format": "pdf",
+    "APA_Citation": "Li, Ming-Han. \"Stream Restoration Design Handbook (National Engineering Handbook, 210-VI, Part 654), JM Bernard, J. Fripp, K. Robinson (Eds.), US Department of Agriculture, Natural Resources Conservation Service, 2007.\" (2008): 97-98.",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
+    "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Hydraulic Geometry,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Floodplain Reconnection,Documents__Grade control,Documents__River training,Documents__In stream Structures,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Restoration Design Technical Supplements (Part 654)",
     "Author": "NRCS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
+    "File_Format": "website",
+    "Link": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/manage\/restoration\/?cid=stelprdb1044707",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Restoration in Dynamic Fluvial Systems: Scientific Approaches, Analyses, and Tools, Volume 194",
     "Author": "Andrew Simon, Sean J. Bennett, Janine M. Castro",
-    "Type": "website",
-    "Website": "https:\/\/agupubs.onlinelibrary.wiley.com\/doi\/book\/10.1029\/GM194",
+    "File_Format": "website",
+    "Link": "https:\/\/agupubs.onlinelibrary.wiley.com\/doi\/book\/10.1029\/GM194",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Misc_Particularly helpful"
   },
   {
     "Title": "Stream Stability at Highway Structures",
     "Author": "FHWA",
-    "Type": "book",
-    "Website": "https:\/\/www.fhwa.dot.gov\/engineering\/hydraulics\/library_arc.cfm?pub_number=19&id=152",
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents_Actions and Goals_Bank Stabilization,Documents_Actions and Goals_Channel Reconfiguration,Documents_Actions and Goals_Aquatic organism passage,Documents_Actions and Goals_Instream Habitat Improvement,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Flood Risk Management,Documents_Actions and Goals_Grade control,Documents_Actions and Goals_River training,Documents_Actions and Goals_In stream Structures"
+    "File_Format": "book",
+    "Link": "https:\/\/www.fhwa.dot.gov\/engineering\/hydraulics\/library_arc.cfm?pub_number=19&id=152",
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design,Documents_Design Theory_Alluvial Channel Design,Documents_Design Theory_Analytical Design,Documents__Bank Stabilization,Documents__Channel Reconfiguration,Documents__Aquatic organism passage,Documents__Instream Habitat Improvement,Documents__Instream Species Management,Documents__Flood Risk Management,Documents__Grade control,Documents__River training,Documents__In stream Structures"
   },
   {
     "Title": "Streams and Ground Waters (Aquatic Ecology)",
     "Author": "Jones and Muholland",
-    "Type": "book",
-    "Website": "https:\/\/www.sciencedirect.com\/book\/9780123898456\/streams-and-ground-waters",
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents_Actions and Goals_Instream Species Management,Documents_Actions and Goals_Riparian Management,Documents_Actions and Goals_Water Quality Management"
+    "File_Format": "book",
+    "Link": "https:\/\/www.sciencedirect.com\/book\/9780123898456\/streams-and-ground-waters",
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Physico chemical,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Evaluation_Biological Ecology,Documents__Instream Species Management,Documents__Riparian Management,Documents__Water Quality Management"
   },
   {
     "Title": "Synthesizing U.S. River Restoration Efforts",
     "Author": "Bernhardt",
-    "Type": "pdf",
-    "Website": "https:\/\/science.sciencemag.org\/content\/308\/5722\/636",
+    "File_Format": "pdf",
+    "Link": "https:\/\/science.sciencemag.org\/content\/308\/5722\/636",
     "Tags": "Documents_Knowledge Base_Social"
   },
   {
     "Title": "Technical Guide for Field Practitioners: Understanding and Monitoring Aquatic Organism Passage at Road Stream Crossings",
     "Author": "Roper",
-    "Type": "book",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-technotes.html",
-    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Design Theory_Stable ch design and Stabilization,Documents_Actions and Goals_Aquatic organism passage"
+    "File_Format": "book",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-technotes.html",
+    "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Knowledge Base_Biological Ecology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Geomorphology,Documents_Evaluation_Physico chemical,Documents_Design Theory_Stable ch design and Stabilization,Documents__Aquatic organism passage"
   },
   {
     "Title": "The Legend of A. F. Shields",
     "Author": "Buffington",
-    "Type": "pdf",
-    "Citation": "Buffington, John M. \"The legend of AF Shields.\" Journal of Hydraulic Engineering 125.4 (1999): 376-387.",
-    "Website": "https:\/\/ascelibrary.org\/doi\/10.1061\/%28ASCE%290733-9429%281999%29125%3A4%28376%29",
+    "File_Format": "pdf",
+    "APA_Citation": "Buffington, John M. \"The legend of AF Shields.\" Journal of Hydraulic Engineering 125.4 (1999): 376-387.",
+    "Link": "https:\/\/ascelibrary.org\/doi\/10.1061\/%28ASCE%290733-9429%281999%29125%3A4%28376%29",
     "Year": 1999,
     "Tags": "Documents_Knowledge Base_Geomorphology"
   },
   {
     "Title": "Tools in Fluvial Geomorphology",
     "Author": "Kondolf",
-    "Type": "book",
-    "Website": "https:\/\/www.wiley.com\/en-us\/Tools+in+Fluvial+Geomorphology%2C+2nd+Edition-p-9780470684054",
+    "File_Format": "book",
+    "Link": "https:\/\/www.wiley.com\/en-us\/Tools+in+Fluvial+Geomorphology%2C+2nd+Edition-p-9780470684054",
     "Tags": "Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "TR-55 Watershed Hydrology",
     "Author": "NRCS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.nrcs.usda.gov\/Internet\/FSE_DOCUMENTS\/stelprdb1044171.pdf",
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.nrcs.usda.gov\/Internet\/FSE_DOCUMENTS\/stelprdb1044171.pdf",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Evaluation_Hydrology"
   },
   {
     "Title": "USDA USFS National Stream and Aquatic Ecology Center - Peer-Reviewed Journal Articles and Book Chapters",
     "Author": "USFS",
-    "Type": "website",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-journalarticlesbookchap.html",
+    "File_Format": "website",
+    "Link": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-publications-journalarticlesbookchap.html",
     "Tags": "Documents_Knowledge Base_Hydrology,Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology"
   },
   {
     "Title": "Valley Restoration Design Review Checklist",
     "Author": "USFWS",
-    "Type": "pdf",
-    "Website": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
-    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Actions and Goals_Legacy Sed Removal Valley Rest"
+    "File_Format": "pdf",
+    "Link": "https:\/\/www.fws.gov\/ChesapeakeBay\/restoring-habitat\/stream-restoration\/stream-protocols.html",
+    "Tags": "Documents_Evaluation_Hydrology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents__Legacy Sed Removal Valley Rest"
   },
   {
     "Title": "Watershed Assessment of River Stability and Sediment Supply",
     "Author": "Rosgen",
-    "Type": "book",
-    "Website": "https:\/\/wildlandhydrology.com\/books\/?id=22&course=WARSSS+-+Watershed+Assessment+of+River+Stability+and+Sediment+Supply",
+    "File_Format": "book",
+    "Link": "https:\/\/wildlandhydrology.com\/books\/?id=22&course=WARSSS+-+Watershed+Assessment+of+River+Stability+and+Sediment+Supply",
     "Tags": "Documents_Knowledge Base_Hydraulics,Documents_Knowledge Base_Geomorphology,Documents_Evaluation_Hydraulics,Documents_Evaluation_Sediment Transport,Documents_Evaluation_Geomorphology,Documents_Design Theory_Natural Channel Design,Documents_Design Theory_Stable ch design and Stabilization,Documents_Design Theory_Threshold channel design"
   },
   {
     "Title": "303D Impaired Waters and TMDLs Info",
     "Author": "EPA",
-    "Type": "website",
-    "Website": "https:\/\/www.epa.gov\/tmdl",
-    "Tags": "Models and Tools_Data Sources_Water Quality,Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.epa.gov\/tmdl",
+    "Tags": "Models and Tools_Data Sources_Water Quality,Models and Tools_Actions\/Goals_Restoration Planning Site Evaluation"
   },
   {
     "Title": "2016 National Land Cover Database",
     "Author": "MRLC",
-    "Type": "website",
-    "Website": "https:\/\/www.mrlc.gov\/data",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.mrlc.gov\/data",
     "Tags": "Models and Tools_Data Sources_Vegetation,Models and Tools_Data Sources_Land Use and Land Cover"
   },
   {
     "Title": "303D, Water, Quality Assesment and TMDL Search",
     "Author": "EPA",
-    "Type": "website",
-    "Website": "https:\/\/ofmpub.epa.gov\/waters10\/attains_index.home",
-    "Tags": "Models and Tools_Data Sources_Water Quality,Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/ofmpub.epa.gov\/waters10\/attains_index.home",
+    "Tags": "Models and Tools_Data Sources_Water Quality,Models and Tools_Actions\/Goals_Restoration Planning Site Evaluation"
   },
   {
     "Title": "Ansys CFX (Ansys)",
     "Author": "ANSYS",
-    "Type": "software",
-    "Website": "https:\/\/www.ansys.com\/products\/fluids\/ansys-cfx",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.ansys.com\/products\/fluids\/ansys-cfx",
     "Tags": "Models and Tools_Hydraulics_Computational Fluid Dynamics,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Ansys Fluent (Ansys)",
     "Author": "ANSYS",
-    "Type": "software",
-    "Website": "https:\/\/www.ansys.com\/products\/fluids\/ansys-fluent",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.ansys.com\/products\/fluids\/ansys-fluent",
     "Tags": "Models and Tools_Hydraulics_Computational Fluid Dynamics,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Armor Layer design for bed stabilization",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Articulating Concrete Block Design",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Scour,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Scour,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Atlas 14 Point Precipitation Frequency Estimates",
     "Author": "NWS",
-    "Type": "website",
-    "Website": "https:\/\/hdsc.nws.noaa.gov\/hdsc\/pfds\/index.html",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/hdsc.nws.noaa.gov\/hdsc\/pfds\/index.html",
     "Tags": "Models and Tools_Data Sources_Climate,Models and Tools_Data Sources_Water Quantity,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "Atlas 2 Precipitation Frequency Estimates",
     "Author": "NWS",
-    "Type": "website",
-    "Website": "https:\/\/hdsc.nws.noaa.gov\/hdsc\/pfds\/index.html",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/hdsc.nws.noaa.gov\/hdsc\/pfds\/index.html",
     "Tags": "Models and Tools_Data Sources_Climate,Models and Tools_Data Sources_Water Quantity"
   },
   {
     "Title": "BAGS: Bedload Assessment in Gravel-bedded Streams",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Supply Yield,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Effective discharge"
   },
   {
     "Title": "Bank Erosion Hazard Index (BEHI)\/Near Bank Stress Calculation Spreadsheet",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/stream-mechanics.com\/wp-content\/uploads\/2020\/10\/Bank-Erosion-Summary-Table-w-BEHI-and-NBS-forms-Template_10-20-2020.xlsx",
-    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions and Goals_Natural Channel Design,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/stream-mechanics.com\/wp-content\/uploads\/2020\/10\/Bank-Erosion-Summary-Table-w-BEHI-and-NBS-forms-Template_10-20-2020.xlsx",
+    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions\/Goals_Natural Channel Design,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "BSTEM Bank Stability and Toe Erosion Model",
     "Author": "USDA",
-    "Type": "software",
-    "Website": "https:\/\/www.ars.usda.gov\/southeast-area\/oxford-ms\/national-sedimentation-laboratory\/watershed-physical-processes-research\/research\/bstem\/overview\/",
-    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.ars.usda.gov\/southeast-area\/oxford-ms\/national-sedimentation-laboratory\/watershed-physical-processes-research\/research\/bstem\/overview\/",
+    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Computational Design Tool for Evaluating the Stability of Large Wood Structures",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
-    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Large Wood"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "Tags": "Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Large Wood"
   },
   {
     "Title": "CulvertMaster",
     "Author": "Bentley",
-    "Type": "software",
-    "Website": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/culvertmaster",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/culvertmaster",
     "Tags": "Models and Tools_Hydraulics_Stormwater and Pipe Flows"
   },
   {
     "Title": "Earth Explorer Aerials\/EROS Archive",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/earthexplorer.usgs.gov\/",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/earthexplorer.usgs.gov\/",
     "Tags": "Models and Tools_Data Sources_Aerial Photogrammetry"
   },
   {
     "Title": "EPA Storm Water Management Model (SWMM)",
     "Author": "EPA",
-    "Type": "software",
-    "Website": "https:\/\/www.epa.gov\/water-research\/storm-water-management-model-swmm",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.epa.gov\/water-research\/storm-water-management-model-swmm",
     "Tags": "Models and Tools_Hydraulics_Stormwater and Pipe Flows"
   },
   {
     "Title": "FEMA Map Service Center",
     "Author": "FEMA",
-    "Type": "website",
-    "Website": "https:\/\/msc.fema.gov\/portal\/home",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/msc.fema.gov\/portal\/home",
     "Tags": "Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Data Sources_Water Quantity"
   },
   {
     "Title": "FEMA National Flood Hazard Layer",
     "Author": "FEMA",
-    "Type": "website",
-    "Website": "https:\/\/www.fema.gov\/flood-maps\/national-flood-hazard-layer",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.fema.gov\/flood-maps\/national-flood-hazard-layer",
     "Tags": "Models and Tools_Data Sources_Hydrography and Floodplains"
   },
   {
     "Title": "FishXing: Software and Learning Systems for Fish Passage Through Culvert",
     "Author": "USFS",
-    "Type": "software",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Stormwater and Pipe Flows"
   },
   {
     "Title": "Flow Master",
     "Author": "Bentley",
-    "Type": "software",
-    "Website": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/flowmaster",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/flowmaster",
     "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Stormwater and Pipe Flows,Models and Tools_Hydraulics_Rating curve,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Flow3D",
     "Author": "Flow3D",
-    "Type": "software",
-    "Website": "https:\/\/www.flow3d.com\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.flow3d.com\/",
     "Tags": "Models and Tools_Hydraulics_Computational Fluid Dynamics"
   },
   {
     "Title": "GAP\/LANDFIRE National Terrestrial Ecosystems 2011",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/www.usgs.gov\/core-science-systems\/science-analytics-and-synthesis\/gap\/science\/introduction-land-cover-viewer?qt-science_center_objects=0#qt-science_center_objects",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.usgs.gov\/core-science-systems\/science-analytics-and-synthesis\/gap\/science\/introduction-land-cover-viewer?qt-science_center_objects=0#qt-science_center_objects",
     "Tags": "Models and Tools_Data Sources_Land Use and Land Cover"
   },
   {
     "Title": "Geospatial Data Gateway",
     "Author": "NRCS",
-    "Type": "website",
-    "Website": "https:\/\/datagateway.nrcs.usda.gov\/",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/datagateway.nrcs.usda.gov\/",
     "Tags": "Models and Tools_Data Sources_Climate,Models and Tools_Data Sources_Soils and Geology,Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Data Sources_Water Quantity,Models and Tools_Data Sources_Topography and Bathymetry,Models and Tools_Data Sources_Vegetation,Models and Tools_Data Sources_Land Use and Land Cover,Models and Tools_Data Sources_Aerial Photogrammetry,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "Guidelines for determining flow frequency Bulletin 17C",
     "Author": "USACE, USGS, USBR",
-    "Type": "pdf",
-    "Website": "England, J.F., Jr., Cohn, T.A., Faber, B.A., Stedinger, J.R., Thomas, W.O., Jr., Veilleux, A.G., Kiang, J.E., and Mason, R.R., Jr., 2018, Guidelines for determining flood flow frequency—Bulletin 17C (ver. 1.1, May 2019): U.S. Geological Survey Techniques and Methods, book 4, chap. B5, 148",
+    "File_Format": "pdf",
+    "APA_Citation": "England, J.F., Jr., Cohn, T.A., Faber, B.A., Stedinger, J.R., Thomas, W.O., Jr., Veilleux, A.G., Kiang, J.E., and Mason, R.R., Jr., 2018, Guidelines for determining flood flow frequency—Bulletin 17C (ver. 1.1, May 2019): U.S. Geological Survey Techniques and Methods, book 4, chap. B5, 148",
     "Year": 2019,
     "Tags": "Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Flood Frequency"
   },
   {
     "Title": "HEC-HMS",
     "Author": "HEC",
-    "Type": "software",
-    "Website": "https:\/\/www.hec.usace.army.mil\/software\/hec-hms\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.hec.usace.army.mil\/software\/hec-hms\/",
     "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Flood Routing"
   },
   {
     "Title": "HEC-SSP",
     "Author": "HEC",
-    "Type": "software",
-    "Website": "https:\/\/www.hec.usace.army.mil\/software\/hec-ssp\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.hec.usace.army.mil\/software\/hec-ssp\/",
     "Tags": "Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency,Models and Tools_Hydrology_Flow Duration"
   },
   {
-    "Title": "HEC-RAS ",
+    "Title": "HEC-RAS",
     "Author": "HEC",
-    "Type": "software",
-    "Website": "https:\/\/www.hec.usace.army.mil\/software\/hec-ras\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.hec.usace.army.mil\/software\/hec-ras\/",
     "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_2D Hydraulics,Models and Tools_Hydraulics_Stormwater and Pipe Flows,Models and Tools_Hydraulics_Hydraulic roughness,Models and Tools_Hydraulics_Rating curve,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Interconnected Pond Routing (ICPR) model",
     "Author": "Streamnologies",
-    "Type": "software",
-    "Website": "https:\/\/streamnologies.com\/content\/index.php\/about-icpr-4\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/streamnologies.com\/content\/index.php\/about-icpr-4\/",
     "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Flood Routing,Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Stormwater and Pipe Flows,Models and Tools_Hydraulics_Hydraulic roughness"
   },
   {
     "Title": "IOWA DNR Stream Restoration Toolbox",
     "Author": "IOWA DNR",
-    "Type": "website",
-    "Website": "https:\/\/www.iowadnr.gov\/Environmental-Protection\/Water-Quality\/River-Restoration\/River-Restoration-Toolbox",
-    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Natural Channel Design,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization,Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.iowadnr.gov\/Environmental-Protection\/Water-Quality\/River-Restoration\/River-Restoration-Toolbox",
+    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Natural Channel Design,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization,Models and Tools_Actions\/Goals_Restoration Planning Site Evaluation"
   },
   {
     "Title": "Large Woody Debris Field Data and Asssesment",
     "Author": "Stream Mechanics",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/stream-mechanics.com\/resources\/",
-    "Tags": "Models and Tools_Geomorphology_Channel change indices,Models and Tools_Actions and Goals_Large Wood"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/stream-mechanics.com\/resources\/",
+    "Tags": "Models and Tools_Geomorphology_Channel change indices,Models and Tools_Actions\/Goals_Large Wood"
   },
   {
     "Title": "LiDAR and Topo Data Access Viewer",
     "Author": "NOAA",
-    "Type": "website",
-    "Website": "https:\/\/coast.noaa.gov\/dataviewer\/#\/",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/coast.noaa.gov\/dataviewer\/#\/",
     "Tags": "Models and Tools_Data Sources_Topography and Bathymetry,Models and Tools_Data Sources_Land Use and Land Cover,Models and Tools_Data Sources_Aerial Photogrammetry"
   },
   {
     "Title": "Log Pearson III Analysis",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency"
   },
   {
     "Title": "LogPearson Frequency Analysis Spreadsheet for Analyses of Streamgage Records (2015-2, version 3.1)",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency"
   },
   {
-    "Title": "Meander Pattern Design ",
+    "Title": "Meander Pattern Design",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Geomorphic Features"
   },
   {
-    "Title": "Meyer Peter Mueller transport equation ",
+    "Title": "Meyer Peter Mueller transport equation",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Effective discharge"
   },
   {
     "Title": "National Hydrography Dataset",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/www.usgs.gov\/core-science-systems\/national-geospatial-program\/national-map",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.usgs.gov\/core-science-systems\/national-geospatial-program\/national-map",
     "Tags": "Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Data Sources_Topography and Bathymetry"
   },
   {
     "Title": "National River Restoration Science Synthesis (NRRSS)",
     "Author": "Palmer",
-    "Type": "website",
-    "Website": "https:\/\/github.com\/khondula\/nrrss",
-    "Tags": "Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/github.com\/khondula\/nrrss",
+    "Tags": "Models and Tools_Actions\/Goals_Restoration Planning Site Evaluation"
   },
   {
     "Title": "National Stremflow Statistics Program (NSS)",
     "Author": "USGS",
-    "Type": "software",
-    "Website": "https:\/\/water.usgs.gov\/software\/NSS\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/water.usgs.gov\/software\/NSS\/",
     "Tags": "Models and Tools_Hydrology_Stream gages,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Visualize time series,Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency"
   },
   {
     "Title": "National Water Information System Mapper",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/maps.waterdata.usgs.gov\/mapper\/index.html",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/maps.waterdata.usgs.gov\/mapper\/index.html",
     "Tags": "Models and Tools_Hydrology_Stream gages,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Visualize time series,Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Flood Frequency,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "National Weather Service River Forecast and Flood Stage Center",
     "Author": "NOAA",
-    "Type": "website",
-    "Website": "https:\/\/water.weather.gov\/ahps\/forecasts.php",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/water.weather.gov\/ahps\/forecasts.php",
     "Tags": "Models and Tools_Hydrology_Stream gages,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Visualize time series,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "North Carolina Flood Risk Information System (FRIS) (NC)",
-    "Type": "website",
-    "Website": "https:\/\/fris.nc.gov\/fris\/Index.aspx?ST=NC",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/fris.nc.gov\/fris\/Index.aspx?ST=NC",
     "Tags": "Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Hydrology_Stream gages"
   },
   {
-    "Title": "NRCS Stream Restoration Design Spreadsheet Tools ",
+    "Title": "NRCS Stream Restoration Design Spreadsheet Tools",
     "Author": "NRCS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic roughness,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Bed evolution,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,,Models and Tools_Actions and Goals_Natural Channel Design,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Large Wood,Models and Tools_Misc_Particularly helpful"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic roughness,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Bed evolution,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,,Models and Tools_Actions\/Goals_Natural Channel Design,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Large Wood,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "OpenFOAM",
     "Author": "OpenFOAM",
-    "Type": "software",
-    "Website": "https:\/\/www.openfoam.com\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.openfoam.com\/",
     "Tags": "Models and Tools_Hydraulics_Computational Fluid Dynamics"
   },
   {
     "Title": "PeakFQ",
     "Author": "USGS",
-    "Type": "software",
-    "Website": "https:\/\/water.usgs.gov\/software\/PeakFQ\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/water.usgs.gov\/software\/PeakFQ\/",
     "Tags": "Models and Tools_Hydrology_Visualize time series,Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency"
   },
   {
     "Title": "Pebble Count Analyzer by Size Class (2007-9)",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples"
   },
   {
     "Title": "Pebble Count Calculator",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Sediment Transport_Pebble counts and bar samples"
   },
   {
     "Title": "PondPack",
     "Author": "Bentley",
-    "Type": "software",
-    "Website": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/pondpack",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.bentley.com\/en\/products\/product-line\/hydraulics-and-hydrology-software\/pondpack",
     "Tags": "Models and Tools_Hydrology_Flow Duration,Models and Tools_Hydrology_Rainfall Runoff Analysis"
   },
   {
     "Title": "Probable Maximum Precipitation",
     "Author": "NOAA",
-    "Type": "website",
-    "Website": "https:\/\/www.nws.noaa.gov\/ohd\/hdsc\/studies\/pmp.html",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.nws.noaa.gov\/ohd\/hdsc\/studies\/pmp.html",
     "Tags": "Models and Tools_Data Sources_Climate,Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Data Sources_Water Quantity,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Rainfall Runoff Analysis"
   },
   {
     "Title": "R2Cross: Web-Based Decision Support Tool for Instream Flows",
-    "Type": "website",
-    "Website": "https:\/\/r2cross.erams.com\/?token=qVmq1IhtrV",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/r2cross.erams.com\/?token=qVmq1IhtrV",
     "Year": 2021,
     "Tags": "Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Visualize time series,Models and Tools_Hydrology_Ungaged gage transfer regional regressions"
   },
   {
     "Title": "Rational Method",
     "Author": "NRCS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Peak flows"
   },
   {
     "Title": "Reference Reach Spreadsheet",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/stream-mechanics.com\/resources\/",
-    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Actions and Goals_Natural Channel Design"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/stream-mechanics.com\/resources\/",
+    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Actions\/Goals_Natural Channel Design"
   },
   {
     "Title": "Reference Reach Survey",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Actions and Goals_Natural Channel Design"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Actions\/Goals_Natural Channel Design"
   },
   {
     "Title": "Regime Equations (Sed Transport)",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Sediment Transport_Sediment Supply Yield,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Geomorphology_Channel change indices"
   },
   {
     "Title": "Regional Regressions by State",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/water.usgs.gov\/osw\/programs\/nss\/pubs.html",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/water.usgs.gov\/osw\/programs\/nss\/pubs.html",
     "Tags": "Models and Tools_Data Sources_Water Quantity,Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Bankfull Regional Curves,Models and Tools_Hydrology_Flood Frequency,Models and Tools_Hydrology_Peak flows"
   },
   {
     "Title": "Regional Hydraulic Geometry Curves",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/?cid=nrcs143_015052",
-    "Tags": "Models and Tools_Data Sources_Water Quantity,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Bankfull Regional Curves,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Actions and Goals_Natural Channel Design"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/water\/?cid=nrcs143_015052",
+    "Tags": "Models and Tools_Data Sources_Water Quantity,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Bankfull Regional Curves,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Actions\/Goals_Natural Channel Design"
   },
   {
     "Title": "RiverMorph",
     "Author": "Stantec",
-    "Type": "software",
-    "Website": "http:\/\/www.rivermorph.com\/",
-    "Tags": "Models and Tools_Actions and Goals_Natural Channel Design"
+    "File_Format": "software",
+    "APA_Citation": "http:\/\/www.rivermorph.com\/",
+    "Tags": "Models and Tools_Actions\/Goals_Natural Channel Design"
   },
   {
     "Title": "RiverRAT River Restoration Analysis Tool",
     "Author": "NOAA",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.webapps.nwfsc.noaa.gov\/apex\/f?p=275:1",
-    "Tags": "Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.webapps.nwfsc.noaa.gov\/apex\/f?p=275:1",
+    "Tags": "Models and Tools_Actions\/Goals_Restoration Planning Site Evaluation"
   },
   {
     "Title": "Rock Chute Design Calcs",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Root Wad Design Calcs",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Large Wood,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Large Wood,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
-    "Title": "Sediment Equations ",
+    "Title": "Sediment Equations",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Supply Yield,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Effective discharge,Models and Tools_Sediment Transport_Scour"
   },
   {
     "Title": "SNOTEL (NRCS Snowpack Telemetry)",
     "Author": "NRCS",
-    "Type": "software",
-    "Website": "https:\/\/www.wcc.nrcs.usda.gov\/snow\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.wcc.nrcs.usda.gov\/snow\/",
     "Tags": "Models and Tools_Data Sources_Water Quantity"
   },
   {
     "Title": "Soil Anchor Design Calcs",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Stone Sizing Design Calcs",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Sediment Transport_Scour,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Sediment Transport_Scour,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "Stream Channel Flow Resistance Coefficient Computation Tool (2018-2)",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Hydraulics_Hydraulic roughness"
   },
   {
     "Title": "Stream Corridor Restoration Working Group H&H Tools",
     "Author": "USDA",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/hydrology\/?cid=stelprdb1042480",
-    "Tags": "Models and Tools_Hydrology_Flood Frequency,Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Flood Routing,Models and Tools_Hydrology_Peak flows,Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Stabilization,Models and Tools_Misc_Particularly helpful"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/manage\/hydrology\/?cid=stelprdb1042480",
+    "Tags": "Models and Tools_Hydrology_Flood Frequency,Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Flood Routing,Models and Tools_Hydrology_Peak flows,Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Stabilization,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "Streamstats",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/streamstats.usgs.gov\/ss\/",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/streamstats.usgs.gov\/ss\/",
     "Tags": "Models and Tools_Data Sources_Water Quantity,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Compute statistics,Models and Tools_Hydrology_Ungaged gage transfer regional regressions,Models and Tools_Hydrology_Flood Frequency,Models and Tools_Hydrology_Peak flows,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "STREAMtools spreadsheets from NEH",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
-    "Tags": "Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Bed evolution,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Instream Structures,Models and Tools_Actions and Goals_Large Wood,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "Tags": "Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Incipient motion,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Hydraulic geometry,Models and Tools_Geomorphology_Planform geometry,Models and Tools_Geomorphology_Bed evolution,Models and Tools_Geomorphology_Channel change indices,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Instream Structures,Models and Tools_Actions\/Goals_Large Wood,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "SWAT Soil and Water Assessment Tool",
     "Author": "EPA",
-    "Type": "software",
-    "Website": "https:\/\/cfpub.epa.gov\/si\/si_public_record_report.cfm?Lab=&direntryid=2921",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/cfpub.epa.gov\/si\/si_public_record_report.cfm?Lab=&direntryid=2921",
     "Tags": "Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_SW GW Hydraulics"
   },
   {
     "Title": "The National Map",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/www.usgs.gov\/core-science-systems\/national-geospatial-program\/national-map",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.usgs.gov\/core-science-systems\/national-geospatial-program\/national-map",
     "Tags": "Models and Tools_Data Sources_Climate,Models and Tools_Data Sources_Soils and Geology,Models and Tools_Data Sources_Hydrography and Floodplains,Models and Tools_Data Sources_Water Quantity,Models and Tools_Data Sources_Water Quality,Models and Tools_Data Sources_Topography and Bathymetry,Models and Tools_Data Sources_Vegetation,Models and Tools_Data Sources_Land Use and Land Cover,Models and Tools_Data Sources_Aerial Photogrammetry,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "TIGER Road Database",
     "Author": "Census",
-    "Type": "website",
-    "Website": "https:\/\/tigerweb.geo.census.gov\/tigerweb\/",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/tigerweb.geo.census.gov\/tigerweb\/",
     "Tags": "Models and Tools_Data Sources_Land Use and Land Cover"
   },
   {
     "Title": "TUFLOW",
     "Author": "TUFLOW",
-    "Type": "software",
-    "Website": "https:\/\/www.tuflow.com\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.tuflow.com\/",
     "Tags": "Models and Tools_Hydraulics_2D Hydraulics,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Two-Stage XS Plots",
     "Author": "NRCS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detail\/national\/ndcsmc\/?cid=nrcs143_009158",
     "Tags": "Models and Tools_Hydraulics_2D Hydraulics,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "USFS National Stream and Aquatic Ecology Center Tools",
     "Author": "USFS",
-    "Type": "website",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/index.html",
-    "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Peak flows,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic roughness,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Supply Yield,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Large Wood,Models and Tools_Actions and Goals_Stabilization,Models and Tools_Misc_Particularly helpful"
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/index.html",
+    "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Peak flows,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic roughness,Models and Tools_Hydraulics_Hydraulic parameters,Models and Tools_Sediment Transport_Particle size analysis,Models and Tools_Sediment Transport_Pebble counts and bar samples,Models and Tools_Sediment Transport_Sediment competence,Models and Tools_Sediment Transport_Sediment Supply Yield,Models and Tools_Sediment Transport_Sediment Transport Capacity,Models and Tools_Sediment Transport_Scour,Models and Tools_Sediment Transport_Bed and Bank Erosion,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Large Wood,Models and Tools_Actions\/Goals_Stabilization,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "Water Data USGS",
     "Author": "USGS",
-    "Type": "website",
-    "Website": "https:\/\/waterdata.usgs.gov\/nwis",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/waterdata.usgs.gov\/nwis",
     "Tags": "Models and Tools_Hydrology_Stream gages,Models and Tools_Hydrology_Download data,Models and Tools_Hydrology_Visualize time series,Models and Tools_Hydrology_Compute statistics,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "Web Soil Survey",
     "Author": "USDA",
-    "Type": "website",
-    "Website": "https:\/\/websoilsurvey.sc.egov.usda.gov\/App\/HomePage.htm",
+    "File_Format": "website",
+    "APA_Citation": "https:\/\/websoilsurvey.sc.egov.usda.gov\/App\/HomePage.htm",
     "Tags": "Models and Tools_Data Sources_Soils and Geology,Models and Tools_Misc_Particularly helpful"
   },
   {
     "Title": "WildCat5",
     "Author": "USFS",
-    "Type": "software",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
     "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Peak flows"
   },
   {
     "Title": "Win TR-55",
     "Author": "NRCS",
-    "Type": "software",
-    "Website": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1042901",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.nrcs.usda.gov\/wps\/portal\/nrcs\/detailfull\/national\/water\/?cid=stelprdb1042901",
     "Tags": "Models and Tools_Hydrology_Rainfall Runoff Analysis,Models and Tools_Hydrology_Peak flows"
   },
   {
     "Title": "WinXSPRO: A Channel Cross-Section Analyzer",
     "Author": "USFS",
-    "Type": "software",
-    "Website": "https:\/\/water.usgs.gov\/software\/WSPRO\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/water.usgs.gov\/software\/WSPRO\/",
     "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Hydraulic parameters"
   },
   {
     "Title": "Wood Jam Dynamics, WooDDAM (2018-3)",
     "Author": "USFS",
-    "Type": "spreadsheet",
-    "Website": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
-    "Tags": "Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions and Goals_Large Wood,Models and Tools_Actions and Goals_Stabilization"
+    "File_Format": "spreadsheet",
+    "APA_Citation": "https:\/\/www.fs.fed.us\/biology\/nsaec\/products-tools.html",
+    "Tags": "Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Geomorphology_Geomorphic Features,Models and Tools_Actions\/Goals_Large Wood,Models and Tools_Actions\/Goals_Stabilization"
   },
   {
     "Title": "WSPro",
     "Author": "USGS",
-    "Type": "software",
-    "Website": "https:\/\/water.usgs.gov\/software\/WSPRO\/",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/water.usgs.gov\/software\/WSPRO\/",
     "Tags": "Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow,Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow,Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_Simple backwater profiles"
   },
   {
     "Title": "XPSWMM (Sanitary, Storm and Flood Modeling Software)",
     "Author": "USFS",
-    "Type": "software",
-    "Website": "https:\/\/www.innovyze.com\/en-us\/products\/xpswmm",
+    "File_Format": "software",
+    "APA_Citation": "https:\/\/www.innovyze.com\/en-us\/products\/xpswmm",
     "Tags": "Models and Tools_Hydraulics_1D hydraulics,Models and Tools_Hydraulics_2D Hydraulics,Models and Tools_Hydraulics_Stormwater and Pipe Flows"
   }
 ]
