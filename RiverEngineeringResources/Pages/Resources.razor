@@ -713,7 +713,7 @@
         <MudItem xs="12">
 
             <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="2" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
-                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="true" OverscanCount="10" FixedHeader="true">
+                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="false" FixedHeader="true"> @*OverscanCount="10"*@
                 <ToolBarContent>
                     <MudGrid>
                         <MudItem xs="4">
