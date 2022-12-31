@@ -708,7 +708,7 @@
 
 
                 <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
-                             Hideable="false" HorizontalScrollbar="false" Outlined="true" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Height="500px" Hover="false" Virtualize="false" FixedHeader="true">
+                             Hideable="false" HorizontalScrollbar="false" Outlined="true" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Height="500px" Hover="false" Virtualize="false" FixedHeader="true"> @*OverscanCount="20"*@
                     <ToolBarContent>
                         <MudGrid>
                             @*                            <MudItem xs="4">
@@ -742,6 +742,12 @@
 
 
                     </ToolBarContent>
+                    <NoRecordsContent>
+                        <MudText Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">No resources found.</MudText>
+                    </NoRecordsContent>
+@*                    <LoadingContent>
+                        <MudText>Loading...</MudText>
+                    </LoadingContent>*@
 
                     <Columns>
                         <Column T="MyResource" Field="Title" Hidden="true" />
@@ -789,7 +795,7 @@
                     </ChildRowContent>
 
 @*                    <PagerContent>
-                        <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{5, 10, 25}"/>
+                        <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}"/>
                     </PagerContent>*@
 
                 </MudDataGrid>
@@ -1329,7 +1335,7 @@
     string subheaderText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small";
 
     string titleText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
-    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:14px";
+    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Arial; font-size:14px";
 
     public string getLinkHeaderText(string dbname)
     {
