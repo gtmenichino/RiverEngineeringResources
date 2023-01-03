@@ -1,0 +1,72 @@
+﻿@using System.Linq
+@using System.Collections.Generic
+
+<style>
+    .excel-table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+
+        .excel-table th,
+        .excel-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .excel-table th {
+            background-color: #f8f8f8;
+            text-align: left;
+        }
+
+        /* optional: add hover effect for table rows */
+        .excel-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* optional: add alternating row colors */
+        .excel-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+</style>
+
+<table class="table excel-table">
+    <thead>
+        <tr>
+            @for (int i = 0; i < Columns; i++)
+            {
+                <th>Column @(i + 1)</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Rows; i++)
+        {
+            <tr>
+                @for (int j = 0; j < Columns; j++)
+                {
+                    <td>
+                        <input @bind="Cells[i][j]" />
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public int Rows { get; set; }
+
+    [Parameter]
+    public int Columns { get; set; }
+
+    public List<List<string>> Cells { get; set; } = new List<List<string>>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 0; i < Rows; i++)
+        {
+            Cells.Add(Enumerable.Range(0, Columns).Select(x => string.Empty).ToList());
+        }
+    }
+}

@@ -173,7 +173,7 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Stable ch design and Stabilization"))' Color='@getTagColor("Documents_Design Theory_Stable ch design and Stabilization")' Underline="Underline.Hover" Style="@subheaderText">Stable ch design and Stabilization</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory_Stable ch design and Stabilization"))' Color='@getTagColor("Documents_Design Theory_Stable ch design and Stabilization")' Underline="Underline.Hover" Style="@subheaderText">Stable channels</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
@@ -330,12 +330,12 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Legacy Sed Removal Valley Rest"))' Color='@getTagColor("Documents_Actions and Goals_Legacy Sed Removal Valley Rest")' Underline="Underline.Hover" Style="@subheaderText">Legacy Sed Removal Valley Rest</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Legacy Sed Removal Valley Rest"))' Color='@getTagColor("Documents_Actions and Goals_Legacy Sed Removal Valley Rest")' Underline="Underline.Hover" Style="@subheaderText">Legacy Sed Removal</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Regenerative Stormwater Conv"))' Color='@getTagColor("Documents_Actions and Goals_Regenerative Stormwater Conv")' Underline="Underline.Hover" Style="@subheaderText">Regenerative Stormwater Conv</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Regenerative Stormwater Conv"))' Color='@getTagColor("Documents_Actions and Goals_Regenerative Stormwater Conv")' Underline="Underline.Hover" Style="@subheaderText">Regenerative Stormwater</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
@@ -475,12 +475,12 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Normal depth for 1D steady uniform flow</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Normal depth uniform flow</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Critical depth for 1D steady uniform flow</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Critical depth uniform flow</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
@@ -542,7 +542,7 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Pebble counts and bar samples"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Pebble counts and bar samples</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Pebble counts and bar samples"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Pebble counts</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
@@ -646,7 +646,7 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Restoration Planning Site Evaluation</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Restoration Planning</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
@@ -713,7 +713,8 @@
         <MudItem xs="12">
 
             <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="2" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
-                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="false" FixedHeader="true"> @*OverscanCount="10"*@
+                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="false" FixedHeader="true">
+                @*OverscanCount="10"*@
                 <ToolBarContent>
                     <MudGrid>
                         <MudItem xs="4">
@@ -767,7 +768,7 @@
 
                         <MudStack Row="true">
                             <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author - @context.Item.Year - @context.Item.Link_Owner</MudText>
-                          
+
                         </MudStack>
 
                         <MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.DescriptionClip</MudText>
@@ -792,6 +793,10 @@
                     </MudPaper>
 
                 </ChildRowContent>
+
+                <PagerContent>
+                    <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+                </PagerContent>
 
             </MudDataGrid>
 
@@ -833,7 +838,7 @@
     public void StartEditingItem(MouseEventArgs args, MyResource theItem)
     {
         mudDataGrid.SetEditingItemAsync(theItem);
-        
+
     }
 
     public string openGoogleScholar(MyResource selRes)
