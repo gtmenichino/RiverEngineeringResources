@@ -1,0 +1,79 @@
+/* /ClipboardServiceFolder/CopyToClipboardButton.razor.rz.scp.css */
+/*﻿.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}*/
+/* /Pages/Resources.razor.rz.scp.css */
+a[b-hu4wxgwi8k] {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover[b-hu4wxgwi8k] {
+        font-weight: 900;
+    }
+
+
+.breadcrumb[b-hu4wxgwi8k] {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eed;
+}
+
+.breadcrumb-item[b-hu4wxgwi8k] {
+    display: inline;
+    font-size: 18px;
+}
+
+.breadcrumb li + li[b-hu4wxgwi8k]:before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
+.breadcrumb-item a[b-hu4wxgwi8k] {
+    color: #2e4053;
+    text-decoration: none;
+}
+
+    .breadcrumb-item a:hover[b-hu4wxgwi8k] {
+        color: red;
+    }
+/* /Pages/Resources2.razor.rz.scp.css */
+a[b-4g9mfzivpi] {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover[b-4g9mfzivpi] {
+        font-weight: 900;
+    }
+
+
+.breadcrumb[b-4g9mfzivpi] {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eed;
+}
+
+.breadcrumb-item[b-4g9mfzivpi] {
+    display: inline;
+    font-size: 18px;
+}
+
+.breadcrumb li + li[b-4g9mfzivpi]:before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
+.breadcrumb-item a[b-4g9mfzivpi] {
+    color: #2e4053;
+    text-decoration: none;
+}
+
+    .breadcrumb-item a:hover[b-4g9mfzivpi] {
+        color: red;
+    }
