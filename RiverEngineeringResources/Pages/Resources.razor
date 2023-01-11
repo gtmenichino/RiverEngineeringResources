@@ -5,6 +5,7 @@
 @inject HttpClient httpClient
 @using RiverEngineeringResources.Shared
 @inject SharedData SharedData
+@using System.Globalization
 
 <PageTitle>Resources</PageTitle>
 
@@ -1708,12 +1709,39 @@
     public List<MyResource>? MyResourceList;
 
 
+    //private async Task DownloadLatestResourceData()
+    //{
+
+
+    //    var fileURL = "https://docs.google.com/spreadsheets/d/1VIyIF4tMsFABwG12rFb_jWs86PuAWZkZWn56EhMRWNw/edit?usp=sharing";
+
+    //    HttpClient client = new HttpClient();
+
+    //    using var httpResponse = await client.GetStreamAsync(fileURL);
+
+
+    //    using (var reader = new StreamReader(httpResponse))
+    //    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+    //    {
+    //        var records = csv.GetRecords<MyResource>();
+    //        int six = 5;
+    //    }
+
+    //    int five = 5;
+    //    //sr.Close();
+
+    //}
+
+
+
     protected override async Task OnInitializedAsync()
     {
         SharedData.SetResourcesPageSelected();
 
         MyResourcesArray = await Http.GetFromJsonAsync<MyResource[]>("sample-data/RiverEngResources.json");
+        //await DownloadLatestResourceData();
 
+        //https://docs.google.com/spreadsheets/d/1e8uth07zWGAdtqRKhVGuMZILlbVtTy7JQtGn26Ait2Q/edit?usp=sharing
         //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
         //MyTags = MyTagsArray.ToList();
 
@@ -1796,6 +1824,9 @@
 
 
     }
+
+
+
 
 
     public class MyResource
