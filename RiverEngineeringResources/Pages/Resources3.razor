@@ -1,12 +1,13 @@
-﻿@page "/resources2"
+﻿@page "/resources3"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @using System.Net.Http.Json
 @inject HttpClient httpClient
 @using RiverEngineeringResources.Shared
 @inject SharedData SharedData
+@using System.Globalization
 
-<PageTitle>Resources2</PageTitle>
+<PageTitle>Resources3</PageTitle>
 
 <style>
     input {
@@ -65,15 +66,15 @@
 
     <MudGrid>
 
-        <MudItem xs="6">
+        <MudItem xs="12">
 
             <MudTabs Centered="true" Elevation="0" Rounded="true" @ref="tabs">
 
                 <MudTabPanel Text="Documents">
-                    <MudPaper Elevation="0" Class="pt-3" Outlined="false">
+                    <MudPaper Elevation="0" Outlined="true">
                         <MudGrid Class="justify-center pa-3">
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
                                         <MudLink OnClick='@((args) => searchTag(args,"Documents_Knowledge Base"))' Color='@getTagColor("Documents_Knowledge Base")' Underline="Underline.Hover" Style="@headerText">Knowledge Base</MudLink>
@@ -111,8 +112,11 @@
                                     </a>
                                 </div>
                             </MudItem>
+                            @*                            <MudDivider Vertical="true" FlexItem="true">
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            </MudDivider>*@
+                            @*</MudPaper>*@
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
                                         <MudLink OnClick='@((args) => searchTag(args,"Documents_Evaluation"))' Color='@getTagColor("Documents_Evaluation")' Underline="Underline.Hover" Style="@headerText">Evaluation</MudLink>
@@ -149,8 +153,10 @@
                                     </a>
                                 </div>
                             </MudItem>
+                            @*                            <MudDivider Vertical="true" FlexItem="true">
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            </MudDivider>*@
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
                                         <MudLink OnClick='@((args) => searchTag(args,"Documents_Design Theory"))' Color='@getTagColor("Documents_Design Theory")' Underline="Underline.Hover" Style="@headerText">Design Theory</MudLink>
@@ -188,7 +194,9 @@
                                 </div>
                             </MudItem>
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+
+
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
                                         <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("Documents_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
@@ -231,13 +239,14 @@
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Habitat Improvement"))' Color='@getTagColor("Documents_Actions and Goals_Instream Habitat Improvement")' Underline="Underline.Hover" Style="@subheaderText">Habitat Improvement</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Habitat Improvement"))' Color='@getTagColor("Documents_Actions and Goals_Instream Habitat Improvement")' Underline="Underline.Hover" Style="@subheaderText">Instream Habitat Improvement</MudLink>
                                     </a>
                                 </div>
 
                             </MudItem>
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+
+                            <MudItem Style="border-color:lightgray" xs="2">
 
                                 <div style="text-align:start; margin-left:12px">
                                     <a hidden href="#" style="display:inline-block" onclick="return false;">
@@ -247,7 +256,7 @@
 
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Species Management"))' Color='@getTagColor("Documents_Actions and Goals_Instream Species Management")' Underline="Underline.Hover" Style="@subheaderText">Species Management</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Documents_Actions and Goals_Instream Species Management"))' Color='@getTagColor("Documents_Actions and Goals_Instream Species Management")' Underline="Underline.Hover" Style="@subheaderText">Instream Species Management</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
@@ -288,7 +297,7 @@
 
                             </MudItem>
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a hidden href="#" style="display:inline-block" onclick="return false;">
                                         <MudLink Class="invisible" OnClick='@((args) => searchTag(args,"Documents_Actions and Goals"))' Color='@getTagColor("Documents_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and Goals</MudLink>
@@ -341,304 +350,304 @@
                     </MudPaper>
                 </MudTabPanel>
                 <MudTabPanel Text="Models/Tools">
-                    <MudPaper Elevation="0" Class="pt-3" Outlined="false">
+                    <MudPaper Elevation="0" Outlined="true">
                         <MudGrid Class="justify-center pa-3">
 
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Data Sources</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources"))' Color='@getTagColor("Models and Tools_Data Sources")' Underline="Underline.Hover" Style="@headerText">Data Sources</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Climate"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Climate</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Climate"))' Color='@getTagColor("Models and Tools_Data Sources_Climate")' Underline="Underline.Hover" Style="@subheaderText">Climate</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Soils and Geology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Soils and Geology</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Soils and Geology"))' Color='@getTagColor("Models and Tools_Data Sources_Soils and Geology")' Underline="Underline.Hover" Style="@subheaderText">Soils and Geology</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Hydrography and Floodplains"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydrography and Floodplains</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Hydrography and Floodplains"))' Color='@getTagColor("Models and Tools_Data Sources_Hydrography and Floodplains")' Underline="Underline.Hover" Style="@subheaderText">Hydrography and Floodplains</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quantity"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Water Quantity</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quantity"))' Color='@getTagColor("Models and Tools_Data Sources_Water Quantity")' Underline="Underline.Hover" Style="@subheaderText">Water Quantity</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quality"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Water Quality</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Water Quality"))' Color='@getTagColor("Models and Tools_Data Sources_Water Quality")' Underline="Underline.Hover" Style="@subheaderText">Water Quality</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Topography and Bathymetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Topography and Bathymetry</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Topography and Bathymetry"))' Color='@getTagColor("Models and Tools_Data Sources_Topography and Bathymetry")' Underline="Underline.Hover" Style="@subheaderText">Topography and Bathymetry</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Vegetation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Vegetation</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Vegetation"))' Color='@getTagColor("Models and Tools_Data Sources_Vegetation")' Underline="Underline.Hover" Style="@subheaderText">Vegetation</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Land Use and Land Cover"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Land Use and Land Cover</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Land Use and Land Cover"))' Color='@getTagColor("Models and Tools_Data Sources_Land Use and Land Cover")' Underline="Underline.Hover" Style="@subheaderText">Land Use and Land Cover</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Aerial Photogrammetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Data Sources_Aerial Photogrammetry"))' Color='@getTagColor("Models and Tools_Data Sources_Aerial Photogrammetry")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
 
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Hydrology</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology"))' Color='@getTagColor("Models and Tools_Hydrology")' Underline="Underline.Hover" Style="@headerText">Hydrology</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Stream gages"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stream gages</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Stream gages"))' Color='@getTagColor("Models and Tools_Hydrology_Stream gages")' Underline="Underline.Hover" Style="@subheaderText">Stream gages</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Download data"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Download data</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Download data"))' Color='@getTagColor("Models and Tools_Hydrology_Download data")' Underline="Underline.Hover" Style="@subheaderText">Download data</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Visualize time series"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Visualize time series</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Visualize time series"))' Color='@getTagColor("Models and Tools_Hydrology_Visualize time series")' Underline="Underline.Hover" Style="@subheaderText">Visualize time series</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Compute statistics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Compute statistics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Compute statistics"))' Color='@getTagColor("Models and Tools_Hydrology_Compute statistics")' Underline="Underline.Hover" Style="@subheaderText">Compute statistics</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Ungaged gage transfer regional regressions"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Ungaged gage transfer regional regressions</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Ungaged gage transfer regional regressions"))' Color='@getTagColor("Models and Tools_Hydrology_Ungaged gage transfer regional regressions")' Underline="Underline.Hover" Style="@subheaderText">Ungaged gage transfer regional regressions</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Bankfull Regional Curves"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bankfull Regional Curves</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Bankfull Regional Curves"))' Color='@getTagColor("Models and Tools_Hydrology_Bankfull Regional Curves")' Underline="Underline.Hover" Style="@subheaderText">Bankfull Regional Curves</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Frequency"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flood Frequency</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Frequency"))' Color='@getTagColor("Models and Tools_Hydrology_Flood Frequency")' Underline="Underline.Hover" Style="@subheaderText">Flood Frequency</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flow Duration"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flow Duration</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flow Duration"))' Color='@getTagColor("Models and Tools_Hydrology_Flow Duration")' Underline="Underline.Hover" Style="@subheaderText">Flow Duration</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Rainfall Runoff Analysis"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Rainfall Runoff Analysis</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Rainfall Runoff Analysis"))' Color='@getTagColor("Models and Tools_Hydrology_Rainfall Runoff Analysis")' Underline="Underline.Hover" Style="@subheaderText">Rainfall Runoff Analysis</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Routing"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Flood Routing</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Flood Routing"))' Color='@getTagColor("Models and Tools_Hydrology_Flood Routing")' Underline="Underline.Hover" Style="@subheaderText">Flood Routing</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Peak flows"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Peak flows</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydrology_Peak flows"))' Color='@getTagColor("Models and Tools_Hydrology_Peak flows")' Underline="Underline.Hover" Style="@subheaderText">Peak flows</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Hydraulics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics"))' Color='@getTagColor("Models and Tools_Hydraulics")' Underline="Underline.Hover" Style="@headerText">Hydraulics</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Normal depth for 1D steady uniform flow</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow"))' Color='@getTagColor("Models and Tools_Hydraulics_Normal depth for 1D steady uniform flow")' Underline="Underline.Hover" Style="@subheaderText">Normal depth uniform flow</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Critical depth for 1D steady uniform flow</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow"))' Color='@getTagColor("Models and Tools_Hydraulics_Critical depth for 1D steady uniform flow")' Underline="Underline.Hover" Style="@subheaderText">Critical depth uniform flow</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_1D hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">1D hydraulics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_1D hydraulics"))' Color='@getTagColor("Models and Tools_Hydraulics_1D hydraulics")' Underline="Underline.Hover" Style="@subheaderText">1D hydraulics</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_2D Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">2D Hydraulics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_2D Hydraulics"))' Color='@getTagColor("Models and Tools_Hydraulics_2D Hydraulics")' Underline="Underline.Hover" Style="@subheaderText">2D Hydraulics</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Computational Fluid Dynamics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Computational Fluid Dynamics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Computational Fluid Dynamics"))' Color='@getTagColor("Models and Tools_Hydraulics_Computational Fluid Dynamics")' Underline="Underline.Hover" Style="@subheaderText">Computational Fluid Dynamics</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Stormwater and Pipe Flows"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stormwater and Pipe Flows</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Stormwater and Pipe Flows"))' Color='@getTagColor("Models and Tools_Hydraulics_Stormwater and Pipe Flows")' Underline="Underline.Hover" Style="@subheaderText">Stormwater and Pipe Flows</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic roughness"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic roughness</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic roughness"))' Color='@getTagColor("Models and Tools_Hydraulics_Hydraulic roughness")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic roughness</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Rating curve"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Rating curve</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Rating curve"))' Color='@getTagColor("Models and Tools_Hydraulics_Rating curve")' Underline="Underline.Hover" Style="@subheaderText">Rating curve</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic parameters"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic parameters</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Hydraulic parameters"))' Color='@getTagColor("Models and Tools_Hydraulics_Hydraulic parameters")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic parameters</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Simple backwater profiles"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Simple backwater profiles</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_Simple backwater profiles"))' Color='@getTagColor("Models and Tools_Hydraulics_Simple backwater profiles")' Underline="Underline.Hover" Style="@subheaderText">Simple backwater profiles</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_SW GW Hydraulics"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">SW GW Hydraulics</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Hydraulics_SW GW Hydraulics"))' Color='@getTagColor("Models and Tools_Hydraulics_SW GW Hydraulics")' Underline="Underline.Hover" Style="@subheaderText">SW GW Hydraulics</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Sediment Transport</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport"))' Color='@getTagColor("Models and Tools_Sediment Transport")' Underline="Underline.Hover" Style="@headerText">Sediment Transport</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Particle size analysis"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Particle size analysis</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Particle size analysis"))' Color='@getTagColor("Models and Tools_Sediment Transport_Particle size analysis")' Underline="Underline.Hover" Style="@subheaderText">Particle size analysis</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Pebble counts and bar samples"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Pebble counts</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Pebble counts and bar samples"))' Color='@getTagColor("Models and Tools_Sediment Transport_Pebble counts and bar samples")' Underline="Underline.Hover" Style="@subheaderText">Pebble counts</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Incipient motion"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Incipient motion</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Incipient motion"))' Color='@getTagColor("Models and Tools_Sediment Transport_Incipient motion")' Underline="Underline.Hover" Style="@subheaderText">Incipient motion</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment competence"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment competence</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment competence"))' Color='@getTagColor("Models and Tools_Sediment Transport_Sediment competence")' Underline="Underline.Hover" Style="@subheaderText">Sediment competence</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Supply Yield"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment Supply Yield</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Supply Yield"))' Color='@getTagColor("Models and Tools_Sediment Transport_Sediment Supply Yield")' Underline="Underline.Hover" Style="@subheaderText">Sediment Supply Yield</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Transport Capacity"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Sediment Transport Capacity</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Sediment Transport Capacity"))' Color='@getTagColor("Models and Tools_Sediment Transport_Sediment Transport Capacity")' Underline="Underline.Hover" Style="@subheaderText">Sediment Transport Capacity</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Effective discharge"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Effective discharge</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Effective discharge"))' Color='@getTagColor("Models and Tools_Sediment Transport_Effective discharge")' Underline="Underline.Hover" Style="@subheaderText">Effective discharge</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Scour"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Scour</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Scour"))' Color='@getTagColor("Models and Tools_Sediment Transport_Scour")' Underline="Underline.Hover" Style="@subheaderText">Scour</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Aerial Photogrammetry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Aerial Photogrammetry"))' Color='@getTagColor("Models and Tools_Sediment Transport_Aerial Photogrammetry")' Underline="Underline.Hover" Style="@subheaderText">Aerial Photogrammetry</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Bed and Bank Erosion"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bed and Bank Erosion</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Sediment Transport_Bed and Bank Erosion"))' Color='@getTagColor("Models and Tools_Sediment Transport_Bed and Bank Erosion")' Underline="Underline.Hover" Style="@subheaderText">Bed and Bank Erosion</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Geomorphology</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology"))' Color='@getTagColor("Models and Tools_Geomorphology")' Underline="Underline.Hover" Style="@headerText">Geomorphology</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Hydraulic geometry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic geometry</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Hydraulic geometry"))' Color='@getTagColor("Models and Tools_Geomorphology_Hydraulic geometry")' Underline="Underline.Hover" Style="@subheaderText">Hydraulic geometry</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Planform geometry"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Planform geometry</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Planform geometry"))' Color='@getTagColor("Models and Tools_Geomorphology_Planform geometry")' Underline="Underline.Hover" Style="@subheaderText">Planform geometry</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Bed evolution"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Bed evolution</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Bed evolution"))' Color='@getTagColor("Models and Tools_Geomorphology_Bed evolution")' Underline="Underline.Hover" Style="@subheaderText">Bed evolution</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Channel change indices"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Channel change indices</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Channel change indices"))' Color='@getTagColor("Models and Tools_Geomorphology_Channel change indices")' Underline="Underline.Hover" Style="@subheaderText">Channel change indices</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Geomorphic Features"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Geomorphic Features</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Geomorphology_Geomorphic Features"))' Color='@getTagColor("Models and Tools_Geomorphology_Geomorphic Features")' Underline="Underline.Hover" Style="@subheaderText">Geomorphic Features</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
-                            <MudItem Style="border-color:lightgray" xs="4">
+                            <MudItem Style="border-color:lightgray" xs="2">
                                 <div style="text-align:start; margin-left:12px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@headerText">Actions and goals</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals"))' Color='@getTagColor("Models and Tools_Actions and Goals")' Underline="Underline.Hover" Style="@headerText">Actions and goals</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Natural Channel Design"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Natural Channel Design</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Natural Channel Design"))' Color='@getTagColor("Models and Tools_Actions and Goals_Natural Channel Design")' Underline="Underline.Hover" Style="@subheaderText">Natural Channel Design</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Instream Structures"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Instream Structures</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Instream Structures"))' Color='@getTagColor("Models and Tools_Actions and Goals_Instream Structures")' Underline="Underline.Hover" Style="@subheaderText">Instream Structures</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Large Wood"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Large Wood</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Large Wood"))' Color='@getTagColor("Models and Tools_Actions and Goals_Large Wood")' Underline="Underline.Hover" Style="@subheaderText">Large Wood</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Stabilization"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Stabilization</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Stabilization"))' Color='@getTagColor("Models and Tools_Actions and Goals_Stabilization")' Underline="Underline.Hover" Style="@subheaderText">Stabilization</MudLink>
                                     </a>
                                 </div>
                                 <div style="text-align:start; margin-left:18px">
                                     <a href="#" style="display:inline-block" onclick="return false;">
-                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"))' Color='@getTagColor("")' Underline="Underline.Hover" Style="@subheaderText">Restoration Planning</MudLink>
+                                        <MudLink OnClick='@((args) => searchTag(args,"Models and Tools_Actions and Goals_Restoration Planning Site Evaluation"))' Color='@getTagColor("Models and Tools_Actions and Goals_Restoration Planning Site Evaluation")' Underline="Underline.Hover" Style="@subheaderText">Restoration Planning</MudLink>
                                     </a>
                                 </div>
                             </MudItem>
@@ -648,163 +657,152 @@
             </MudTabs>
         </MudItem>
 
-        <MudItem xs="6">
+        <MudItem xs="12">
+            <MudStack Class="justify-center pt-2 mb-n2 gap-0" Row="true">
 
-            <MudStack Class="justify-center pt-2 mb-n2 gap-0" Row="false">
-
-
-                <MudStack Class="justify-center pt-2 mb-n2 gap-0" Row="true">
-
-                    <div style="display:flex">
-                        <div>
-                            <a href="#" onclick="return false;">
-                                <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,""))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">Resources</MudLink>
-                            </a>
-                        </div>
-
-                        <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                <div style="display:flex">
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,""))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">Resources</MudLink>
+                        </a>
                     </div>
 
-                    <div style="@breadcrumb1style()">
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
+
+                <div style="@breadcrumb1style()">
 
 
-                        <div>
-                            <a href="#" onclick="return false;">
-                                <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb1Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb1Text</MudLink>
-                            </a>
-                        </div>
-
-                        <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb1Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb1Text</MudLink>
+                        </a>
                     </div>
 
-                    <div style="@breadcrumb2style()">
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
+
+                <div style="@breadcrumb2style()">
 
 
 
-                        <div>
-                            <a href="#" onclick="return false;">
-                                <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb2Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb2Text</MudLink>
-                            </a>
-                        </div>
-
-                        <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb2Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb2Text</MudLink>
+                        </a>
                     </div>
 
+                    <MudText Class="px-0 ml-3" Style="visibility:visible; color:gray">/</MudText>
+                </div>
 
-                    <div style="@breadcrumb3style()">
+
+                <div style="@breadcrumb3style()">
 
 
-                        <div>
-                            <a href="#" onclick="return false;">
-                                <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb3Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb3Text</MudLink>
-                            </a>
-                        </div>
+                    <div>
+                        <a href="#" onclick="return false;">
+                            <MudLink Class="d-flex" OnClick='@((args) => searchTag(args,breadcrumb3Dbname))' Color="Color.Dark" Underline="Underline.Hover" Style="@breadcrumbText">@breadcrumb3Text</MudLink>
+                        </a>
                     </div>
-
-
-
-
-                </MudStack>
-
-
-                <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
-                             Hideable="false" HorizontalScrollbar="false" Outlined="true" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Height="500px" Hover="false" Virtualize="false" FixedHeader="true"> @*OverscanCount="50"*@ 
-                    <ToolBarContent>
-                        <MudGrid>
-                            @*                            <MudItem xs="4">
-
-                            </MudItem>*@
-                            <MudItem xs="8">
-                                <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
-
-                                    <MudTextField @bind-Value="_searchString" Placeholder="Search" Margin="Margin.Dense" Adornment="Adornment.Start" Immediate="false"
-                                                  AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="1000" IconSize="Size.Small"></MudTextField>
-
-                                    <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Small" OnClick="@openFilters" aria-label="filter"></MudIconButton>
-                                </MudStack>
-                            </MudItem>
-                            <MudItem Class="d-flex justify-end flex-grow-1" xs="4">
-
-                                <MudPaper Class="d-inline justify-end flex-grow-0" Elevation="0">
-                                    <MudSelect @bind-Text="_sortName" Clearable="true" Placeholder="Sort by:" Margin="Margin.Dense" SelectedValuesChanged="@sortFilterChanged" Class="flex-shrink-1 flex-grow-0" Dense="true" FullWidth="false" Style="max-width:150px; font-size:11px;--mud-typography-body1-size: 11px;font-weight:normal;font-family:Arial" T="string" AnchorOrigin="Origin.BottomCenter">
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Title A-Z")" />
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Title Z-A")" />
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Yr New-Old")" />
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Yr Old-New")" />
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Author A-Z")" />
-                                        <MudSelectItem Style="--mud-typography-body1-size: 11px;" Value="@("Author Z-A")" />
-                                    </MudSelect>
-                                </MudPaper>
-
-                            </MudItem>
-
-                        </MudGrid>
-
-
-                    </ToolBarContent>
-                    <NoRecordsContent>
-                        <MudText Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">No resources found.</MudText>
-                    </NoRecordsContent>
-@*                    <LoadingContent>
-                        <MudText>Loading...</MudText>
-                    </LoadingContent>*@
-
-                    <Columns>
-                        <Column T="MyResource" Field="Title" Hidden="true" />
-                        <Column T="MyResource" Field="Year" Hidden="true" />
-                        <Column T="MyResource" Field="Author" Hidden="true" />
-                        <Column T="MyResource" Field="Tags" Hidden="true" />
-                    </Columns>
-
-                    <ChildRowContent>
-
-                        <MudPaper Elevation="0">
-
-                            <MudStack Class="" Row="true">
-
-                                <MudText Class="d-flex flex-wrap align-self-center" Style="@GetTypeColor(context.Item)">[@context.Item.File_Format]</MudText>
-                                <MudLink Class="d-flex flex-wrap" Style="@GetLinkColor(context.Item)" Href="@context.Item.Link" Target="_blank" Color="@GetLink2Color(context.Item)" Underline="@GetHoverableTitleLink(context.Item)">@context.Item.Title</MudLink>
-                            </MudStack>
-
-                            <MudStack Row="true">
-                                <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author - @context.Item.Year - @context.Item.Association - @context.Item.Link_Owner</MudText>
-
-                            </MudStack>
-
-                            <MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.DescriptionClip</MudText>
-
-                            <MudStack Row="true">
-
-                                <div style="text-align:center">
-                                    <a href="#" onclick="return false;">
-                                        <MudLink Class="d-inline" OnClick='@((args) => toggleTags(args,context.Item))' Color="@getTagLabelColor(context.Item)" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Tags(@context.Item.TagsCount)</MudLink>
-                                    </a>
-                                </div>
-
-                                <div style="text-align:center">
-                                    <a href="#" onclick="return false;">
-                                        <MudLink Class="d-inline" OnClick='@((args) => openCiteOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Cite</MudLink>
-                                    </a>
-                                </div>
-
-
-                            </MudStack>
-
-                        </MudPaper>
-
-                    </ChildRowContent>
-
-                    <PagerContent>
-                        <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}"/>
-                    </PagerContent>
-
-                </MudDataGrid>
+                </div>
 
             </MudStack>
 
         </MudItem>
 
 
+        <MudItem xs="12">
+
+            <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="2" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
+                         Hideable="false" HorizontalScrollbar="false" Outlined="false" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Hover="false" Height="500px" Virtualize="false" FixedHeader="true">
+                @*OverscanCount="10"*@
+                <ToolBarContent>
+                    <MudGrid>
+                        <MudItem xs="4">
+
+                        </MudItem>
+                        <MudItem xs="4">
+                            <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
+
+                                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="false"
+                                              AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="1000" IconSize="Size.Medium"></MudTextField>
+
+                                <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Medium" OnClick="@openFilters" aria-label="filter"></MudIconButton>
+                            </MudStack>
+                        </MudItem>
+                        <MudItem Class="d-flex justify-end flex-grow-1" xs="4">
+
+                            <MudPaper Class="d-inline justify-end flex-grow-0" Elevation="0">
+                                <MudSelect @bind-Text="_sortName" Clearable="true" SelectedValuesChanged="@sortFilterChanged" Class="flex-shrink-1 flex-grow-0" Label="Sort by:" Dense="true" FullWidth="false" Style="max-width:200px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial" T="string" AnchorOrigin="Origin.BottomCenter">
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Title A-Z")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Title Z-A")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Year New to Old")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Year Old to New")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Author A-Z")" />
+                                    <MudSelectItem Style="--mud-typography-body1-size: 13px;" Value="@("Author Z-A")" />
+                                </MudSelect>
+                            </MudPaper>
+
+                        </MudItem>
+
+                    </MudGrid>
+
+
+                </ToolBarContent>
+
+                <Columns>
+                    <Column T="MyResource" Field="Title" Hidden="true" />
+                    <Column T="MyResource" Field="Year" Hidden="true" />
+                    <Column T="MyResource" Field="Author" Hidden="true" />
+                    <Column T="MyResource" Field="Tags" Hidden="true" />
+                </Columns>
+
+                <ChildRowContent>
+
+                    <MudPaper Elevation="0">
+
+                        <MudStack Class="" Row="true">
+
+                            <MudText Class="d-flex flex-wrap align-self-center" Style="@GetTypeColor(context.Item)">[@context.Item.File_Format]</MudText>
+                            <MudLink Class="d-flex flex-wrap" Style="@GetLinkColor(context.Item)" Href="@context.Item.Link" Target="_blank" Color="@GetLink2Color(context.Item)" Underline="@GetHoverableTitleLink(context.Item)">@context.Item.Title</MudLink>
+                        </MudStack>
+
+                        <MudStack Row="true">
+                            <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Author - @context.Item.Year - @context.Item.Link_Owner</MudText>
+
+                        </MudStack>
+
+                        <MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.DescriptionClip</MudText>
+
+                        <MudStack Row="true">
+
+                            <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                    <MudLink Class="d-inline" OnClick='@((args) => toggleTags(args,context.Item))' Color="@getTagLabelColor(context.Item)" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Tags(@context.Item.TagsCount)</MudLink>
+                                </a>
+                            </div>
+
+                            <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                    <MudLink Class="d-inline" OnClick='@((args) => openCiteOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Cite</MudLink>
+                                </a>
+                            </div>
+
+
+                        </MudStack>
+
+                    </MudPaper>
+
+                </ChildRowContent>
+
+                <PagerContent>
+                    <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+                </PagerContent>
+
+            </MudDataGrid>
+
+
+        </MudItem>
 
     </MudGrid>
 
@@ -914,10 +912,10 @@
                 case "Title Z-A":
                     mudDataGrid.SetSortAsync("Title", SortDirection.Descending, _sortByTitle);
                     return;
-                case "Yr New-Old":
+                case "Year New to Old":
                     mudDataGrid.SetSortAsync("Year", SortDirection.Ascending, _sortByYear);
                     return;
-                case "Yr Old-New":
+                case "Year Old to New":
                     mudDataGrid.SetSortAsync("Year", SortDirection.Descending, _sortByYear);
                     return;
                 case "Author A-Z":
@@ -1335,7 +1333,7 @@
     string subheaderText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small";
 
     string titleText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
-    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Arial; font-size:14px";
+    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium";
 
     public string getLinkHeaderText(string dbname)
     {
@@ -1615,17 +1613,17 @@
     {
         if (selRes == null)
         {
-            return "color:black; font-size:14px; font-weight:normal;font-family:Arial";
+            return "color:black; font-size:17px; font-weight:normal;font-family:Arial";
         }
         else
         {
             if (string.IsNullOrEmpty(selRes.Link))
             {
-                return "color:black; font-size:14px; font-weight:normal;font-family:Arial";
+                return "color:black; font-size:17px; font-weight:normal;font-family:Arial";
             }
             else
             {
-                return "color:#1a0dab; font-size:14px; font-weight:normal;font-family:Arial";
+                return "color:#1a0dab; font-size:17px; font-weight:normal;font-family:Arial";
             }
         }
     }
@@ -1711,12 +1709,39 @@
     public List<MyResource>? MyResourceList;
 
 
+    //private async Task DownloadLatestResourceData()
+    //{
+
+
+    //    var fileURL = "https://docs.google.com/spreadsheets/d/1VIyIF4tMsFABwG12rFb_jWs86PuAWZkZWn56EhMRWNw/edit?usp=sharing";
+
+    //    HttpClient client = new HttpClient();
+
+    //    using var httpResponse = await client.GetStreamAsync(fileURL);
+
+
+    //    using (var reader = new StreamReader(httpResponse))
+    //    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+    //    {
+    //        var records = csv.GetRecords<MyResource>();
+    //        int six = 5;
+    //    }
+
+    //    int five = 5;
+    //    //sr.Close();
+
+    //}
+
+
+
     protected override async Task OnInitializedAsync()
     {
-        SharedData.SetResources2PageSelected();
+        SharedData.SetResourcesPageSelected();
 
         MyResourcesArray = await Http.GetFromJsonAsync<MyResource[]>("sample-data/RiverEngResources.json");
+        //await DownloadLatestResourceData();
 
+        //https://docs.google.com/spreadsheets/d/1e8uth07zWGAdtqRKhVGuMZILlbVtTy7JQtGn26Ait2Q/edit?usp=sharing
         //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
         //MyTags = MyTagsArray.ToList();
 
@@ -1801,6 +1826,9 @@
     }
 
 
+
+
+
     public class MyResource
     {
         //public string? ShortTitle { get { return ShortText(Title); } }
@@ -1820,7 +1848,6 @@
         public int? Year { get; set; }
         public string? Tags { get; set; }
         public string? Link_Owner { get; set; }
-        public string? Association { get; set; } = "";
         public string? Description { get; set; }
         public string? DescriptionClip
         {

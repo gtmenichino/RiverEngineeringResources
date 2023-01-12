@@ -9,11 +9,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Pages\Resources2.razor.css" />
+	  <None Remove="Pages\Resources.razor.css" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Pages\Resources2.razor.css" />
+	  <Content Include="Pages\Resources.razor.css" />
 	</ItemGroup>
 
 	<ItemGroup>
