@@ -31,6 +31,8 @@
 
     <a type="button" href="resources" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Resources</span></a>
 
+    <a type="button" href="submit" class="@submitBtnStyleValue()" _bl_34=""><span class="mud-button-label">Submit</span></a>
+
     @*<a type="button" href="spreadsheet" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Spreadsheet</span></a>*@
 
 
@@ -124,7 +126,7 @@ public void Dispose()
     }
     private string submitBtnStyleValue()
     {
-        if (submitPageClickedBool == false)
+        if (SharedData.SubmitPageSelected == false)
         {
             return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mx-1 px-3";
         }

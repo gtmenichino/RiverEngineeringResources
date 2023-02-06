@@ -1,4 +1,4 @@
-﻿
+﻿@using RiverEngineeringResources.Shared
 
 <MudPaper Elevation="3" MaxWidth="300px">
 
@@ -101,7 +101,7 @@
         return true;
     }
 
-    public void updateTree(List<RiverEngineeringResources.Pages.Resources.MyResource> MyResourceList)
+    public void updateTree(List<MyResource> MyResourceList)
     {
         var query = MyResourceList.SelectMany(x => x.affiliations)
         .GroupBy(s => s.databaseName)
@@ -111,7 +111,7 @@
 
         foreach (var result in query)
         {
-            RiverEngineeringResources.Pages.Resources.affiliation b = new RiverEngineeringResources.Pages.Resources.affiliation(result.DBName);
+            affiliation b = new affiliation(result.DBName);
             Console.WriteLine("Name: {0}, Count: {1}", result.DBName, result.Count);
 
             int count1 = 0;

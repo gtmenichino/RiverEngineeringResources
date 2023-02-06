@@ -1,12 +1,22 @@
-﻿@inject SharedData SharedData
-
-@*@inject RiverEngineeringResources.ClipboardServiceFolder.ClipboardService TheService*@
-
+﻿@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@inject SharedData SharedData
 @page "/submit"
 
 <PageTitle>Submit</PageTitle>
 
+<div style="height: 80vh; ">
 
-<MudText>
-    Not yet available.
-</MudText>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNt10AqPPOcM-Ffkvo7ED4GunKiUq8G4VnWSThi-UxQ8Jcag/viewform?embedded=true" style="width:100%;height:100%" frameborder="1" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+   
+@code {
+protected override async Task OnInitializedAsync()
+    {
+        SharedData.SetSubmitPageSelected();
+
+    }
+}

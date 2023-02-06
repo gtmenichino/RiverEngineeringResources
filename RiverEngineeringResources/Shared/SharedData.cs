@@ -6,6 +6,7 @@ namespace RiverEngineeringResources
     {
         public bool ResourcesPageSelected { get; private set; }
         public bool Resources2PageSelected { get; private set; }
+        public bool SubmitPageSelected { get; private set; }
 
         public event Action OnChange;
 
@@ -13,6 +14,7 @@ namespace RiverEngineeringResources
         {
             ResourcesPageSelected = true;
             Resources2PageSelected = false;
+            SubmitPageSelected = false;
             NotifyStateChanged();
         }
 
@@ -20,13 +22,23 @@ namespace RiverEngineeringResources
         {
             Resources2PageSelected = true;
                     ResourcesPageSelected = false;
-                NotifyStateChanged();
+            SubmitPageSelected = false;
+            NotifyStateChanged();
+        }
+
+        public void SetSubmitPageSelected()
+        {
+            Resources2PageSelected = false;
+            ResourcesPageSelected = false;
+            SubmitPageSelected = true;
+            NotifyStateChanged();
         }
 
         public void SetHomePageSelected()
         {
             ResourcesPageSelected = false;
             Resources2PageSelected = false;
+            SubmitPageSelected = false;
             NotifyStateChanged();
         }
 

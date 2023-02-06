@@ -63,6 +63,20 @@
 
     </MudOverlay>
 
+
+@*    <MudOverlay @bind-Visible="AddResourceOverlayVisible" LightBackground="true" AutoClose="false">
+
+        <MudPaper Class="d-flex flex-wrap gap-4" Elevation="3">
+             <div style="display: flex; justify-content: flex-end">
+                <MudIconButton OnClick="@closeAddResourceOverlay" Icon="@Icons.Material.Filled.Close" Size="Size.Medium" Color="Color.Default"></MudIconButton>
+            </div>
+            <RiverEngineeringResources.AddResourceServiceFolder.AddResourceButton SelectedResource="@selectedResource" Title_String="@selectedResource.Title" 
+            Author_String="@selectedResource.Author" Year_String="@selectedResource.Year.ToString()" Citation_String="@selectedResource.APA_Citation" Link_String="@selectedResource.Link"
+            Tags_String="@selectedResource.Tags" Format_String ="@selectedResource.File_Format"></RiverEngineeringResources.AddResourceServiceFolder.AddResourceButton>
+        </MudPaper>
+
+    </MudOverlay>*@
+
     <MudGrid>
 
         <MudItem xs="6">
@@ -788,6 +802,11 @@
                                     </a>
                                 </div>
 
+@*                                <div style="text-align:center">
+                                    <a href="#" onclick="return false;">
+                                        <MudLink Class="d-inline" OnClick='@((args) => openEditResourceOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Edit</MudLink>
+                                    </a>
+                                </div>*@
 
                             </MudStack>
 
@@ -796,7 +815,14 @@
                     </ChildRowContent>
 
                     <PagerContent>
+                        
                         <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+                        
+@*                        <div class="center">
+                            <MudIconButton Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="@openAddResourceOverlay">Add Resource</MudIconButton>
+                        </div>*@
+                        
+                        
                     </PagerContent>
 
                 </MudDataGrid>
@@ -892,6 +918,35 @@
         selectedResource = null;
         StateHasChanged();
     }
+
+    //private bool AddResourceOverlayVisible;
+    //public void openAddResourceOverlay()
+    //{
+    //    selectedResource = null;
+    //    AddResourceOverlayVisible = true;
+    //    StateHasChanged();
+    //}
+    //public void closeAddResourceOverlay()
+    //{
+    //    selectedResource = null;
+    //    AddResourceOverlayVisible = false;
+    //    StateHasChanged();
+    //}
+
+    //private bool EditResourceOverlayVisible;
+    //public void openEditResourceOverlay(MouseEventArgs args, MyResource selRes)
+    //{
+    //    selectedResource = selRes;
+    //    EditResourceOverlayVisible = true;
+    //    StateHasChanged();
+    //}
+    //public void closeEditResourceOverlay()
+    //{
+    //    EditResourceOverlayVisible = false;
+    //    selectedResource = null;
+    //    StateHasChanged();
+    //}
+
 
     private string _sortName = "";
     private void sortFilterChanged()
@@ -1032,7 +1087,7 @@
                 {
                     return true;
                 }
-                else if(x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase) && x.Tags.Contains(searchDBname))
+                else if (x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase) && x.Tags.Contains(searchDBname))
                 {
                     return true;
                 }
@@ -1049,11 +1104,11 @@
                 {
                     return true;
                 }
-                else if(x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                else if (x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }
-                    else
+                else
                 {
 
                 }
@@ -1822,71 +1877,6 @@
 
     }
 
-
-    public class MyResource
-    {
-        //public string? ShortTitle { get { return ShortText(Title); } }
-        //public string? ShortAuthor { get { return ShortText(Author); } }
-        //public string? ShortType { get { return ShortText(Type); } }
-        //public int? ShortYear { get { return ShortNumber(Year); } }
-        //public string? ShortWebsite { get { return ShortText(Website, 20); } }
-        //public string? ShortCitation { get { return ShortText(Citation, 20); } }
-
-
-
-        public string? Title { get; set; }
-        public string? Author { get; set; }
-        public string? File_Format { get; set; }
-        public string? APA_Citation { get; set; }
-        public string? Link { get; set; }
-        public int? Year { get; set; }
-        public string? Tags { get; set; }
-        public string? Link_Owner { get; set; }
-        public string? Association { get; set; } = "";
-        public string? Description { get; set; }
-        public string? DescriptionClip
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(Description))
-                {
-                    return "";
-                }
-                if (Description.Length > 170)
-                {
-                    return Description.Substring(0, 170) + "...";
-                }
-                else
-                {
-                    return Description;
-                }
-            }
-        }
-        public int? TagsCount { get; set; }
-        public string? LastTags { get; set; }
-
-
-        public List<affiliation> affiliations = new List<affiliation>();
-
-    }
-
-    public class affiliation
-    {
-        public string databaseName;
-        public string classification;
-        public string category;
-        public string subcategory;
-
-        public affiliation(string dbName)
-        {
-            databaseName = dbName;
-
-            List<string> parts = databaseName.Split("_", StringSplitOptions.RemoveEmptyEntries).ToList();
-            classification = parts.FirstOrDefault();
-            category = parts[1];
-            subcategory = parts.LastOrDefault();
-        }
-    }
 
     public static int? ShortNumber(int? Val)
     {
