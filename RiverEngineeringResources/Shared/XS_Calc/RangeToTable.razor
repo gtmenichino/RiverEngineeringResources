@@ -1,0 +1,98 @@
+﻿namespace RiverEngineeringResources.Shared.XS_Calc
+{
+
+@if (Range != null)
+{
+@*     <table class="table table-striped table-sm small">
+        @if (FirstRowIsHeader)
+        {
+            <thead class="table-dark">
+                <tr>
+                    @foreach (SpreadsheetGear.IRange cell in headerRow.Columns)
+                    {
+                        // Get some basic formatting from this cell.
+                        string classes = GetClassAttribute(cell);
+
+                        // Using IRange.Text here, which will return the formatted value of a cell.
+                        <th class="@(classes.Length > 0 ? classes : "")">@cell.Text</th>
+                    }
+                </tr>
+            </thead>
+        }
+        <tbody>
+            @if (dataRange != null)
+            {
+                @foreach (SpreadsheetGear.IRange row in dataRange.Rows)
+                {
+                    // Don't render hidden rows.
+                    @if (!row.Hidden)
+                    {
+                        <tr>
+                            @foreach (SpreadsheetGear.IRange cell in row.Columns)
+                            {
+                                // Get some basic formatting from this cell.
+                                string classes = GetClassAttribute(cell);
+
+                                // Again, using IRange.Text here, which will return the formatted value of a cell.
+                                <td class="@(classes.Length > 0 ? classes : "")">@cell.Text</td>
+                            }
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="@headerRow.ColumnCount" class="text-center text-muted">
+                        No Data To Display
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table> *@
+}
+
+@code {
+    [Parameter]
+    public SpreadsheetGear.IRange Range { get; set; }
+
+    [Parameter]
+    public bool FirstRowIsHeader { get; set; }
+
+    private SpreadsheetGear.IRange headerRow => FirstRowIsHeader ? Range[0, 0, 0, Range.ColumnCount - 1] : null;
+    private SpreadsheetGear.IRange dataRange => FirstRowIsHeader ? Range.Subtract(headerRow) : Range;
+
+    /// <summary>
+    /// A very basic routine to add formatting to HTML output based on the corresponding IRange cell's formatting.
+    /// </summary>
+    /// <param name="cell">A single cell, for which formatting classes will be based off.</param>
+    /// <returns>A string such as ' class="..."' if formatting options are found, otherwise an empty string.</returns>
+    private string GetClassAttribute(SpreadsheetGear.IRange cell)
+    {
+        List<string> classes = new List<string>();
+
+        // Horizontal Alignment
+        if (cell.HorizontalAlignment == SpreadsheetGear.HAlign.Center)
+            classes.Add("text-center");
+        else if (cell.HorizontalAlignment == SpreadsheetGear.HAlign.Right)
+            classes.Add("text-end");
+
+        // Basic font formatting
+        if (cell.Font.Bold)
+            classes.Add("fw-bold");
+        if (cell.Font.Italic)
+            classes.Add("fst-italic");
+        if (cell.Font.Underline != SpreadsheetGear.UnderlineStyle.None)
+            classes.Add("text-underline");
+
+        // If desired, this could be expanded to include other formatting, such as other font settings, cell
+        // interior color, etc.
+
+        if (classes.Count > 0)
+            return string.Join(' ', classes);
+        return "";
+    }
+}
+
+
+}

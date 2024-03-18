@@ -1,0 +1,229 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@using System.Text.Json;
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@using Newtonsoft.Json
+@using GeoJSON.Net.Feature
+@inject SharedData SharedData
+@implements IAsyncDisposable
+@page "/map"
+
+
+<style > html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#mainContainer {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 80px);
+    display: flex;
+}
+
+#bars {
+    z-index: 0;
+    width: 500px;
+    overflow-x: auto;
+    border-left: 1px solid rgb(214, 49, 65);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#mapDiv {
+    flex: 1;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#fsButton {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 160px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    opacity: 1;
+    text-align: center;
+    z-index: 500;
+}
+
+    #fsButton:hover {
+        opacity: 1;
+        background-color: whitesmoke;
+        cursor: pointer;
+    }
+
+
+    #mapDiv,
+    #bars {
+        flex: 1;
+    }
+
+    </style >
+
+
+@*<h3>Blazor Map with Leaflet and OpenStreetMap</h3>*@
+@*<div id="map" style="width:600px; height:400px;"></div>
+<button id="zoom">
+    Random Zoom
+</button>*@
+
+<body>
+@*    <div id="mainContainer">
+        <div id="mapDiv">
+            <div id="map" style="width:600px; height:400px;">
+                <button id="fsButton">
+                    Flooding Source
+                </button>
+            </div>
+        </div>
+        <div id="bars"></div>
+    </div>*@
+
+    <div id="map" style="height: 800px;"></div>
+
+@*    <div class="page-demo"><header class="fixed top right-0 left-0 z-50 backdrop-blur-md shadow"><nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 relative z-20" aria-label="Global"><div class="flex lg:flex-1"><a href="/" class="-m-1.5 p-1.5 flex flex-row items-center gap-2"><img class="h-8 w-auto" alt="Geoman Logo" src="/logo/geoman-logo.svg"><span class="text-2xl">Geoman.io</span></a></div><div class="flex lg:hidden"><button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"><svg class="svg-inline--fa fa-bars" style="" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path class="" style="" fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg></button></div><div class="hidden lg:flex lg:gap-x-12"><a href="/" class="text-sm font-semibold leading-6">Home</a><a aria-current="page" href="/demo" class="router-link-active router-link-exact-active text-sm font-semibold leading-6">Demo</a><a href="/blog" class="text-sm font-semibold leading-6">Blog</a><a href="/docs" class="text-sm font-semibold leading-6">Docs</a><a href="https://github.com/geoman-io/leaflet-geoman" target="_blank" class="text-sm font-semibold leading-6">Free Version</a></div><div class="hidden lg:flex lg:flex-1 lg:justify-end"></div></nav><!----></header><main><!--[--><div data-v-7e7ca00a="" class="map-container"><div data-v-7e7ca00a="" class="control-icon leaflet-pm-icon-marker leaflet-top"></div><div data-v-7e7ca00a="" id="map0.w49v2o7wa9k" class="w-full h-full leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(-413px, 2px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 16; transform: translate3d(843px, 483px, 0px) scale(0.25);"></div><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 17; transform: translate3d(843px, 483px, 0px) scale(0.5);"></div><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(562px, 321px, 0px) scale(1);"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2411/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(276px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2411/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(276px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2410/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(20px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2412/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(532px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2411/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(276px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2410/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(20px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2412/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(532px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2410/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(20px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2412/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(532px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2409/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-236px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2413/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(788px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2409/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-236px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2413/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(788px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2409/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-236px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2413/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(788px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2411/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(276px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2411/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(276px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2410/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(20px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2412/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(532px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2410/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(20px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2412/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(532px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2409/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-236px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2413/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(788px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2409/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-236px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2413/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(788px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2408/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-492px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2414/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1044px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2408/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-492px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2414/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1044px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2408/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-492px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2414/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1044px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2408/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-492px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2414/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1044px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2408/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-492px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2414/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1044px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2407/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-748px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2415/3079.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1300px, 13px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2407/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-748px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2415/3078.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1300px, -243px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2407/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-748px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2415/3080.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1300px, 269px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2407/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-748px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2415/3077.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1300px, -499px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2407/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-748px, 525px, 0px); opacity: 1;"><img alt="" src="https://api.maptiler.com/maps/streets-v2/256/13/2415/3081.png?key=mMMtB35f2zIsgMS4cQxA" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1300px, 525px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none" class="leaflet-zoom-animated" width="1302" height="1115" viewBox="305 -95 1302 1115" style="transform: translate3d(305px, -95px, 0px);"><g><path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#3388ff" fill-opacity="0.2" fill-rule="evenodd" d="M951 651L951 586L1042 586L1042 651z"></path><path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M925 530L1066 539L1121 566L1057 577L912 568L884 643"></path><path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M1100 598L1248 596L1217 627L1175 683L1127 678L1098 635L1081 628L1077 652"></path></g></svg></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(617334px, 788352px, 0px) scale(4096);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a></div><div class="leaflet-pm-toolbar leaflet-pm-draw leaflet-bar leaflet-control"><div class="button-container  " title="Draw Marker"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-marker"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container" title="Draw Polyline"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-polyline"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finish" role="button" tabindex="0" href="#">Finish</a><a class="leaflet-pm-action  action-removeLastVertex" role="button" tabindex="0" href="#">Remove Last Vertex</a><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container" title="Draw Rectangle"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-rectangle"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container" title="Draw Polygons"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-polygon"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finish" role="button" tabindex="0" href="#">Finish</a><a class="leaflet-pm-action  action-removeLastVertex" role="button" tabindex="0" href="#">Remove Last Vertex</a><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container  " title="Draw Circle"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-circle"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container  " title="Draw Circle Marker"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-circle-marker"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container  " title="Draw Text"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-text"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div></div><div class="leaflet-pm-toolbar leaflet-pm-edit leaflet-bar leaflet-control"><div class="button-container  " title="Edit Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-edit"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finishMode" role="button" tabindex="0" href="#">Finish</a></div></div><div class="button-container  " title="Drag Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-drag"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finishMode" role="button" tabindex="0" href="#">Finish</a></div></div><div class="button-container  " title="Cut Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-cut"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finish" role="button" tabindex="0" href="#">Finish</a><a class="leaflet-pm-action  action-removeLastVertex" role="button" tabindex="0" href="#">Remove Last Vertex</a><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container  " title="Remove Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-delete"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finishMode" role="button" tabindex="0" href="#">Finish</a></div></div><div class="button-container  " title="Rotate Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-rotate"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finishMode" role="button" tabindex="0" href="#">Finish</a></div></div><div class="button-container  "><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-split"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finish" role="button" tabindex="0" href="#">Finish</a><a class="leaflet-pm-action  action-removeLastVertex" role="button" tabindex="0" href="#">Remove Last Vertex</a><a class="leaflet-pm-action  action-cancel" role="button" tabindex="0" href="#">Cancel</a></div></div><div class="button-container  " title="Scale Layers"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-scale"></div></a><div class="leaflet-pm-actions-container "><a class="leaflet-pm-action  action-finishMode" role="button" tabindex="0" href="#">Finish</a></div></div></div><div class="leaflet-pm-toolbar leaflet-pm-options leaflet-bar leaflet-control"><div class="button-container  " title="Pin shared vertices together"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-pinning"></div></a><div class="leaflet-pm-actions-container "></div></div><div class="button-container active" title="Snap dragged marker to other layers and vertices"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-snapping"></div></a><div class="leaflet-pm-actions-container "></div></div><div class="button-container  " title="Auto trace Line"><a class="leaflet-buttons-control-button" role="button" tabindex="0" href="#"><div class="control-icon leaflet-pm-icon-autotracing"></div></a><div class="leaflet-pm-actions-container "></div></div></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> <a href="https://www.geoman.io" target="_blank">© Geoman</a> | <a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a></div></div></div></div></div><!--]--></main><footer aria-labelledby="footer-heading" class="relative text-gray-500"><div class="mx-auto max-w-7xl border-t border-white/10 pt-8 px-6 pb-8 lg:px-8 md:flex md:items-center md:justify-between"><div class="flex space-x-6 md:order-2"><a href="https://github.com/geoman-io" class="hover:opacity-100 opacity-80"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg></a></div><p class="mt-8 text-xs leading-5 md:order-1 md:mt-0"> © 2023 Geoman.io |&nbsp;<a href="/imprint" class="">Imprint</a></p></div></footer></div>
+*@
+
+</body>
+
+
+<!-- List of drawn polylines -->
+<h4>Drawn Flooding Sources</h4>
+<ul>
+    @foreach (var polyline in drawnFloodingSources)
+    {
+        <li>@polyline</li>
+    }
+</ul>
+
+<h4>Drawn Flow Areas</h4>
+<ul>
+    @foreach (var polygon in drawnFlowAreas)
+    {
+        <li>@polygon</li>
+    }
+</ul>
+
+@code {
+    private IJSObjectReference? module;
+    private string? result;
+
+    // List to store drawn polylines
+    private List<DrawnFloodingSources> drawnFloodingSources = new List<DrawnFloodingSources>();
+    private List<DrawnFlowAreas> drawnFlowAreas = new List<DrawnFlowAreas>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //module = await JSRuntime.InvokeAsync<IJSObjectReference>("initializeMap", "map");
+
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./leafletmap.js");
+            if (module != null)
+            {
+                result = await module.InvokeAsync<string>("load_map2");
+                await module.InvokeVoidAsync("initializeDotnetHelper", DotNetObjectReference.Create(this));
+
+            }
+        }
+    }
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+
+
+
+
+    private async Task StartDrawing()
+    {
+        if (module != null)
+        {
+            // Call a JavaScript function to enable drawing mode
+            await module.InvokeVoidAsync("enableDrawingMode");
+        }
+    }
+
+    [JSInvokable("AddDrawnFeature")]
+    public async Task AddDrawnFeature(string geoJson)
+    {
+        //// Parse the GeoJSON
+        //var feature = System.Text.Json.JsonSerializer.Deserialize<GeoJSON.Net.Feature.FeatureCollection>(geoJson);
+        var feature = JsonConvert.DeserializeObject<Feature>(geoJson);
+
+        //// Extract properties like "name" and "description" from the GeoJSON
+        var name = feature.Properties["name"]?.ToString();
+        var description = feature.Properties["description"]?.ToString();
+        var type = feature.Properties["type"]?.ToString();
+
+
+        int day = 4;
+        switch (type)
+        {
+            case "FloodingSource":
+                var drawnFS= new DrawnFloodingSources { Name = name, Description = description };
+                drawnFloodingSources.Add(drawnFS);
+                break;
+            case "FlowArea":
+                var drawnFA = new DrawnFlowAreas { Name = name, Description = description };
+                drawnFlowAreas.Add(drawnFA);
+                break;
+            default:
+                Console.WriteLine("Not Handled.");
+                break;
+        }
+
+        // Notify Blazor to update the UI
+        StateHasChanged();
+    }
+
+
+    //// Define a C# class for GeoJSON features
+    //public class GeoJSONFeature
+    //{
+    //    public string Type { get; set; }
+    //    public GeoJSONGeometry Geometry { get; set; }
+    //}
+
+    //public class GeoJSONGeometry
+    //{
+    //    public string Type { get; set; }
+    //    public List<List<double>> Coordinates { get; set; }
+    //}
+
+    // Class to represent a drawn polyline with properties
+    public class DrawnFloodingSources
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class DrawnFlowAreas
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
+
+}
+
+

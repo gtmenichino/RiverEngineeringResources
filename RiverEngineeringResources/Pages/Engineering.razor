@@ -1,4 +1,4 @@
-﻿@page "/resources"
+﻿@page "/engineering"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @using System.Net.Http.Json
@@ -6,7 +6,7 @@
 @using RiverEngineeringResources.Shared
 @inject SharedData SharedData
 
-<PageTitle>Resources</PageTitle>
+<PageTitle>Engineering</PageTitle>
 
 <style>
     input {
@@ -721,7 +721,7 @@
                 </MudStack>
 
 
-                <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all" T="MyResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
+                <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all" T="MyEngineeringResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="false" QuickFilter="@_quickFilter"
                              Hideable="false" HorizontalScrollbar="false" Outlined="true" Bordered="false" SelectedItemChanged="@selectedItemChanged" Dense="true" Height="500px" Hover="false" Virtualize="false" FixedHeader="true">
                     @*OverscanCount="50"*@
                     <ToolBarContent>
@@ -816,7 +816,7 @@
 
                     <PagerContent>
                         
-                        <MudDataGridPager T="MyResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+                        <MudDataGridPager T="MyEngineeringResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
                         
 @*                        <div class="center">
                             <MudIconButton Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="@openAddResourceOverlay">Add Resource</MudIconButton>
@@ -842,7 +842,7 @@
 
 
 @code {
-    public MudBlazor.Color getTagLabelColor(MyResource item)
+    public MudBlazor.Color getTagLabelColor(MyEngineeringResource item)
     {
         if (tagsVisible == true && !(selectedResource == null) && selectedResource == item)
         {
@@ -865,13 +865,13 @@
         return MudBlazor.Color.Dark;
     }
 
-    public void StartEditingItem(MouseEventArgs args, MyResource theItem)
+    public void StartEditingItem(MouseEventArgs args, MyEngineeringResource theItem)
     {
         mudDataGrid.SetEditingItemAsync(theItem);
 
     }
 
-    public string openGoogleScholar(MyResource selRes)
+    public string openGoogleScholar(MyEngineeringResource selRes)
     {
         string link1 = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C10&q=";
         string link2 = "&btnG=";
@@ -880,7 +880,7 @@
     }
 
     private bool tagsVisible;
-    public async Task toggleTags(MouseEventArgs args, MyResource selRes)
+    public async Task toggleTags(MouseEventArgs args, MyEngineeringResource selRes)
     {
         if (selectedResource == selRes)
         {
@@ -896,7 +896,7 @@
     }
 
     private bool citeOverlayVisible;
-    public void openCiteOverlay(MouseEventArgs args, MyResource selRes)
+    public void openCiteOverlay(MouseEventArgs args, MyEngineeringResource selRes)
     {
         if (!(string.IsNullOrEmpty(selRes.APA_Citation)))
         {
@@ -996,15 +996,15 @@
 
     }
 
-    private Func<MyResource, object> _sortByTitle => x =>
+    private Func<MyEngineeringResource, object> _sortByTitle => x =>
     {
         return x.Title;
     };
-    private Func<MyResource, object> _sortByYear => x =>
+    private Func<MyEngineeringResource, object> _sortByYear => x =>
     {
         return x.Year;
     };
-    private Func<MyResource, object> _sortByAuthor => x =>
+    private Func<MyEngineeringResource, object> _sortByAuthor => x =>
     {
         return x.Author;
     };
@@ -1034,7 +1034,7 @@
     private string _dummy;
     private string _searchString = "";
     private bool _sortNameByLength;
-    private MudDataGrid<MyResource>? mudDataGrid;
+    private MudDataGrid<MyEngineeringResource>? mudDataGrid;
     private List<string> _events = new();
 
 
@@ -1048,7 +1048,7 @@
 
 
     // custom sort by name length
-    private Func<MyResource, object> _sortBy => x =>
+    private Func<MyEngineeringResource, object> _sortBy => x =>
     {
         //if (_sortNameByLength)
         //    return x.Title.Length;
@@ -1056,7 +1056,7 @@
         return x.Title;
     };
     // quick filter - filter gobally across multiple columns with the same input
-    private Func<MyResource, bool> _quickFilter => x =>
+    private Func<MyEngineeringResource, bool> _quickFilter => x =>
     {
 
         string searchDBname = "";
@@ -1121,7 +1121,7 @@
     };
 
 
-    void selectedItemChanged(MyResource item)
+    void selectedItemChanged(MyEngineeringResource item)
     {
         //_events.Insert(0, $"Event = SelectedItemsChanged, Data = {System.Text.Json.JsonSerializer.Serialize(items)}");
 
@@ -1145,7 +1145,7 @@
     }
 
 
-    private MyResource? selectedResource;
+    private MyEngineeringResource? selectedResource;
 
     private string selectedLastTags()
     {
@@ -1276,7 +1276,7 @@
 }
 
 @code {
-    public bool copyCitationHiddenNew(MyResource selRes)
+    public bool copyCitationHiddenNew(MyEngineeringResource selRes)
     {
         if (mudDataGrid == null || selRes == null)
         {
@@ -1292,7 +1292,7 @@
             return false;
         }
     }
-    public bool copyUrlHiddenNew(MyResource selRes)
+    public bool copyUrlHiddenNew(MyEngineeringResource selRes)
     {
         if (mudDataGrid == null || selRes == null)
         {
@@ -1576,14 +1576,14 @@
 @code {
     private int selectedRowNumber = -1;
     private List<string> clickedEvents = new();
-    private MudTable<MyResource> mudTable;
+    private MudTable<MyEngineeringResource> mudTable;
 
-    private void MyRowClickEvent(TableRowClickEventArgs<MyResource> tableRowClickEventArgs)
+    private void MyRowClickEvent(TableRowClickEventArgs<MyEngineeringResource> tableRowClickEventArgs)
     {
         //clickedEvents.Add("Row has been clicked");
     }
 
-    private string SelectedRowClassFunc(MyResource document, int rowNumber)
+    private string SelectedRowClassFunc(MyEngineeringResource document, int rowNumber)
     {
         if (selectedRowNumber == rowNumber)
         {
@@ -1669,7 +1669,7 @@
 
 @code {
 
-    private String GetTypeColor(MyResource selRes)
+    private String GetTypeColor(MyEngineeringResource selRes)
     {
         if (selRes == null)
         {
@@ -1688,7 +1688,7 @@
         }
     }
 
-    private String GetLinkColor(MyResource selRes)
+    private String GetLinkColor(MyEngineeringResource selRes)
     {
         if (selRes == null)
         {
@@ -1707,7 +1707,7 @@
         }
     }
 
-    private MudBlazor.Color GetLink2Color(MyResource selRes)
+    private MudBlazor.Color GetLink2Color(MyEngineeringResource selRes)
     {
         if (selRes == null)
         {
@@ -1726,7 +1726,7 @@
         }
     }
 
-    private MudBlazor.Underline GetHoverableTitleLink(MyResource selRes)
+    private MudBlazor.Underline GetHoverableTitleLink(MyEngineeringResource selRes)
     {
         if (selRes == null)
         {
@@ -1745,7 +1745,7 @@
         }
     }
 
-    private string GetSelectedResourceIconType(MyResource selRes)
+    private string GetSelectedResourceIconType(MyEngineeringResource selRes)
     {
         if (selRes == null)
         {
@@ -1784,15 +1784,15 @@
 
 
     private DocsTreeview myTree;
-    private MyResource[]? MyResourcesArray;
-    public List<MyResource>? MyResourceList;
+    private MyEngineeringResource[]? MyResourcesArray;
+    public List<MyEngineeringResource>? MyResourceList;
 
 
     protected override async Task OnInitializedAsync()
     {
-        SharedData.SetResources2PageSelected();
+        SharedData.SetEngineeringPageSelected();
 
-        MyResourcesArray = await Http.GetFromJsonAsync<MyResource[]>("sample-data/RiverEngResources20230112.json");
+        MyResourcesArray = await Http.GetFromJsonAsync<MyEngineeringResource[]>("sample-data/RiverEngResources20230112.json");
 
         //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
         //MyTags = MyTagsArray.ToList();
@@ -1813,7 +1813,7 @@
             {
                 for (int j = 0; j <= affs.Count - 1; j++)
                 {
-                    affiliation a = new affiliation(affs[j]);
+                    EngineeringAffiliation a = new EngineeringAffiliation(affs[j]);
                     MyResourcesArray[i].affiliations.Add(a);
                 }
             }
@@ -1903,12 +1903,12 @@
 
 
     private string searchString1 = "";
-    private MyResource selectedItem1 = null;
-    private HashSet<MyResource> selectedItems = new HashSet<MyResource>();
+    private MyEngineeringResource selectedItem1 = null;
+    private HashSet<MyEngineeringResource> selectedItems = new HashSet<MyEngineeringResource>();
 
-    private bool FilterFunc1(MyResource Document) => FilterFunc(Document, searchString1);
+    private bool FilterFunc1(MyEngineeringResource Document) => FilterFunc(Document, searchString1);
 
-    private bool FilterFunc(MyResource Document, string searchString)
+    private bool FilterFunc(MyEngineeringResource Document, string searchString)
     {
         string searchDBname = "";
         if (!String.IsNullOrEmpty(breadcrumb3Dbname))

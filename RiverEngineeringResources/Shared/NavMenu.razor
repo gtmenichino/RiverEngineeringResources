@@ -29,9 +29,11 @@
 
     @*<a type="button" href="resources3" class="@resBtnStyleValue()" _bl_34=""><span class="mud-button-label">Resources3</span></a>*@
 
-    <a type="button" href="resources" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Resources</span></a>
+    <a type="button" href="engineering" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Engineering</span></a>
 
-    <a type="button" href="submit" class="@submitBtnStyleValue()" _bl_34=""><span class="mud-button-label">Submit</span></a>
+    @* <a type="button" href="submit" class="@submitBtnStyleValue()" _bl_34=""><span class="mud-button-label">Submit</span></a> *@
+
+    <a type="button" href="assessment" class="@submitBtnStyleValue()" _bl_34=""><span class="mud-button-label">Assessment</span></a>
 
     @*<a type="button" href="spreadsheet" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Spreadsheet</span></a>*@
 
@@ -115,7 +117,7 @@ public void Dispose()
 
     private string resBtnStyleValue()
     {
-        if (SharedData.ResourcesPageSelected == false)
+        if (SharedData.EngineeringPageSelected == false)
         {
             return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mx-1 px-3";
         }
@@ -126,7 +128,7 @@ public void Dispose()
     }
     private string submitBtnStyleValue()
     {
-        if (SharedData.SubmitPageSelected == false)
+        if (SharedData.AssessmentPageSelected == false)
         {
             return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mx-1 px-3";
         }

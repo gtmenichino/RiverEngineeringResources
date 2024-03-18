@@ -1,33 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <!--<RunAOTCompilation>true</RunAOTCompilation>-->
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="Pages\Resources.razor.css" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Pages\Resources.razor.css" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
-		<PackageReference Include="MudBlazor" Version="6.1.4" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="DownloadFileService\" />
-	</ItemGroup>
-
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Pages\Assessment.razor.css" />
+    <None Remove="Pages\Engineering.razor.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Assessment.razor.css" />
+    <Content Include="Pages\Engineering.razor.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ChartJs.Blazor.Fork" Version="2.0.2" />
+    <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
+    <PackageReference Include="leaflet" Version="0.7.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="MudBlazor" Version="6.11.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SpreadsheetGear" Version="9.2.24" />
+  </ItemGroup>
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DownloadFileService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="RasMapperLib">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\HEC\HEC-RAS\6.2\RasMapperLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

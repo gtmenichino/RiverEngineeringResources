@@ -4,41 +4,41 @@ namespace RiverEngineeringResources
 {
     public class SharedData
     {
-        public bool ResourcesPageSelected { get; private set; }
+        public bool EngineeringPageSelected { get; private set; }
         public bool Resources2PageSelected { get; private set; }
-        public bool SubmitPageSelected { get; private set; }
+        public bool AssessmentPageSelected { get; private set; }
 
         public event Action OnChange;
 
-        public void SetResourcesPageSelected()
+        public void SetMainPageSelected()
         {
-            ResourcesPageSelected = true;
+            EngineeringPageSelected = true;
             Resources2PageSelected = false;
-            SubmitPageSelected = false;
+            AssessmentPageSelected = false;
             NotifyStateChanged();
         }
 
-        public void SetResources2PageSelected()
+        public void SetEngineeringPageSelected()
         {
             Resources2PageSelected = true;
-                    ResourcesPageSelected = false;
-            SubmitPageSelected = false;
+                    EngineeringPageSelected = false;
+            AssessmentPageSelected = false;
             NotifyStateChanged();
         }
 
-        public void SetSubmitPageSelected()
+        public void SetAssessmentPageSelected()
         {
             Resources2PageSelected = false;
-            ResourcesPageSelected = false;
-            SubmitPageSelected = true;
+            EngineeringPageSelected = false;
+            AssessmentPageSelected = true;
             NotifyStateChanged();
         }
 
         public void SetHomePageSelected()
         {
-            ResourcesPageSelected = false;
+            EngineeringPageSelected = false;
             Resources2PageSelected = false;
-            SubmitPageSelected = false;
+            AssessmentPageSelected = false;
             NotifyStateChanged();
         }
 

@@ -1,0 +1,650 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@using System.Data;
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@using ChartJs.Blazor.ScatterChart
+@using Newtonsoft.Json
+@inject SharedData SharedData
+@implements IAsyncDisposable
+@page "/xsanalyzer"
+@inject HttpClient Http
+
+<PageTitle>XS Analyzer</PageTitle>
+@*mud-width-full*@
+
+
+<div style="height: 80vh; display: flex;">
+
+    <div style="flex: 1; padding: 0px;">
+        <div id="spreadsheet"> <!-- Your spreadsheet content here --> </div>
+    </div>
+
+    <MudGrid Spacing="0">
+
+        <MudItem xs="12">
+
+            <MudGrid Justify="Justify.FlexStart" Spacing="0">
+                <MudItem xs="12">
+                    <MudPaper Class="d-flex flex-grow-0 align-start justify-center py-0">
+                        <MudToolBar>
+                            <MudNumericField Class="px-1" HideSpinButtons="true" @bind-Value="WSEValue" Label="WSE" Variant="Variant.Text" Margin="Margin.Dense" />
+                            <MudNumericField Class="px-1" HideSpinButtons="true" @bind-Value="SlopeValue" Label="Slope" Variant="Variant.Text" Margin="Margin.Dense" />
+                            <MudIconButton Icon="@Icons.Material.Outlined.Settings" Color="Color.Inherit" />
+                        </MudToolBar>
+                    </MudPaper>
+                </MudItem>
+
+                <MudItem xs="10">
+                    <MudPaper Class="d-flex align-start justify-start align-content-start flex-grow-1">
+                        <Chart Config="_config" @ref="_chart"></Chart>
+                    </MudPaper>
+
+                </MudItem>
+
+
+                <MudItem xs="2">
+                    <MudPaper Elevation="0" Class="d-flex align-content-center">
+                        <MudStack>
+                            <MudPaper Elevation="0" Class="pa-0">
+                                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.AdsClick" Color="Color.Primary" OnClick="HandleLeftBankButtonClick">Set LB</MudButton>
+                                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.ArrowLeft" Color="Color.Primary">LB</MudButton>
+                                <MudButton Variant="Variant.Outlined" EndIcon="@Icons.Material.Outlined.ArrowRight" Color="Color.Primary">LB</MudButton>
+                            </MudPaper>
+                            <MudPaper Elevation="0" Class="pa-0">
+                                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.ArrowLeft" Color="Color.Primary">RB</MudButton>
+                                <MudButton Variant="Variant.Outlined" EndIcon="@Icons.Material.Outlined.ArrowRight" Color="Color.Primary">RB</MudButton>
+                            </MudPaper>
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudPaper Class="d-flex flex-grow-0 align-start justify-center py-0">
+                        <MudStack Row=true>
+                            <MudButton OnClick="@calculate" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Calculate" Color="Color.Primary">Calculate</MudButton>
+                            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Download" Color="Color.Primary">Download</MudButton>
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+
+
+                <MudItem xs="12">
+                    <MudPaper Class="d-flex flex-grow-0 align-start justify-center py-0">
+                        <div>
+                            <RangeToTable Range="reportRange" FirstRowIsHeader="true"></RangeToTable>
+                        </div>
+                    </MudPaper>
+                </MudItem>
+
+
+            </MudGrid>
+
+        </MudItem>
+
+    </MudGrid>
+
+</div>
+
+
+
+@code {
+    private Object lastClickEvent;
+
+    //private ChartData<MyDataPoint> chartData;
+    //private ChartOptions chartOptions;
+
+    private ChartJs.Blazor.LineChart.LineDataset<MyDataPoint> leftBankDataSet;
+
+    // Other code...
+
+    private class MyDataPoint
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+    }
+
+    // Method to handle Left Bank button click
+    private async Task HandleLeftBankButtonClick()
+    {
+        // Wait for the user to click on the chart
+        await module.InvokeVoidAsync("setChartInstance", _chart);
+        await module.InvokeVoidAsync("update");
+        await module.InvokeVoidAsync("resetZoom");
+        //await _chart.InvokeVoidAsync("update");
+        //await _chart.InvokeVoidAsync("resetZoom");
+
+        // Get the chart elements at the last click event
+        var elements = await module.InvokeAsync<Object[]>("getChartElementsAtEvent", _chart);
+
+        if (elements != null && elements.Length > 0)
+        {
+            // Check if the clicked position is on the leftBankDataSet
+            var leftBankDataPoints = leftBankDataSet?.Data ?? new List<MyDataPoint>();
+            var clickedElement = elements[0];
+
+            if (clickedElement is ChartJs.Blazor.LineChart.LineDataset<MyDataPoint> lineElement)
+            {
+                // Extract X and Y values from the clicked point
+                //double xValue = leftBankDataPoints[lineElement.Index].X;
+                //double yValue = leftBankDataPoints[lineElement.Index].Y;
+
+                // You can use xValue and yValue as needed
+                Console.WriteLine("Clicked on Left Bank Data Point");
+                //Console.WriteLine($"Clicked on Left Bank Data Point - X: {xValue}, Y: {yValue}");
+            }
+        }
+    }
+
+    // // Method to handle chart click
+    // private async Task HandleChartClick()
+    // {
+    //     //lastClickEvent = eventArgs;
+
+    //     // Call the exported JavaScript function passing the clicked location
+    //     await module.InvokeVoidAsync("handleChartClick", lastClickEvent.ClientX, lastClickEvent.ClientY);
+
+    // }
+
+    // // Method to get the last clicked location from JavaScript
+    // private async Task GetLastClickLocation()
+    // {
+    //     var lastClickLocation = await module.InvokeAsync<LastClickLocation>("getLastClickLocation");
+    //     // Now you can use lastClickLocation.x and lastClickLocation.y in your C# code
+    // }
+
+    // // Define a C# class to represent the last clicked location
+    // public class LastClickLocation
+    // {
+    //     public int X { get; set; }
+    //     public int Y { get; set; }
+    // }
+
+
+}
+
+@code {
+    public double WSEValue { get; set; }
+    public double SlopeValue { get; set; }
+    double value = 50.0;
+
+    public Shared.XS_Calc.clsAnaXS myAnaXS;
+    string filePath = "sample-data/2023_XSAnalyzerV1y4.xlsx"; // Relative URL
+
+    // The RangeToTable Razor Component is provided this range to render.
+    private SpreadsheetGear.IRange reportRange = null;
+
+    public void updateXS()
+    {
+        myAnaXS.xsDataTable.Clear();
+
+        int c = 0;
+        // Iterate through the List<Point>
+        foreach (Point point in groundData)
+        {
+
+            // Create a new DataRow
+            System.Data.DataRow row = myAnaXS.xsDataTable.NewRow();
+
+            // Set the X and Y values
+            row["Station"] = point.X;
+            row["Elevation"] = point.Y;
+            row["n Value"] = "0.035";
+
+            int countTot = groundData.Count() - 1;
+            int mid = countTot / 2;
+
+            if (c == 0)
+            {
+                row["Stage"] = "Left_Bank";
+            }
+            else if (c == mid)
+            {
+                row["Stage"] = "Thalweg";
+            }
+            else if (c == countTot)
+            {
+                row["Stage"] = "Right_Bank";
+            }
+
+
+            // Add the row to the DataTable
+            myAnaXS.xsDataTable.Rows.Add(row);
+
+            c += 1;
+        }
+    }
+
+    public void calculate()
+    {
+        updateXS();
+
+        myAnaXS.WSE = WSEValue;
+        myAnaXS.Slope = SlopeValue;
+        myAnaXS.Calculate_Full();
+
+        reportRange = myAnaXS.myXSWorkbook.Worksheets["Hydraulics_Output"].Range["A2:F21"];
+        if (reportRange.RowCount == 1)
+        {
+            reportRange = null;
+        }
+
+        // //List<Point> wsePointList = new List<Point>();
+        // RasMapperLib.Profile groundProf = new RasMapperLib.Profile();
+        // for (int i = 0; i < groundDatasetChart.Data.Count; i++)
+        // {
+        //     groundProf.Add(groundDatasetChart.Data[i].X, groundDatasetChart.Data[i].Y);
+        // }
+        // List<Point> wsePointList = new List<Point>();
+        // wsePointList.Add(new Point(groundProf.MinX(), WSEValue));
+        // wsePointList.Add(new Point(groundProf.MaxX(), WSEValue));
+        // Shared.XS_Calc.XSResults res = new Shared.XS_Calc.XSResults(groundProf, 10, 30, 0.035, 0.035, 0.035, 0.1, 3);
+        // DataTable resDT = res.GetHydraulicsChannelCapacityDT();
+
+        // //get the min X val from the ground data and the max X value from the groud data
+        DataTable hydDataTable = myAnaXS.xsDataSet.Tables["hydraulics_data"];
+        DataTable wseDataTable = myAnaXS.xsDataSet.Tables["wse_data"];
+        List<Point> wsePointList = new List<Point>();
+        for (int b = 0; b < wseDataTable.Rows.Count; b++)
+        {
+            double sta = Convert.ToDouble(wseDataTable.Rows[b]["Top Station"]);
+            double topElev = Convert.ToDouble(wseDataTable.Rows[b]["Top Elevation"]);
+            double botElev = Convert.ToDouble(wseDataTable.Rows[b]["Bottom Elevation"]);
+            wsePointList.Add(new Point(sta, topElev));
+        }
+        wseDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(wsePointList)
+            {
+                Label = "WSE",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Blue),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Blue),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                PointRadius = 0,
+                YAxisId = "primaryYAxis"
+            };
+
+
+        // Assuming xsDataSet is your DataSet
+        
+
+        List<Point> velPointList = new List<Point>();
+        for (int b = 0; b < hydDataTable.Rows.Count; b++)
+        {
+            double sta = Convert.ToDouble(hydDataTable.Rows[b]["velocity station"]);
+            double vel = Convert.ToDouble(hydDataTable.Rows[b]["velocity value"]);
+            velPointList.Add(new Point(sta, vel));
+        }
+
+        velDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(velPointList)
+            {
+                Label = "Vel",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Red),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Red),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                PointRadius = 0,
+                PointHitRadius = 10,
+                YAxisId = "secondaryYAxis"
+            };
+
+        _config.Data.Datasets[1] = wseDatasetChart;
+        _config.Data.Datasets[2] = velDatasetChart;
+
+    }
+
+}
+
+@code {
+
+
+    private const int InitalCount = 7;
+    private ScatterConfig _config;
+    private Chart _chart;
+    //private double[] chartData = { };
+    IDataset<Point> groundDatasetChart;
+    IDataset<Point> wseDatasetChart;
+    IDataset<Point> velDatasetChart;
+
+    IEnumerable<Point> groundData = new List<Point>
+            {
+                new Point(0, 5),
+                new Point(10, 4),
+                new Point(20, 2),
+                new Point(30, 4),
+                new Point(40, 5)
+            };
+
+    IEnumerable<Point> waterData = new List<Point>
+    {
+    };
+
+    IEnumerable<Point> velData = new List<Point>
+    {
+    };
+
+    protected override async void OnInitialized()
+    {
+
+        _config = new ScatterConfig
+            {
+                Options = new ChartJs.Blazor.LineChart.LineOptions
+                {
+                    Animation = new ChartJs.Blazor.Common.Animation
+                    {
+                        Duration = 0  // general animation time
+                    },
+                    ResponsiveAnimationDuration = 0, // animation duration after a resize
+                    Responsive = true,
+                    Title = new OptionsTitle
+                    {
+                        Display = true,
+                        Text = "Cross-Section Hydraulics"
+                    },
+                    Tooltips = new Tooltips
+                    {
+                        Mode = InteractionMode.Nearest,
+                        Intersect = true
+                    },
+                    Hover = new Hover
+                    {
+                        Mode = InteractionMode.Nearest,
+                        Intersect = true,
+                        AnimationDuration = 0
+                    },
+                    Scales = new ChartJs.Blazor.LineChart.Scales
+                    {
+                        XAxes = new List<CartesianAxis>
+                {
+                    new LinearCartesianAxis
+                    {
+                        ScaleLabel = new ScaleLabel
+                        {
+                            LabelString = "Station (ft)"
+                        }
+
+                    }
+                },
+                        YAxes = new List<CartesianAxis>
+                {
+                    new LinearCartesianAxis
+                    {
+                        ID = "primaryYAxis",  // ID for the secondary Y-axis
+                        Position = ChartJs.Blazor.Common.Enums.Position.Left,
+                        ScaleLabel = new ScaleLabel
+                        {
+                            LabelString = "Elevation (ft)"
+                        }
+                    },
+                    new LinearCartesianAxis
+                    {
+                        ID = "secondaryYAxis",  // ID for the secondary Y-axis
+                        Position = ChartJs.Blazor.Common.Enums.Position.Right,
+                        ScaleLabel = new ScaleLabel
+                        {
+                            LabelString = ("Vel (ft/s)" + "\r\n" + "Line 2")
+                        }
+                    }
+
+                }
+                    }
+                }
+
+
+            };
+
+        byte[] fileContent = await Http.GetByteArrayAsync(filePath);
+        myAnaXS = new Shared.XS_Calc.clsAnaXS(fileContent);
+
+        groundDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(groundData)
+            {
+                Label = "Ground",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Brown),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Brown),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                YAxisId = "primaryYAxis"
+            };
+
+        wseDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(waterData)
+            {
+                Label = "WSE",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Blue),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Blue),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                YAxisId = "secondaryYAxis"
+            };
+
+        velDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(velData)
+            {
+                Label = "Vel",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Red),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Red),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                YAxisId = "secondaryYAxis"
+            };
+
+        //new ScatterDataset()
+        _config.Data.Datasets.Add(groundDatasetChart);
+        _config.Data.Datasets.Add(wseDatasetChart);
+        _config.Data.Datasets.Add(velDatasetChart);
+        _config.Options.Responsive = true;
+        _config.Options.ShowLines = true;
+        //_config.Options.Animation.Duration = 0;
+        //_config.Options.ResponsiveAnimationDuration = 0;
+        //_config.Options.Hover.AnimationDuration = 0;
+
+        //result = await module.InvokeAsync<string>("loadChart", _config);
+        //result = await module.InvokeAsync<string>("load");
+        //_config.Data.Labels.AddRange(Months.Take(InitalCount));
+        //_config.Data.Datasets.Add(dataset1);
+        //_config.Data.Datasets.Add(dataset2);
+    }
+
+    private void CalcWettedPerimeter()
+    {
+
+        //SpreadsheetGear.IWorkbook workbook = SpreadsheetGear.Factory.GetWorkbook();
+        //SpreadsheetGear.IWorksheet worksheet = workbook.ActiveWorksheet;
+        //SpreadsheetGear.IRange cells = worksheet.Cells;
+
+        //myAnaXS.PlotXSonSelectedGraph(xsChart);
+        // RasMapperLib.Profile prof = new RasMapperLib.Profile("Ft",("Ft"));
+
+        // foreach (var point in data1)
+        // {
+        //     // Console.WriteLine($"X: {point.X}, Y: {point.Y}");
+        //     prof.Add(point.X, point.Y);
+        // }
+
+        string test1 = myAnaXS.myXSWorkbook.Worksheets["Data"].Range["D2"].Value.ToString();
+        string test2 = myAnaXS.myXSWorkbook.Worksheets["XS_Analyzer"].Range["B5"].Value.ToString();
+        string test3 = myAnaXS.myXSWorkbook.Worksheets["XS_AnalyzerSummary"].Range["L19"].Value.ToString();
+        string test4 = myAnaXS.myXSWorkbook.Worksheets["XS_AnalyzerSummary"].Range["K19"].Value.ToString();
+        string test5 = myAnaXS.myXSWorkbook.Worksheets["XS_Analyzer_Calculations"].Range["I7"].Value.ToString();
+
+        // var wp = prof.WettedPerimeter(((float)WSEValue));
+
+        // Show the stack trace, which is a list of methods
+        // that are currently executing.
+        // MessageBox.Show("Stack Trace: " & vbCrLf & ex.StackTrace)
+
+        //var workbookBytes = myAnaXS.myXSWorkbook.SaveToMemory(SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+        // JSInterop call which sends the file bytes to the client and prompts the download.
+        //PromptDownload("NewSpreadsheet.xlsx", workbookBytes);
+
+        // // Create the image class from a specified range.
+        // SpreadsheetGear.Drawing.Image image = new SpreadsheetGear.Drawing.Image(cells["A1:E16"]);
+
+        // // Get a new bitmap image of the represented range.
+        // using (System.Drawing.Bitmap bitmap = image.GetBitmap())
+        // {
+        //     // Stream the image to the client in PNG format.
+        //     System.IO.MemoryStream imageStream = new System.IO.MemoryStream();
+        //     bitmap.Save(imageStream, System.Drawing.Imaging.ImageFormat.Png);
+
+        //     // Reset position to the beginning of the stream.
+        //     imageStream.Seek(0, System.IO.SeekOrigin.Begin);
+
+        //     // Stream the image to the client.
+        //     return File(imageStream, "image/png");
+        // }
+
+    }
+
+
+    public ValueTask<object> PromptDownload(string filename, byte[] fileBytes)
+    {
+        // See also BlazorServerHelpers.js for the promptDownload(...) method.
+        return module.InvokeAsync<object>("promptDownload", filename, Convert.ToBase64String(fileBytes));
+    }
+
+    [JSInvokable("GetCells")]
+    public async Task GetCells(string Data)
+    {
+
+        // Deserialize the JSON string to a C# object
+        var arr = JsonConvert.DeserializeObject<string[][]>(Data);
+
+        // Now you can work with the C# array
+        foreach (var subArr in arr)
+        {
+            foreach (var item in subArr)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
+
+        // Convert the string[][] array to List<double[]>
+        //List<double[]> doubleList = arr.Select(subArr => subArr.Select(double.Parse).ToArray()).ToList();
+        // Convert the string[][] array to List<double[]>
+
+        //get the first 2 columns from the data
+        List<double[]> doubleList = arr
+        .Select(subArr => subArr.Take(2).Select(s => double.TryParse(s, out double result) ? result : 0).ToArray())
+        .ToList();
+
+        //convert to list
+        List<Point> groundPointList = doubleList
+        .Select(subArr => new Point(subArr[0], subArr[1]))
+        .ToList();
+
+        //remove last data point if it is 0
+        if (groundPointList.Last().X == 0 && groundPointList.Last().Y == 0)
+        {
+            groundPointList.RemoveAt(groundPointList.Count() - 1);
+        }
+
+        groundData = groundPointList;
+
+        // Flatten the list of arrays to a single IEnumerable<double>
+        //List<double> newlist = doubleList.SelectMany(x => x).ToList();
+        //IEnumerable<double> flattenedData = doubleList.SelectMany(x => x);
+        //double[] newArray = newlist.ToArray();
+
+        // Initialize the LineDataset with the flattenedData
+        //LineDataset<double> dataset1 = new LineDataset<double>(newArray);
+
+        groundDatasetChart = new ChartJs.Blazor.LineChart.LineDataset<Point>(groundData)
+            {
+                Label = "Ground",
+                BackgroundColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Brown),
+                BorderColor = ColorUtil.FromDrawingColor(System.Drawing.Color.Brown),
+                Fill = FillingMode.Disabled,
+                LineTension = 0,
+                YAxisId = "primaryYAxis"
+            };
+
+        _config.Data.Datasets[0] = groundDatasetChart;
+
+        _chart.Update();
+
+        updateXS();
+
+        // Notify Blazor to update the UI
+        StateHasChanged();
+
+    }
+
+    private void UpdateChart()
+    {
+        //var enteredData = ;
+    }
+
+}
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        SharedData.SetAssessmentPageSelected();
+
+    }
+
+    private IJSObjectReference? module;
+    private IJSObjectReference? _chartReference;
+    private string? result;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./spreadsheet.js");
+            if (module != null)
+            {
+                result = await module.InvokeAsync<string>("load");
+                await module.InvokeVoidAsync("initializeDotnetHelper", DotNetObjectReference.Create(this));
+
+            }
+        }
+    }
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+
+    private List<RowData> rows = new List<RowData> { new RowData(), new RowData(), new RowData() };
+    private int activeRow = -1;
+    private string activeColumn = "";
+
+    public class RowData
+    {
+        public string x { get; set; }
+        public string y { get; set; }
+        public string z { get; set; }
+    }
+
+    private void AddRow()
+    {
+        var lastRow = rows[rows.Count - 1];
+        if (!string.IsNullOrWhiteSpace(lastRow.x) || !string.IsNullOrWhiteSpace(lastRow.y) || !string.IsNullOrWhiteSpace(lastRow.z))
+        {
+            rows.Add(new RowData());
+        }
+    }
+
+
+    private void SetActiveCell(int row, string column)
+    {
+        activeRow = row;
+        activeColumn = column;
+    }
+
+    private string GetBorderStyle(string column, int index)
+    {
+        if (index == activeRow && column == activeColumn)
+        {
+            return "border: 2px solid cyan;";
+        }
+        else
+        {
+            return "border: 2px solid gray;";
+        }
+    }
+
+}

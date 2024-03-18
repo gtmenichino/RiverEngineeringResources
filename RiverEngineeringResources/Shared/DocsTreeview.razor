@@ -101,7 +101,7 @@
         return true;
     }
 
-    public void updateTree(List<MyResource> MyResourceList)
+    public void updateTree(List<MyEngineeringResource> MyResourceList)
     {
         var query = MyResourceList.SelectMany(x => x.affiliations)
         .GroupBy(s => s.databaseName)
@@ -111,7 +111,7 @@
 
         foreach (var result in query)
         {
-            affiliation b = new affiliation(result.DBName);
+            EngineeringAffiliation b = new EngineeringAffiliation(result.DBName);
             Console.WriteLine("Name: {0}, Count: {1}", result.DBName, result.Count);
 
             int count1 = 0;

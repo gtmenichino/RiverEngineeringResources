@@ -1,7 +1,7 @@
 ﻿namespace RiverEngineeringResources.Shared
 {
 
-    public class MyResource
+    public class MyEngineeringResource
     {
         //public string? ShortTitle { get { return ShortText(Title); } }
         //public string? ShortAuthor { get { return ShortText(Author); } }
@@ -44,18 +44,18 @@
         public string? LastTags { get; set; }
 
 
-        public List<affiliation> affiliations = new List<affiliation>();
+        public List<EngineeringAffiliation> affiliations = new List<EngineeringAffiliation>();
 
     }
 
-    public class affiliation
+    public class EngineeringAffiliation
     {
         public string databaseName;
         public string classification;
         public string category;
         public string subcategory;
 
-        public affiliation(string dbName)
+        public EngineeringAffiliation(string dbName)
         {
             databaseName = dbName;
 

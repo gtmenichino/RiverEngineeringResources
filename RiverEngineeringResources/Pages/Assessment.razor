@@ -1,0 +1,2247 @@
+﻿@page "/assessment"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@inject SharedData SharedData
+
+<PageTitle>Assessment</PageTitle>
+
+<style>
+    input {
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: darkgray
+    }
+
+        input:focus {
+            border-color: dodgerblue;
+            border-width: 0 0 2px;
+            outline: 1px dotted #ffffff
+        }
+</style>
+
+
+<MudPaper Elevation="0" Class="d-flex flex-row flex-grow-1 gap-4 mx-n16" Outlined="false">
+
+
+    <MudOverlay @bind-Visible="citeOverlayVisible" LightBackground="true" AutoClose="false">
+
+        <MudPaper Class="d-flex flex-wrap gap-4" Elevation="3">
+
+            <MudCard Elevation="0">
+                <MudCardHeader>
+
+                    <CardHeaderContent>
+                        <MudText Style="@titleText">@selectedResource.Resource_Name</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudIconButton OnClick="@closeCiteOverlay" Icon="@Icons.Material.Filled.Close" Size="Size.Medium" Color="Color.Default"></MudIconButton>
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+
+                        <MudGrid>
+                            <MudItem Class="d-flex justify-end flex-grow-1 gap-4">
+                                <MudText Style="max-width:100px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial">Chicago</MudText>
+                            </MudItem>
+                            <MudItem Class="d-flex justify-start flex-grow-1 gap-4">
+                                <MudText Style="max-width:400px; font-size:13px;--mud-typography-body1-size: 13px;font-weight:normal;font-family:Arial">@selectedResource.Long_Citation</MudText>
+                            </MudItem>
+                        </MudGrid>
+
+
+                    </MudCardContent>
+                    <MudCardActions>
+                        <RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton Text="@selectedResource.Long_Citation" IsDisabled="@copyCitationHiddenNew(selectedResource)" ButtonText="Copy Citation"></RiverEngineeringResources.ClipboardServiceFolder.CopyToClipboardButton>
+
+                    </MudCardActions>
+                </MudCard>
+            </MudPaper>
+
+
+
+        </MudOverlay>
+
+
+        <MudGrid>
+
+            <MudItem xs="12">
+
+                <MudStack Class="justify-center pt-2 mb-n2 gap-0" Row="false">
+
+
+                    <MudGrid>
+
+
+                        <MudItem>
+
+                            <MudPaper Class="gap-0" Elevation="1">
+                                <MudStack Class="gap-0">
+                                    <MudText Class="gap-0 pa-0 mb-n3" Align="Align.Center">Database Columns</MudText>
+                                    <MudStack Row>
+                                    <MudCard Class="gap-0 ma-0 pa-0" Elevation="0">
+
+                                        <MudCardContent Class="gap-0 ma-0 pa-0">
+                                            <MudText Class="gap-0 ma-0 pa-0" Align="Align.Center">Functional Categories</MudText>
+
+
+                                            <MudGrid Justify="Justify.Center" Style="align-items: center;">
+                                                <MudItem>
+                                                    <MudStack Row>
+
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudStack>
+                                                                <MudText Class="align-content-center gap-0" Color="Color.Transparent" Align="Align.Center">C</MudText>
+                                                                <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Hydrology_Switch1" Label="@GetFormattedLabel(nameof(Hydrology_Switch1))" Color="Color.Info" />
+                                                            </MudStack>
+
+                                                        </MudPaper>
+
+
+                                                        <MudStack>
+                                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">S</MudText>
+                                                            <MudTooltip Text="Semi-Quantitative">
+                                                                <MudCheckBox T="bool" CheckedChanged="toggleHyS" @bind-Value="@hydrology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            </MudTooltip>
+                                                        </MudStack>
+
+
+                                                        <MudStack>
+                                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">RE</MudText>
+                                                            <MudTooltip Text="Rapid Empirical">
+                                                                <MudCheckBox T="bool" CheckedChanged="toggleHyRE" @bind-Value="@hydrology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            </MudTooltip>
+                                                        </MudStack>
+
+
+                                                        <MudStack>
+                                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">DC</MudText>
+                                                            <MudTooltip Text="Detailed Data Collection">
+                                                                <MudCheckBox T="bool" CheckedChanged="toggleHyDC" @bind-Value="@hydrology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            </MudTooltip>
+
+                                                        </MudStack>
+
+                                                    </MudStack>
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Hydraulics_Switch1" Label="@GetFormattedLabel(nameof(Hydraulics_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleHS" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleHRE" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleHDC" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Geomorphology_Switch1" Label="@GetFormattedLabel(nameof(Geomorphology_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoS" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoRE" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoDC" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Physicochemical_Switch1" Label="@GetFormattedLabel(nameof(Physicochemical_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyS" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyRE" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyDC" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Biology_Switch1" Label="@GetFormattedLabel(nameof(Biology_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioS" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioRE" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioDC" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Aq_Org_Passage_Switch1" Label="@GetFormattedLabel(nameof(Aq_Org_Passage_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+                                                    <MudStack Row>
+                                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Riparian_Switch1" Label="@GetFormattedLabel(nameof(Riparian_Switch1))" Color="Color.Info" />
+                                                        </MudPaper>
+                                                        <MudTooltip Text="Semi-Quantitative">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleRipS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Rapid Empirical">
+                                                            <MudCheckBox T="bool "CheckedChanged="toggleRipRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Detailed Data Collection">
+                                                            <MudCheckBox T="bool" CheckedChanged="toggleRipDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                        </MudTooltip>
+                                                    </MudStack>
+
+                                                </MudItem>
+
+                                            </MudGrid>
+
+                                        </MudCardContent>
+                                        <MudCardActions>
+                                        </MudCardActions>
+
+                                    </MudCard>
+
+                                    <MudCard Elevation="0">
+
+                                        <MudCardContent>
+                                            <MudText Align="Align.Center">Metadata</MudText>
+
+                                            @*                                     <MudSwitch T="bool" @bind-Checked="@Catalog_Number_Switch1" Label="@GetFormattedLabel(nameof(Catalog_Number_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Match_Ranking_Switch1" Label="@GetFormattedLabel(nameof(Match_Ranking_Switch1))" Color="Color.Info" /> *@
+                                            <MudSwitch T="bool" @bind-Checked="@Name_Switch1" Label="@GetFormattedLabel(nameof(Name_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Citation_Switch1" Label="@GetFormattedLabel(nameof(Citation_Switch1))" Color="Color.Info" />
+
+                                            <MudSwitch T="bool" @bind-Checked="@Sector_Switch1" Label="@GetFormattedLabel(nameof(Sector_Switch1))" Color="Color.Info" />
+
+
+                                            <MudSwitch T="bool" @bind-Checked="@Developer_Switch1" Label="@GetFormattedLabel(nameof(Developer_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Year_Switch1" Label="@GetFormattedLabel(nameof(Year_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Assessment_Type_Switch1" Label="@GetFormattedLabel(nameof(Assessment_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Location_Assessment_Switch1" Label="@GetFormattedLabel(nameof(Location_Assessment_Switch1))" Color="Color.Info" />
+
+
+                                            <MudSwitch T="bool" @bind-Checked="@Programmatic_Use_Switch1" Label="@GetFormattedLabel(nameof(Programmatic_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
+
+                                        </MudCardContent>
+                                        <MudCardActions>
+                                        </MudCardActions>
+
+                                    </MudCard>
+                                    <MudCard Elevation="0">
+
+                                        <MudCardContent>
+                                            <MudText Align="Align.Center">Technical Data</MudText>
+                                            <MudSwitch T="bool" @bind-Checked="@Stream_Type_Requirements_Switch1" Label="@GetFormattedLabel(nameof(Stream_Type_Requirements_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Geography_Switch1" Label="@GetFormattedLabel(nameof(Geography_Switch1))" Color="Color.Info" />
+
+                                            <MudSwitch T="bool" @bind-Checked="@Impact_Switch1" Label="@GetFormattedLabel(nameof(Impact_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Adaptable_Switch1" Label="@GetFormattedLabel(nameof(Adaptable_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Time_Required_Switch1" Label="@GetFormattedLabel(nameof(Time_Required_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Training_Switch1" Label="@GetFormattedLabel(nameof(Training_Switch1))" Color="Color.Info" />
+
+
+
+                                            @* <MudSwitch T="bool" @bind-Checked="@Tier_Switch1" Label="@GetFormattedLabel(nameof(Tier_Switch1))" Color="Color.Info" /> *@
+                                            <MudSwitch T="bool" @bind-Checked="@Input_Type_Switch1" Label="@GetFormattedLabel(nameof(Input_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Output_Type_Switch1" Label="@GetFormattedLabel(nameof(Output_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Data_Availability_Switch1" Label="@GetFormattedLabel(nameof(Data_Availability_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Reference_Required_Switch1" Label="@GetFormattedLabel(nameof(Reference_Required_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Performance_Standards_Switch1" Label="@GetFormattedLabel(nameof(Performance_Standards_Switch1))" Color="Color.Info" />
+
+                                            @*                                     <MudSwitch T="bool" @bind-Checked="@URL_For_Tool_Or_Data_Storage_Switch1" Label="@GetFormattedLabel(nameof(URL_For_Tool_Or_Data_Storage_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@URL_For_User_Guide_Switch1" Label="@GetFormattedLabel(nameof(URL_For_User_Guide_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Notes_Switch1" Label="@GetFormattedLabel(nameof(Notes_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Long_Citation_Switch1" Label="@GetFormattedLabel(nameof(Long_Citation_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Issues_Switch1" Label="@GetFormattedLabel(nameof(Issues_Switch1))" Color="Color.Info" />
+                                            <MudSwitch T="bool" @bind-Checked="@Introductory_Description_Switch1" Label="@GetFormattedLabel(nameof(Introductory_Description_Switch1))" Color="Color.Info" /> *@
+
+                                        </MudCardContent>
+                                        <MudCardActions>
+                                        </MudCardActions>
+
+                                    </MudCard>
+                                </MudStack>
+                            </MudStack>
+
+
+                        </MudPaper>
+
+                    </MudItem>
+
+                    <MudGrid>
+
+
+                    </MudGrid>
+
+                </MudGrid>
+
+                <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all;" T="MyAssessmentResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterMode="DataGridFilterMode.ColumnFilterMenu" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="true" QuickFilter="@_quickFilter"
+                             Hideable="false" Groupable="true" DragDropColumnReordering="true" DragIndicatorIcon="" DragIndicatorSize="0" HorizontalScrollbar="true" Outlined="true" SelectedItemChanged="@selectedItemChanged" Dense="true" Bordered="true" Striped="false" Hover="false" Virtualize="false" FixedHeader="false" ShowMenuIcon="true">
+                    <ToolBarContent>
+                        <MudGrid>
+                            <MudItem xs="2" />
+                            <MudItem xs="8">
+                                <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
+
+                                    <MudTextField @bind-Value="_searchString" Clearable="true" Placeholder="Search" Margin="Margin.Dense" Adornment="Adornment.Start" Immediate="false"
+                                                  AdornmentIcon="@Icons.Material.Filled.Search" DebounceInterval="500" IconSize="Size.Small"></MudTextField>
+                                    <MudTooltip Text="Clear Filters">
+                                        <MudIconButton Class="mt-4" Icon="@filtersOnStyle()" Size="Size.Small" OnClick="@clearFilters" aria-label="filter"></MudIconButton>
+                                    </MudTooltip>
+                                    @* <MudIconButton Class="mt-4" Icon="@Icons.Material.Filled.Sort" Size="Size.Small" OnClick="@clearFilters" aria-label="filter"></MudIconButton> *@
+                                </MudStack>
+                            </MudItem>
+                            <MudItem xs="2" />
+                        </MudGrid>
+
+
+                    </ToolBarContent>
+                    <NoRecordsContent>
+                        <MudText Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">No resources found.</MudText>
+                    </NoRecordsContent>
+                    <Columns>
+                        <HierarchyColumn T="MyAssessmentResource" />
+                        <PropertyColumn Property="x => x.Catalog_Number" Title="Catalog Number" Hidden="@GetOpposite(Catalog_Number_Switch1)" Sortable="true" Filterable="false" />
+                        <PropertyColumn Property="x => x.Match_Ranking" Title="Match Ranking" Hidden="@GetOpposite(Match_Ranking_Switch1)" Sortable="true" Filterable="false" />
+                        <PropertyColumn Property="x => x.NameClip" Title="Name" StickyLeft="true" Hidden="@GetOpposite(Name_Switch1)" Sortable="true" Filterable="false" />
+                        <PropertyColumn Property="x => x.Hydrology" Title="Hydrology" Hidden="@GetOpposite(Hydrology_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false">
+                            @*                                                                  <PropertyColumn Property="x => x.Hydrology">
+                            <FilterTemplate>
+                            <MudIconButton OnClick="@OpenFilter" Icon="@_icon" Size="@Size.Small" />
+                            <MudOverlay Visible="@_filterOpen" OnClick="@(() => _filterOpen = false)" />
+                            <MudPopover Open="@_filterOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter"
+                            Style="width:150px">
+                            <MudStack Spacing="0">
+                            <MudCheckBox T="bool" Label="Select All" Size="@Size.Small" Checked="@_selectAll" CheckedChanged="@SelectAll" />
+                            <MudStack Spacing="0" Style="overflow-y:auto;max-height:250px">
+                            @foreach (var item in context.Items)
+                            {
+                            <MudCheckBox T="bool" Label="@($"{item.Hydrology}")" Size="@Size.Small" Checked="@(_selectedItems.Contains(item))"
+                            CheckedChanged="@((value) => SelectedChanged(value, item))" />
+                            }
+                            </MudStack>
+                            <MudStack Row="true">
+                            <MudButton OnClick="@(() => ClearFilterAsync(context))">Clear</MudButton>
+                            <MudButton Color="@Color.Primary" OnClick="@(() => ApplyFilterAsync(context))">Filter</MudButton>
+                            </MudStack>
+                            </MudStack>
+                            </MudPopover>
+                            </FilterTemplate>
+                            </PropertyColumn> *@
+
+
+                        </PropertyColumn>
+                        <PropertyColumn Property="x => x.Hydraulics" Title="Hydraulics" Hidden="@GetOpposite(Hydraulics_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Geomorphology" Title="Geomorphology" Hidden="@GetOpposite(Geomorphology_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Physicochemical" Title="Physicochemical" Hidden="@GetOpposite(Physicochemical_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Biology" Title="Biology" Hidden="true" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Biology_And_Stream_Habitat" Title="Biology" Hidden="@GetOpposite(Biology_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Connectivity_Aquatic_Organism_Passage" Title="Aq Org Passage" Hidden="@GetOpposite(Aq_Org_Passage_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Stream_Habitat" Title="Stream Habitat" Hidden="@GetOpposite(Stream_Habitat_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Riparian_Zone" Title="Riparian Zone" Hidden="@GetOpposite(Riparian_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Variability" Title="Variability" Hidden="@GetOpposite(Variability_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Stream_Classification" Title="Classification" Hidden="@GetOpposite(Classification_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.Abbreviated_Citation" Title="Citation" Hidden="@GetOpposite(Citation_Switch1)" Groupable="false" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Perceived_Impact" Title="Impact" Hidden="@GetOpposite(Impact_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Developer_Sector" Title="Sector" Hidden="@GetOpposite(Sector_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Stream_Type_Requirements" Title="Stream" Hidden="@GetOpposite(Stream_Type_Requirements_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Geographic_Applicability" Title="Geography" Hidden="@GetOpposite(Geography_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Adaptable_To_Other_Locations" Title="Adaptable" Hidden="@GetOpposite(Adaptable_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Agency_Or_Organization" Title="Developer" Hidden="@GetOpposite(Developer_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Year_Of_Publication_Or_Latest_Update" Title="Year" Hidden="@GetOpposite(Year_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Assessment_Class" Title="Type" Hidden="@GetOpposite(Assessment_Type_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Time_Required_Tasks_Only" Title="Time" Hidden="@GetOpposite(Time_Required_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Training_Needed" Title="Training" Hidden="@GetOpposite(Training_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Location_Of_Assessment" Title="Location" Hidden="@GetOpposite(Location_Assessment_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Tier_Of_Analysis" Title="Tier" Hidden="@GetOpposite(Tier_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Input_Data_Type" Title="Input Type" Hidden="@GetOpposite(Input_Type_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Output_Data_Type" Title="Output Type" Hidden="@GetOpposite(Output_Type_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Data_Availability" Title="Data Avail" Hidden="@GetOpposite(Data_Availability_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Reference_Required" Title="Reference Req" Hidden="@GetOpposite(Reference_Required_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Performance_Standards_or_Reference_Curves_Used" Title="Perf Standards" Hidden="@GetOpposite(Performance_Standards_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Programmatic_Applications" Title="Programmatic" Hidden="@GetOpposite(Programmatic_Use_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Region_of_development_application" Title="Region" Hidden="@GetOpposite(Region_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.State_of_development_application" Title="State" Hidden="@GetOpposite(State_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.USACE_Division_Use" Title="USACE Division" Hidden="@GetOpposite(USACE_Division_Use_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.USACE_District_Use" Title="USACE District" Hidden="@GetOpposite(USACE_District_Use_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.URL_For_Tool_Or_Data_Storage" Title="URL For Tool Or Data Storage" Hidden="@GetOpposite(URL_For_Tool_Or_Data_Storage_Switch1)" Sortable="true" Filterable="false" />
+                        <PropertyColumn Property="x => x.URL_For_User_Guide" Title="URL For User Guide" Hidden="@GetOpposite(URL_For_User_Guide_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Notes" Title="Notes" Hidden="@GetOpposite(Notes_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Long_Citation" Title="Long Citation" Hidden="@GetOpposite(Long_Citation_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Issues" Title="Issues" Hidden="@GetOpposite(Issues_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Introductory_Description" Title="Introductory Description" Hidden="@GetOpposite(Introductory_Description_Switch1)" Sortable="true" Filterable="true" />
+
+                    </Columns>
+
+                    <ChildRowContent>
+                        <MudPaper Elevation="0">
+
+                            <MudStack Class="" Row="true">
+
+                                <MudText Class="d-flex flex-wrap align-self-center" Style="@GetTypeColor(context.Item)">[@context.Item.Assessment_Class]</MudText>
+                                    <MudLink Class="d-flex flex-wrap" Style="@GetLinkColor(context.Item)" Href="@context.Item.URL_For_User_Guide" Target="_blank" Color="@GetLink2Color(context.Item)" Underline="@GetHoverableTitleLink(context.Item)">@context.Item.Resource_Name</MudLink>
+                                </MudStack>
+
+                                <MudStack Row="true">
+                                    <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Agency_Or_Organization - @context.Item.Year_Of_Publication_Or_Latest_Update</MudText>
+
+                                </MudStack>
+
+                                <MudText Class="d-flex flex-wrap" Style="color:#222; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.DescriptionClip</MudText>
+
+                                <MudStack Row="true">
+
+                                    @*                                     <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                <MudLink Class="d-inline" OnClick='@((args) => toggleTags(args,context.Item))' Color="@getTagLabelColor(context.Item)" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Tags(@context.Item.TagsCount)</MudLink>
+                                </a>
+                                </div> *@
+
+                                    <div style="text-align:center">
+                                        <a href="#" onclick="return false;">
+                                            <MudLink Class="d-inline" OnClick='@((args) => openCiteOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Cite</MudLink>
+                                        </a>
+                                    </div>
+
+                                    @*                                <div style="text-align:center">
+                                <a href="#" onclick="return false;">
+                                <MudLink Class="d-inline" OnClick='@((args) => openEditResourceOverlay(args,context.Item))' Color="Color.Tertiary" Underline="Underline.Hover" Style="color:#1a0dab; font-size:13px; font-weight:normal;font-family:Arial; text-transform:none;">Edit</MudLink>
+                                </a>
+                                </div>*@
+
+                                </MudStack>
+
+                            </MudPaper>
+
+                            @*                         <MudCard>
+                        <MudCardHeader>
+                        <CardHeaderContent>
+                        <MudText Typo="Typo.h6">@context.Item.Resource_Name</MudText>
+                        </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                        <MudText>Cite: @context.Item.Long_Citation</MudText>
+                        <MudText>Desc: @context.Item.Introductory_Description</MudText>
+                        <MudText>Url:  @context.Item.URL_For_User_Guide</MudText>
+                        </MudCardContent>
+                        </MudCard> *@
+                        </ChildRowContent>
+
+                        <PagerContent>
+
+                            <MudDataGridPager T=" MyAssessmentResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+
+                        </PagerContent>
+
+                    </MudDataGrid>
+
+                    @* <MudDivider DividerType="DividerType.FullWidth" Class="my-6"/> *@
+
+                    <MudStack Row>
+
+@* 
+                    <MudCard>
+                        <MudCardContent>
+                            <MudText Align="Align.Center" Class="mb-n4">Assessment Methods</MudText>
+
+                            <MudGrid Justify="Justify.Center" Style="align-items: center;">
+                                <MudItem>
+                                    <MudStack Row>
+
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudStack>
+                                                <MudText Class="align-content-center gap-0" Color="Color.Transparent" Align="Align.Center">C</MudText>
+                                                <MudText Class="align-content-center" Align="Align.Center">Hydrology</MudText>
+                                            </MudStack>
+
+                                        </MudPaper>
+
+
+                                        <MudStack>
+                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">S</MudText>
+                                            <MudTooltip Text="Semi-Quantitative">
+                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                            </MudTooltip>
+                                        </MudStack>
+
+
+                                        <MudStack>
+                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">RE</MudText>
+                                            <MudTooltip Text="Rapid Empirical">
+                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                            </MudTooltip>
+                                        </MudStack>
+
+
+                                        <MudStack>
+                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">DC</MudText>
+                                            <MudTooltip Text="Detailed Data Collection">
+                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                            </MudTooltip>
+
+                                        </MudStack>
+
+                                    </MudStack>
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Hydraulics</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Geomorphology</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Physicochemical</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Biology</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Aq Org Passage</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+                                    <MudStack Row>
+                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                                            <MudText Class="align-content-center" Align="Align.Center">Riparian</MudText>
+                                        </MudPaper>
+                                        <MudTooltip Text="Semi-Quantitative">
+                                            <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Rapid Empirical">
+                                            <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                        <MudTooltip Text="Detailed Data Collection">
+                                            <MudCheckBox T="bool" @bind-Value="@riparian_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                        </MudTooltip>
+                                    </MudStack>
+
+                                </MudItem>
+
+                            </MudGrid>
+
+                        </MudCardContent>
+                        <MudCardActions>
+                        </MudCardActions>
+                    </MudCard>
+ *@
+
+                </MudStack>
+
+
+            </MudStack>
+
+        </MudItem>
+
+
+
+    </MudGrid>
+
+</MudPaper>
+
+
+
+
+
+    @code {
+    private IEnumerable<string> _value2 = new[] { "" };
+    private string _value3 = "";
+
+    string semiQuant = "s";
+    string rapidEmp = "re";
+    string detailed = "dc";
+
+    FilterDefinition<MyAssessmentResource> _filterDefinition = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _hydrologyFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _hydraulicsFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _geoFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _physFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _bioFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _aopFD = new FilterDefinition<MyAssessmentResource>();
+    FilterDefinition<MyAssessmentResource> _ripFD = new FilterDefinition<MyAssessmentResource>();
+
+    public void setFilter()
+    {
+        if (mudDataGrid.FilterDefinitions.Contains(_hydrologyFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_hydrologyFD);
+        }
+        if (mudDataGrid.FilterDefinitions.Contains(_hydraulicsFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_hydraulicsFD);
+        }
+                if (mudDataGrid.FilterDefinitions.Contains(_geoFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_geoFD);
+        }
+        if (mudDataGrid.FilterDefinitions.Contains(_physFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_physFD);
+        }
+                        if (mudDataGrid.FilterDefinitions.Contains(_bioFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_bioFD);
+        }
+                        if (mudDataGrid.FilterDefinitions.Contains(_aopFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_aopFD);
+        }
+                        if (mudDataGrid.FilterDefinitions.Contains(_ripFD))
+        {
+            mudDataGrid.FilterDefinitions.Remove(_ripFD);
+        }
+
+        if (hydrology_s ||
+            hydrology_re ||
+            hydrology_dc)
+        {
+            _hydrologyFD.FilterFunction = x =>
+(hydrology_s && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(semiQuant)) ||
+(hydrology_re && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(rapidEmp)) ||
+(hydrology_dc && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_hydrologyFD);
+        }
+
+        if (hydraulics_s||
+            hydraulics_re ||
+            hydraulics_dc)
+        {
+            _hydraulicsFD.FilterFunction = x =>
+(hydraulics_s && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(semiQuant)) ||
+(hydraulics_re && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(rapidEmp)) ||
+(hydraulics_dc && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_hydraulicsFD);
+        }
+
+        if (geomorphology_s ||
+            geomorphology_re ||
+            geomorphology_dc)
+        {
+            _geoFD.FilterFunction = x =>
+(geomorphology_s && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(semiQuant)) ||
+(geomorphology_re && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(rapidEmp)) ||
+(geomorphology_dc && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_geoFD);
+        }
+
+        if (physicochemical_s ||
+            physicochemical_re ||
+            physicochemical_dc)
+        {
+            _physFD.FilterFunction = x =>
+(physicochemical_s && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(semiQuant)) ||
+(physicochemical_re && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(rapidEmp)) ||
+(physicochemical_dc && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_physFD);
+        }
+
+        if (biology_s ||
+            biology_re ||
+            biology_dc)
+        {
+            _bioFD.FilterFunction = x =>
+(biology_s && x.Biology != null && x.Biology.ToLowerInvariant().Contains(semiQuant)) ||
+(biology_re && x.Biology != null && x.Biology.ToLowerInvariant().Contains(rapidEmp)) ||
+(biology_dc && x.Biology != null && x.Biology.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_bioFD);
+        }
+
+        if (aqorgpass_s ||
+            aqorgpass_re ||
+            aqorgpass_dc)
+        {
+            _aopFD.FilterFunction = x =>
+(aqorgpass_s && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(semiQuant)) ||
+(aqorgpass_re && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(rapidEmp)) ||
+(aqorgpass_dc && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_aopFD);
+        }
+
+        if (riparian_s ||
+            riparian_re ||
+            riparian_dc)
+        {
+            _ripFD.FilterFunction = x =>
+(riparian_s && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(semiQuant)) ||
+(riparian_re && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(rapidEmp)) ||
+(riparian_dc && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(detailed));
+            mudDataGrid.AddFilterAsync(_ripFD);
+        }
+        
+    }
+
+    public void toggleHyS(bool toggled)
+    {
+        hydrology_s = toggled;
+        setFilter();
+    }
+    public void toggleHyRE(bool toggled)
+    {
+        hydrology_re = toggled;
+        setFilter();
+    }
+    public void toggleHyDC(bool toggled)
+    {
+        hydrology_dc = toggled;
+        setFilter();
+    }
+
+    public void toggleHS(bool toggled)
+    {
+        hydraulics_s = toggled;
+        setFilter();
+    }
+    public void toggleHRE(bool toggled)
+    {
+        hydraulics_re = toggled;
+        setFilter();
+    }
+    public void toggleHDC(bool toggled)
+    {
+
+        hydraulics_dc = toggled;
+        setFilter();
+    }
+
+    public void toggleGeoS(bool toggled)
+    {
+        geomorphology_s = toggled;
+        setFilter();
+    }
+    public void toggleGeoRE(bool toggled)
+    {
+        geomorphology_re = toggled;
+        setFilter();
+    }
+    public void toggleGeoDC(bool toggled)
+    {
+        geomorphology_dc = toggled;
+        setFilter();
+    }
+    public void togglePhyS(bool toggled)
+    {
+        physicochemical_s = toggled;
+        setFilter();
+    }
+    public void togglePhyRE(bool toggled)
+    {
+        physicochemical_re = toggled;
+        setFilter();
+    }
+    public void togglePhyDC(bool toggled)
+    {
+        physicochemical_dc = toggled;
+        setFilter();
+    }
+
+    public void toggleBioS(bool toggled)
+    {
+
+        biology_s = toggled;
+        setFilter();
+    }
+    public void toggleBioRE(bool toggled)
+    {
+
+        biology_re = toggled;
+        setFilter();
+    }
+    public void toggleBioDC(bool toggled)
+    {
+
+        biology_dc = toggled;
+        setFilter();
+    }
+
+    public void toggleAOPS(bool toggled)
+    {
+
+        aqorgpass_s = toggled;
+        setFilter();
+    }
+    public void toggleAOPRE(bool toggled)
+    {
+
+        aqorgpass_re = toggled;
+        setFilter();
+    }
+    public void toggleAOPDC(bool toggled)
+    {
+
+        aqorgpass_dc = toggled;
+        setFilter();
+    }
+
+    public void toggleRipS(bool toggled)
+    {
+        riparian_s = toggled;
+setFilter();
+    }
+    public void toggleRipRE(bool toggled)
+    {
+        riparian_re = toggled;
+setFilter();
+    }
+    public void toggleRipDC(bool toggled)
+    {
+        riparian_dc = toggled;
+        setFilter();
+    }
+
+    HashSet<MyAssessmentResource> _selectedItems = new();
+    HashSet<MyAssessmentResource> _filterItems = new();
+
+    string hydrologySearch = "";
+    
+
+    bool _selectAll = true;
+    string _icon = Icons.Material.Outlined.FilterAlt;
+
+    bool _filterOpen = false;
+
+    void OpenFilter()
+    {
+        _filterOpen = true;
+    }
+
+    private void SelectedChanged(bool value, MyAssessmentResource item)
+    {
+        if (value)
+            _selectedItems.Add(item);
+        else
+            _selectedItems.Remove(item);
+
+        if (_selectedItems.Count == MyResourceList.Count())
+            _selectAll = true;
+        else
+            _selectAll = false;
+    }
+
+    private async Task ClearFilterAsync(FilterContext<MyAssessmentResource> context)
+    {
+        _selectedItems = MyResourceList.ToHashSet();
+        _filterItems = MyResourceList.ToHashSet();
+        _icon = Icons.Material.Outlined.FilterAlt;
+        await context.Actions.ClearFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private async Task ApplyFilterAsync(FilterContext<MyAssessmentResource> context)
+    {
+        _filterItems = _selectedItems.ToHashSet();
+        _icon = _filterItems.Count == MyResourceList.Count() ? Icons.Material.Outlined.FilterAlt : Icons.Material.Filled.FilterAlt;
+        await context.Actions.ApplyFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private void SelectAll(bool value)
+    {
+        _selectAll = value;
+
+        if (value)
+        {
+            _selectedItems = MyResourceList.ToHashSet();
+        }
+        else
+        {
+            _selectedItems.Clear();
+        }
+    }
+
+
+    private bool _hidePosition;
+
+    private string GetFormattedLabel(string propertyName)
+    {
+        // Replace underscores with spaces in the property name
+        return propertyName.Replace("_", " ").Replace("Switch1", "");
+    }
+
+    public bool GetOpposite(bool value)
+    {
+        return !value;
+    }
+
+    public bool Catalog_Number_Switch1 { get; set; } = false;
+    public bool Match_Ranking_Switch1 { get; set; } = false;
+    public bool Name_Switch1 { get; set; } = true;
+    public bool Citation_Switch1 { get; set; } = false;
+    public bool Impact_Switch1 { get; set; } = false;
+    public bool Sector_Switch1 { get; set; } = false;
+    public bool Stream_Type_Requirements_Switch1 { get; set; } = false;
+    public bool Geography_Switch1 { get; set; } = false;
+    public bool Adaptable_Switch1 { get; set; } = false;
+    public bool Developer_Switch1 { get; set; } = false;
+    public bool Year_Switch1 { get; set; } = false;
+    public bool Assessment_Type_Switch1 { get; set; } = false;
+    private bool Hydrology_Switch1 = false;
+    public bool Hydraulics_Switch1 { get; set; } = false;
+    public bool Geomorphology_Switch1 { get; set; } = false;
+    public bool Physicochemical_Switch1 { get; set; } = false;
+    public bool Biology_Switch1 { get; set; } = false;
+    // public bool Biology_Switch1 { get; set; } = false;
+    public bool Aq_Org_Passage_Switch1 { get; set; } = false;
+    public bool Stream_Habitat_Switch1 { get; set; } = false;
+    public bool Riparian_Switch1 { get; set; } = false;
+    public bool Variability_Switch1 { get; set; } = false;
+    public bool Classification_Switch1 { get; set; } = false;
+    public bool Time_Required_Switch1 { get; set; } = false;
+    public bool Training_Switch1 { get; set; } = false;
+    public bool Location_Assessment_Switch1 { get; set; } = false;
+    public bool Tier_Switch1 { get; set; } = false;
+    public bool Input_Type_Switch1 { get; set; } = false;
+    public bool Output_Type_Switch1 { get; set; } = false;
+    public bool Data_Availability_Switch1 { get; set; } = false;
+    public bool Reference_Required_Switch1 { get; set; } = false;
+    public bool Performance_Standards_Switch1 { get; set; } = false;
+    public bool Programmatic_Use_Switch1 { get; set; } = false;
+    public bool Region_Switch1 { get; set; } = false;
+    public bool State_Switch1 { get; set; } = false;
+    public bool USACE_Division_Use_Switch1 { get; set; } = false;
+    public bool USACE_District_Use_Switch1 { get; set; } = false;
+    public bool URL_For_Tool_Or_Data_Storage_Switch1 { get; set; } = false;
+    public bool URL_For_User_Guide_Switch1 { get; set; } = false;
+    public bool Notes_Switch1 { get; set; } = false;
+    public bool Long_Citation_Switch1 { get; set; } = false;
+    public bool Issues_Switch1 { get; set; } = false;
+    public bool Introductory_Description_Switch1 { get; set; } = false;
+
+
+    private string valueLocation { get; set; } = "Nothing selected";
+    private IEnumerable<string> options { get; set; } = new HashSet<string>() { "Alaska" };
+
+    private string[] states =
+    {
+        "Nationwide", "Alabama", "Alaska", "Arizona",
+        "Arkansas", "California", "Colorado", "Connecticut",
+        "Delaware", "District of Columbia",
+        "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
+        "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+        "Louisiana", "Maine", "Marshall Islands", "Maryland",
+        "Massachusetts", "Michigan", "Minnesota", "Mississippi",
+        "Missouri", "Montana", "Nebraska", "Nevada",
+        "New Hampshire", "New Jersey", "New Mexico", "New York",
+        "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio",
+        "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico",
+        "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+        "Texas", "Utah", "Vermont", "Virginia",
+        "Washington", "West Virginia", "Wisconsin", "Wyoming",
+    };
+
+    //MudChip[] selected;
+    public bool hydrology_s { get; set; } = false;
+    public bool hydrology_re { get; set; } = false;
+    public bool hydrology_dc { get; set; } = false;
+    public bool hydraulics_s { get; set; } = false;
+    public bool hydraulics_re { get; set; } = false;
+    public bool hydraulics_dc { get; set; } = false;
+    public bool geomorphology_s { get; set; } = false;
+    public bool geomorphology_re { get; set; } = false;
+    public bool geomorphology_dc { get; set; } = false;
+    public bool physicochemical_s { get; set; } = false;
+    public bool physicochemical_re { get; set; } = false;
+    public bool physicochemical_dc { get; set; } = false;
+    public bool biology_s { get; set; } = false;
+    public bool biology_re { get; set; } = false;
+    public bool biology_dc { get; set; } = false;
+    public bool aqorgpass_s { get; set; } = false;
+    public bool aqorgpass_re { get; set; } = false;
+    public bool aqorgpass_dc { get; set; } = false;
+    public bool riparian_s { get; set; } = false;
+    public bool riparian_re { get; set; } = false;
+    public bool riparian_dc { get; set; } = false;
+
+    int value = 0;
+    string[] labels = new string[] { "Any", "Semi-Quanitative", "Rapid Empirical", "Detailed" };
+
+
+    // public MudBlazor.Color getTagLabelColor(MyAssessmentResource item)
+    // {
+    //     if (tagsVisible == true && !(selectedResource == null) && selectedResource == item)
+    //     {
+    //         return MudBlazor.Color.Secondary;
+    //     }
+    //     return MudBlazor.Color.Tertiary;
+
+    // }
+
+    // public MudBlazor.Color getTagColor(string tagName1)
+    // {
+    //     if (tagsVisible == true && !(selectedResource == null) && !(string.IsNullOrEmpty(selectedResource.Tags)) && !(String.IsNullOrEmpty(tagName1)))
+    //     {
+    //         //List<string> taglist = selectedResource.Tags.Split(",").ToList();
+    //         if (selectedResource.affiliations.Where(x => x.databaseName == tagName1).Count() > 0)
+    //         {
+    //             return MudBlazor.Color.Secondary;
+    //         }
+    //     }
+    //     return MudBlazor.Color.Dark;
+    // }
+
+    public void StartEditingItem(MouseEventArgs args, MyAssessmentResource theItem)
+    {
+        mudDataGrid.SetEditingItemAsync(theItem);
+
+    }
+
+    public string openGoogleScholar(MyAssessmentResource selRes)
+    {
+        string link1 = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C10&q=";
+        string link2 = "&btnG=";
+        Uri uri = new Uri(link1 + selRes.Resource_Name + link2);
+        return uri.AbsoluteUri;
+    }
+
+    private bool tagsVisible;
+    public async Task toggleTags(MouseEventArgs args, MyAssessmentResource selRes)
+    {
+        if (selectedResource == selRes)
+        {
+            selectedResource = null;
+            tagsVisible = false;
+        }
+        else
+        {
+            selectedResource = selRes;
+            tagsVisible = true;
+        }
+        //StateHasChanged();
+    }
+
+    private bool citeOverlayVisible;
+    public void openCiteOverlay(MouseEventArgs args, MyAssessmentResource selRes)
+    {
+        if (!(string.IsNullOrEmpty(selRes.Long_Citation)))
+        {
+            //turn off tags so the selected resource is correct
+            if (tagsVisible == true)
+            {
+                tagsVisible = false;
+            }
+            selectedResource = selRes;
+            citeOverlayVisible = true;
+            StateHasChanged();
+        }
+
+    }
+    public void closeCiteOverlay()
+    {
+
+        citeOverlayVisible = false;
+        selectedResource = null;
+        StateHasChanged();
+    }
+
+    //private bool AddResourceOverlayVisible;
+    //public void openAddResourceOverlay()
+    //{
+    //    selectedResource = null;
+    //    AddResourceOverlayVisible = true;
+    //    StateHasChanged();
+    //}
+    //public void closeAddResourceOverlay()
+    //{
+    //    selectedResource = null;
+    //    AddResourceOverlayVisible = false;
+    //    StateHasChanged();
+    //}
+
+    //private bool EditResourceOverlayVisible;
+    //public void openEditResourceOverlay(MouseEventArgs args, MyResource selRes)
+    //{
+    //    selectedResource = selRes;
+    //    EditResourceOverlayVisible = true;
+    //    StateHasChanged();
+    //}
+    //public void closeEditResourceOverlay()
+    //{
+    //    EditResourceOverlayVisible = false;
+    //    selectedResource = null;
+    //    StateHasChanged();
+    //}
+
+
+    // private string _sortName = "";
+    // private void sortFilterChanged()
+    // {
+    //     if (mudDataGrid == null)
+    //     {
+    //         return;
+    //     }
+    //     if (!string.IsNullOrEmpty(_sortName))
+    //     {
+
+
+    //         switch (_sortName)
+    //         {
+    //             //case "Best Match":
+    //             //    mudDataGrid.SortDefinitions.Clear();
+    //             //    return;
+    //             case "Title A-Z":
+    //                 mudDataGrid.SetSortAsync("Title", SortDirection.Ascending, _sortByTitle);
+    //                 return;
+    //             case "Title Z-A":
+    //                 mudDataGrid.SetSortAsync("Title", SortDirection.Descending, _sortByTitle);
+    //                 return;
+    //             case "Yr New-Old":
+    //                 mudDataGrid.SetSortAsync("Year", SortDirection.Descending, _sortByYear);
+    //                 return;
+    //             case "Yr Old-New":
+    //                 mudDataGrid.SetSortAsync("Year", SortDirection.Ascending, _sortByYear);
+    //                 return;
+    //             case "Author A-Z":
+    //                 mudDataGrid.SetSortAsync("Author", SortDirection.Ascending, _sortByAuthor);
+    //                 return;
+    //             case "Author Z-A":
+    //                 mudDataGrid.SetSortAsync("Author", SortDirection.Descending, _sortByAuthor);
+    //                 return;
+    //             default:
+    //                 mudDataGrid.SortDefinitions.Clear();
+    //                 return;
+
+    //         }
+    //     }
+    //     else
+    //     {
+    //         mudDataGrid.SortDefinitions.Clear();
+    //         return;
+    //     }
+
+    // }
+
+    // private Func<MyAssessmentResource, object> _sortByTitle => x =>
+    // {
+    //     return x.Title;
+    // };
+    // private Func<MyAssessmentResource, object> _sortByYear => x =>
+    // {
+    //     return x.Year;
+    // };
+    // private Func<MyAssessmentResource, object> _sortByAuthor => x =>
+    // {
+    //     return x.Author;
+    // };
+
+    private string filtersOnStyle()
+    {
+        if (mudDataGrid == null || mudDataGrid.FilterDefinitions.Count() == 0)
+        {
+            return Icons.Material.Outlined.FilterAlt;
+        }
+        else
+        {
+            return Icons.Material.Filled.FilterAlt;
+
+        }
+
+    }
+
+    private async void clearFilters()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+
+        await mudDataGrid.ClearFiltersAsync();
+    }
+
+    private void openFilters()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+
+        mudDataGrid.OpenFilters();
+    }
+
+    private void closeGroups()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+
+        mudDataGrid.CollapseAllGroups();
+    }
+    private void expandGroups()
+    {
+        if (mudDataGrid == null)
+        {
+            return;
+        }
+
+        mudDataGrid.ExpandAllGroups();
+    }
+    // private void deleteGroups()
+    // {
+    //     if (mudDataGrid == null)
+    //     {
+    //         return;
+    //     }
+
+    //     mudDataGrid.GroupedCol
+    //     mudDataGrid.GroupItems();
+    // }
+
+    private string _dummy;
+    private string _searchString = "";
+    private bool _sortNameByLength;
+    private MudDataGrid<MyAssessmentResource>? mudDataGrid;
+    private List<string> _events = new();
+
+
+    protected void FilterChanged(ChangeEventArgs args)
+    {
+        _searchString = args.Value.ToString();
+        //table.ReloadServerData();
+        //Console.WriteLine("Changed: args.Value.ToString()");
+
+    }
+
+
+    // // custom sort by name length
+    // private Func<MyAssessmentResource, object> _sortBy => x =>
+    // {
+    //     //if (_sortNameByLength)
+    //     //    return x.Title.Length;
+    //     //else
+    //     return x.Title;
+    // };
+
+
+
+    // quick filter - filter gobally across multiple columns with the same input
+    private Func<MyAssessmentResource, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.Resource_Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        // if (x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        //     return true;
+
+        // if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchString))
+        //     return true;
+
+        return false;
+        // string searchDBname = "";
+        // if (!String.IsNullOrEmpty(breadcrumb3Dbname))
+        // {
+        //     searchDBname = breadcrumb3Dbname;
+        // }
+        // else if (!String.IsNullOrEmpty(breadcrumb2Dbname))
+        // {
+        //     searchDBname = breadcrumb2Dbname;
+        // }
+        // else if (!String.IsNullOrEmpty(breadcrumb1Dbname))
+        // {
+        //     searchDBname = breadcrumb1Dbname;
+        // }
+        // else
+        // {
+
+        // }
+
+        // if (x.Tags != null)
+        // {
+        //     if (!String.IsNullOrEmpty(searchDBname))
+        //     {
+        //         if (string.IsNullOrWhiteSpace(_searchString) && x.Tags.Contains(searchDBname))
+        //             return true;
+        //         if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase) && x.Tags.Contains(searchDBname))
+        //         {
+        //             return true;
+        //         }
+        //         else if (x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase) && x.Tags.Contains(searchDBname))
+        //         {
+        //             return true;
+        //         }
+        //         else
+        //         {
+
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (string.IsNullOrWhiteSpace(_searchString))
+        //             return true;
+        //         if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        //         {
+        //             return true;
+        //         }
+        //         else if (x.Author.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        //         {
+        //             return true;
+        //         }
+        //         else
+        //         {
+
+        //         }
+
+        //     }
+        // }
+
+        return true;
+
+        //return false;
+    };
+
+
+    void selectedItemChanged(MyAssessmentResource item)
+    {
+        //_events.Insert(0, $"Event = SelectedItemsChanged, Data = {System.Text.Json.JsonSerializer.Serialize(items)}");
+
+        if (mudDataGrid == null)
+        {
+            selectedResource = null;
+
+        }
+        else if (item != null)
+        {
+
+            selectedResource = item;
+
+        }
+        else
+        {
+            selectedResource = null;
+
+        }
+
+    }
+
+
+    private MyAssessmentResource? selectedResource;
+
+
+
+
+
+    private string selectedLastTags()
+    {
+
+        int count = 0;
+        string tagsCombined = "";
+        if (mudDataGrid != null && selectedResource != null)
+        {
+
+            for (int i = 0; i <= selectedResource.affiliations.Count - 1; i++)
+            {
+                //BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+                //string classification = selectedResource.affiliations[i].classification.ToString();
+                string cat = selectedResource.affiliations[i].category.ToString();
+                string subcat = selectedResource.affiliations[i].subcategory.ToString();
+                if (!string.IsNullOrEmpty(subcat))
+                {
+                    if (!tagsCombined.Contains(subcat))
+                    {
+                        tagsCombined += subcat + ",";
+                    }
+                }
+                else if (!string.IsNullOrEmpty(cat))
+                {
+                    if (!tagsCombined.Contains(cat))
+                    {
+                        tagsCombined += cat + ",";
+                    }
+                }
+                else
+                {
+                    string classif = selectedResource.affiliations[i].classification.ToString();
+                    if (!tagsCombined.Contains(classif))
+                    {
+                        tagsCombined += classif + ",";
+                    }
+                }
+            }
+
+            //string theTags = string.Join(",",selectedResource.affiliations)
+            if (tagsCombined.EndsWith(","))
+            {
+                tagsCombined = tagsCombined.Substring(0, tagsCombined.Length - 1);
+            }
+            count = selectedResource.affiliations.Count() - 1;
+            tagsCombined = "Tags (" + count.ToString() + "): " + tagsCombined;
+
+        }
+        return tagsCombined;
+    }
+
+
+
+
+    //private string selectedTitle = "";
+    //private string selectedType = "";
+    //private string selectedWebsite = "";
+    //private string selectedCitation = "";
+    //private string selectedTags = "";
+    //private string selectedTagsCount = "";
+    //private string selectedYear = "";
+
+
+
+
+    // private string selectedTitleMudDataGrid()
+    // {
+    //     if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Title))
+    //     {
+    //         return selectedResource.Title;
+    //     }
+    //     else
+    //     {
+    //         return "";
+    //     }
+    // }
+    // private string selectedTypeMudDataGrid()
+    // {
+    //     if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.File_Format))
+    //     {
+    //         return selectedResource.File_Format;
+    //     }
+    //     else
+    //     {
+    //         return "";
+    //     }
+    // }
+    // private string selectedWebsiteMudDataGrid()
+    // {
+    //     if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Link))
+    //     {
+    //         return selectedResource.Link;
+    //     }
+    //     else
+    //     {
+    //         return "";
+    //     }
+    // }
+    // private string selectedCitationMudDataGrid()
+    // {
+    //     if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.APA_Citation))
+    //     {
+    //         return selectedResource.APA_Citation;
+    //     }
+    //     else
+    //     {
+    //         return "";
+    //     }
+    // }
+
+
+
+
+    //private string selectedCitationMudDataGrid()
+    //{
+    //    if (selectedResource != null && !String.IsNullOrEmpty(selectedResource.Tags))
+    //    {
+    //        return selectedResource.;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+
+
+
+}
+
+
+@code {
+
+    public async Task NavigateToNewTab(string url)
+    {
+        await JSRuntime.InvokeVoidAsync("open", url, "_blank");
+    }
+}
+
+@code {
+    public bool copyCitationHiddenNew(MyAssessmentResource selRes)
+    {
+        if (mudDataGrid == null || selRes == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selRes.Long_Citation))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool copyUrlHiddenNew(MyAssessmentResource selRes)
+    {
+        if (mudDataGrid == null || selRes == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selRes.URL_For_User_Guide))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public bool copyCitationHidden()
+    {
+        if (mudDataGrid == null || selectedResource == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selectedResource.Long_Citation))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool copyUrlHidden()
+    {
+        if (mudDataGrid == null || selectedResource == null)
+        {
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(selectedResource.URL_For_User_Guide))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string breadcrumb1Text = "";
+    public string breadcrumb1Dbname = "";
+    public string breadcrumb2Text = "";
+    public string breadcrumb2Dbname = "";
+    public string breadcrumb3Text = "";
+    public string breadcrumb3Dbname = "";
+
+    private string breadcrumb1style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb1Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+    private string breadcrumb2style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb2Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+    private string breadcrumb3style()
+    {
+        if (string.IsNullOrEmpty(breadcrumb3Text))
+        {
+            return "display:none";
+        }
+        else
+        {
+            return "display:flex";
+        }
+    }
+
+}
+
+@code {
+    MudTabs? tabs;
+    MudTabPanel panel01;
+    MudTabPanel panel02;
+    MudTabPanel panel03;
+
+    private string hoveredLinkDBname = "";
+    public void setHoveredLinkDBname(string HoveredName)
+    {
+        hoveredLinkDBname = HoveredName;
+    }
+    public void removeHoveredLinkDBname()
+    {
+        //if(hoveredLinkDBname==UnHoveredName)
+        //{
+        //    hoveredLinkDBname = "";
+        //}
+        hoveredLinkDBname = "";
+    }
+
+    string headerText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small; font-weight:bold";
+    string subheaderText = "color:black; text-transform:none; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:small";
+
+    string titleText = "color:black; text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
+    string breadcrumbText = "color:black; text-transform:none; font-family:'sans-serif', Arial; font-size:14px";
+
+    public string getLinkHeaderText(string dbname)
+    {
+        if (hoveredLinkDBname == dbname)
+        {
+            return "text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:bold";
+        }
+        else
+        {
+            return "text-transform:none; font-weight:normal; font-family:'sans-serif', Tahoma, Geneva, Verdana, Segoe UI; font-size:medium; font-weight:normal";
+        }
+    }
+
+    void Activate(int index)
+    {
+        tabs.ActivatePanel(index);
+    }
+
+    void Activate(MudTabPanel panel)
+    {
+        tabs.ActivatePanel(panel);
+    }
+
+    void Activate(object id)
+    {
+        tabs.ActivatePanel(id);
+    }
+
+    public void searchTag(MouseEventArgs args, string searchName)
+    {
+        //Console.WriteLine("Search: " + searchName);
+        if (String.IsNullOrEmpty(searchName))
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+            return;
+        }
+
+        string[] partArray = searchName.Split("_");
+        if (partArray == null)
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+            return;
+        }
+
+        List<string> partList = partArray.ToList();
+
+        if (partList.Count == 1)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+        else if (partList.Count == 2)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = partList[1];
+            breadcrumb2Dbname = partList[0] + "_" + partList[1];
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+        else if (partList.Count == 3)
+        {
+            breadcrumb1Text = partList[0];
+            breadcrumb1Dbname = partList[0];
+            breadcrumb2Text = partList[1];
+            breadcrumb2Dbname = partList[0] + "_" + partList[1];
+            breadcrumb3Text = partList[2];
+            breadcrumb3Dbname = partList[0] + "_" + partList[1] + "_" + partList[2];
+        }
+        else
+        {
+            breadcrumb1Text = "";
+            breadcrumb1Dbname = "";
+            breadcrumb2Text = "";
+            breadcrumb2Dbname = "";
+            breadcrumb3Text = "";
+            breadcrumb3Dbname = "";
+        }
+
+
+        //List<BreadcrumbItem> temp = new List<BreadcrumbItem>();
+        //for (int i = 0; i <= partList.ToList().Count - 1; i++)
+        //{
+        //    BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+        //}
+        //{
+        //new BreadcrumbItem("Home", href: "#"),
+        //new BreadcrumbItem("Link 1", href: "#"),
+        //new BreadcrumbItem("Link 2", href: null, disabled: true)
+        //};
+
+
+    }
+
+}
+
+
+@code {
+
+    private string isHidden()
+    {
+        if (mudDataGrid != null && mudDataGrid.SelectedItem != null)
+        {
+            return "visible";
+        }
+        else
+        {
+            return "invisible";
+        }
+    }
+
+
+    //bool _drawerOpen = true;
+
+    //void DrawerToggle()
+    //{
+    //    _drawerOpen = !_drawerOpen;
+    //}
+
+    //private void deselect()
+    //{
+    //    mudTable.SelectedItem = null;
+    //}
+}
+
+
+@code
+{
+    private int[] pageSizeOptions = new int[] { 100 };
+}
+
+
+<style>
+    .selected {
+        background-color: #1E88E5 !important;
+    }
+
+        .selected > td {
+            color: white !important;
+        }
+
+            .selected > td .mud-input {
+                color: white !important;
+            }
+</style>
+
+@code {
+    private int selectedRowNumber = -1;
+    private List<string> clickedEvents = new();
+    private MudTable<MyAssessmentResource> mudTable;
+
+    private void MyRowClickEvent(TableRowClickEventArgs<MyAssessmentResource> tableRowClickEventArgs)
+    {
+        //clickedEvents.Add("Row has been clicked");
+    }
+
+    private string SelectedRowClassFunc(MyAssessmentResource document, int rowNumber)
+    {
+        if (selectedRowNumber == rowNumber)
+        {
+            selectedRowNumber = -1;
+            //clickedEvents.Add("Selected Row: None");
+            selectedResource = null;
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+            return string.Empty;
+        }
+        else if (mudTable.SelectedItem != null && mudTable.SelectedItem.Equals(document))
+        {
+            selectedRowNumber = rowNumber;
+            //clickedEvents.Add($"Selected Row: {rowNumber}");
+
+            selectedResource = mudTable.SelectedItem;
+            //selectedTitle = document.Title;
+            //selectedType = document.Type;
+            //selectedWebsite = document.Website;
+            //selectedCitation = document.Citation;
+
+            return "selected";
+        }
+        else
+        {
+            selectedResource = null;
+            //selectedTitle = "";
+            //selectedType = "";
+            //selectedWebsite = "";
+            //selectedCitation = "";
+            return string.Empty;
+        }
+    }
+
+    //private string selectedTitle()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Title;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedType()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Type;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedWebsite()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Website;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+    //private string selectedCitation()
+    //{
+    //    if (mudTable != null && mudTable.SelectedItem != null)
+    //    {
+    //        return mudTable.SelectedItem.Citation;
+    //    }
+    //    else
+    //    {
+    //        return "";
+    //    }
+    //}
+}
+
+
+@code {
+
+    private String GetTypeColor(MyAssessmentResource selRes)
+    {
+        if (selRes == null)
+        {
+            return "color:black; font-size:11px; font-weight:normal;font-family:Arial; text-transform:uppercase";
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(selRes.URL_For_User_Guide))
+            {
+                return "color:black; font-size:11px; font-weight:normal;font-family:Arial; text-transform:uppercase";
+            }
+            else
+            {
+                return "color:#1a0dab; font-size:11px; font-weight:normal;font-family:Arial; text-transform:uppercase";
+            }
+        }
+    }
+
+    private String GetLinkColor(MyAssessmentResource selRes)
+    {
+        if (selRes == null)
+        {
+            return "color:black; font-size:14px; font-weight:normal;font-family:Arial";
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(selRes.URL_For_User_Guide))
+            {
+                return "color:black; font-size:14px; font-weight:normal;font-family:Arial";
+            }
+            else
+            {
+                return "color:#1a0dab; font-size:14px; font-weight:normal;font-family:Arial";
+            }
+        }
+    }
+
+    private MudBlazor.Color GetLink2Color(MyAssessmentResource selRes)
+    {
+        if (selRes == null)
+        {
+            return MudBlazor.Color.Dark;
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(selRes.URL_For_User_Guide))
+            {
+                return MudBlazor.Color.Dark;
+            }
+            else
+            {
+                return MudBlazor.Color.Tertiary;
+            }
+        }
+    }
+
+    private MudBlazor.Underline GetHoverableTitleLink(MyAssessmentResource selRes)
+    {
+        if (selRes == null)
+        {
+            return Underline.None;
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(selRes.URL_For_User_Guide))
+            {
+                return Underline.None;
+            }
+            else
+            {
+                return Underline.Hover;
+            }
+        }
+    }
+
+    private string GetSelectedResourceIconType(MyAssessmentResource selRes)
+    {
+        if (selRes == null)
+        {
+            return "";
+        }
+
+        if (string.IsNullOrEmpty(selRes.Assessment_Class))
+        {
+            return "";
+        }
+        switch (selRes.Assessment_Class.ToLowerInvariant())
+        {
+            case "method":
+                return Icons.Material.Filled.Scale;
+            case "model":
+                return Icons.Material.Filled.LaptopWindows;
+            case "protocol":
+                return Icons.Material.Filled.MenuBook;
+            default:
+                return "";
+        }
+    }
+
+    [Parameter] public string Text { get; set; }
+
+    private void CopyIt(string theText)
+    {
+        Text = theText;
+        CopyTextToClipboard();
+    }
+
+    private async Task CopyTextToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("copyClipboard", Text);
+    }
+
+
+    private DocsTreeview myTree;
+    private MyAssessmentResource[]? MyResourcesArray;
+    public List<MyAssessmentResource>? MyResourceList = new List<MyAssessmentResource>();
+    //IEnumerable<MyAssessmentResource> MyAssessmentResources = new List<MyAssessmentResource>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        SharedData.SetAssessmentPageSelected();
+
+        MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240315.json");
+
+        //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
+        //MyTags = MyTagsArray.ToList();
+
+        // for (int i = 0; i <= MyResourcesArray.ToList().Count - 1; i++)
+        // {
+        //     //MyResources.addResource(ref MyResourcesArray[i]);
+
+        //     if (string.IsNullOrEmpty(MyResourcesArray[i].Tags))
+        //     {
+        //         continue;
+        //     }
+
+        //     List<string> affs = MyResourcesArray[i].Tags.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
+
+        //     MyResourcesArray[i].TagsCount = affs.Count();
+
+        //     if (affs != null && affs.Count > 0)
+        //     {
+        //         for (int j = 0; j <= affs.Count - 1; j++)
+        //         {
+        //             AssessmentAffiliation a = new AssessmentAffiliation(affs[j]);
+        //             MyResourcesArray[i].affiliations.Add(a);
+        //         }
+        //     }
+
+        //     //generate the last tags
+
+        //     int count = 0;
+        //     string tagsCombined = "";
+
+        //     if (mudDataGrid != null && MyResourcesArray[i] != null)
+        //     {
+
+        //         for (int j = 0; j <= MyResourcesArray[i].affiliations.Count - 1; j++)
+        //         {
+        //             //BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
+        //             //string classification = selectedResource.affiliations[i].classification.ToString();
+        //             string cat = MyResourcesArray[i].affiliations[j].category.ToString();
+        //             string subcat = MyResourcesArray[i].affiliations[j].subcategory.ToString();
+        //             if (!string.IsNullOrEmpty(subcat))
+        //             {
+        //                 if (!tagsCombined.Contains(subcat))
+        //                 {
+        //                     tagsCombined += subcat + ",";
+        //                 }
+        //             }
+        //             else if (!string.IsNullOrEmpty(cat))
+        //             {
+        //                 if (!tagsCombined.Contains(cat))
+        //                 {
+        //                     tagsCombined += cat + ",";
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 string classif = MyResourcesArray[i].affiliations[j].classification.ToString();
+        //                 if (!tagsCombined.Contains(classif))
+        //                 {
+        //                     tagsCombined += classif + ",";
+        //                 }
+        //             }
+        //         }
+
+        //         //string theTags = string.Join(",",selectedResource.affiliations)
+        //         if (tagsCombined.EndsWith(","))
+        //         {
+        //             tagsCombined = tagsCombined.Substring(0, tagsCombined.Length - 1);
+        //         }
+        //         count = MyResourcesArray[i].affiliations.Count() - 1;
+        //         tagsCombined = "Tags (" + count.ToString() + "): " + tagsCombined;
+
+        //     }
+        //     MyResourcesArray[i].LastTags = tagsCombined;
+
+
+        // }
+
+        // MyResourceList = MyResourcesArray.ToList();
+
+        // //myTree.updateTree(MyResourceList);
+
+        MyResourceList = MyResourcesArray.ToList();
+
+        _selectedItems = MyResourceList.ToHashSet();
+        _filterItems = MyResourceList.ToHashSet();
+        _filterDefinition = new FilterDefinition<MyAssessmentResource>
+            {
+                FilterFunction = x => _filterItems.Contains(x)
+            };
+
+        string f = "hi there";
+    }
+
+
+    public static int? ShortNumber(int? Val)
+    {
+        if (string.IsNullOrEmpty(Val.ToString()))
+        {
+            return 1999;
+        }
+        else
+        {
+            return Val;
+        }
+    }
+    public static string? ShortText(string? Text, int digits = 50)
+    {
+        if (!string.IsNullOrEmpty(Text) && (Text.Length > digits))
+        {
+            return Text.Substring(0, digits) + "...";
+        }
+        else
+        {
+            return Text;
+        }
+    }
+
+
+    private string searchString1 = "";
+    private MyAssessmentResource selectedItem1 = null;
+    private HashSet<MyAssessmentResource> selectedItems = new HashSet<MyAssessmentResource>();
+
+    // private bool FilterFunc1(MyAssessmentResource Document) => FilterFunc(Document, searchString1);
+
+    // private bool FilterFunc(MyAssessmentResource Document, string searchString)
+    // {
+    //     string searchDBname = "";
+    //     if (!String.IsNullOrEmpty(breadcrumb3Dbname))
+    //     {
+    //         searchDBname = breadcrumb3Dbname;
+    //     }
+    //     else if (!String.IsNullOrEmpty(breadcrumb2Dbname))
+    //     {
+    //         searchDBname = breadcrumb2Dbname;
+    //     }
+    //     else if (!String.IsNullOrEmpty(breadcrumb1Dbname))
+    //     {
+    //         searchDBname = breadcrumb1Dbname;
+    //     }
+    //     else
+    //     {
+
+    //     }
+
+    //     if (Document.Tags != null)
+    //     {
+    //         if (!String.IsNullOrEmpty(searchDBname))
+    //         {
+    //             if (string.IsNullOrWhiteSpace(searchString) && Document.Tags.Contains(searchDBname))
+    //                 return true;
+    //             if (Document.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase) && Document.Tags.Contains(searchDBname))
+    //                 return true;
+    //         }
+    //         else
+    //         {
+    //             if (string.IsNullOrWhiteSpace(searchString))
+    //                 return true;
+    //             if (Document.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+    //                 return true;
+    //         }
+    //     }
+
+
+
+    //     //if (!string.IsNullOrEmpty(Document.Author))
+    //     //{
+    //     //    if (Document.Author.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+    //     //        return true;
+    //     //}
+    //     //if (!string.IsNullOrEmpty(Document.Year.ToString()))
+    //     //{
+    //     //    if (Document.Year.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+    //     //        return true;
+    //     //}
+
+    //     //if (Document.Author.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+    //     //    return true;
+    //     //if ($"{Document.Number} {Document.Position} {Document.Molar}".Contains(searchString))
+    //     //    return true;
+    //     return false;
+    // }
+
+    DataGridFilterMode _filterMode = DataGridFilterMode.Simple;
+    DataGridFilterCaseSensitivity _caseSensitivity = DataGridFilterCaseSensitivity.Default;
+
+}
+
+
+
+
+
+
