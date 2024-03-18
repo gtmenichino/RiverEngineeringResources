@@ -30,9 +30,4 @@
   <ItemGroup>
     <Folder Include="DownloadFileService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="RasMapperLib">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\HEC\HEC-RAS\6.2\RasMapperLib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>
