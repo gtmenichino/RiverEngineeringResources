@@ -77,14 +77,14 @@
 
                         <MudItem>
 
-                            <MudPaper Class="gap-0" Elevation="1">
+                            <MudPaper Class="gap-0 pl-3 mt-n6" Elevation="1">
                                 <MudStack Class="gap-0">
                                     <MudText Class="gap-0 pa-0 mb-n3" Align="Align.Center">Database Columns</MudText>
                                     <MudStack Row>
-                                    <MudCard Class="gap-0 ma-0 pa-0" Elevation="0">
+                                    <MudCard Class="gap-0 pa-0" Elevation="0">
 
-                                        <MudCardContent Class="gap-0 ma-0 pa-0">
-                                            <MudText Class="gap-0 ma-0 pa-0" Align="Align.Center">Functional Categories</MudText>
+                                        <MudCardContent Class="gap-0 pa-0">
+                                            <MudText Class="gap-0 pa-0" Align="Align.Center">Functional Categories</MudText>
 
 
                                             <MudGrid Justify="Justify.Center" Style="align-items: center;">
@@ -127,16 +127,16 @@
                                                     </MudStack>
                                                     <MudStack Row>
                                                         <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                                            <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Hydraulics_Switch1" Label="@GetFormattedLabel(nameof(Hydraulics_Switch1))" Color="Color.Info" />
+                                                            <MudSwitch Class="gap-0 my-n2 mt-n1 py-0" T="bool" @bind-Checked="@Hydraulics_Switch1" Label="@GetFormattedLabel(nameof(Hydraulics_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleHS" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleHS" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleHRE" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleHRE" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleHDC" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleHDC" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
 
@@ -145,13 +145,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Geomorphology_Switch1" Label="@GetFormattedLabel(nameof(Geomorphology_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoS" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleGeoS" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoRE" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleGeoRE" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleGeoDC" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleGeoDC" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
                                                     <MudStack Row>
@@ -159,13 +159,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Physicochemical_Switch1" Label="@GetFormattedLabel(nameof(Physicochemical_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyS" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="togglePhyS" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyRE" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="togglePhyRE" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="togglePhyDC" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="togglePhyDC" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
                                                     <MudStack Row>
@@ -173,13 +173,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Biology_Switch1" Label="@GetFormattedLabel(nameof(Biology_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioS" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioS" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioRE" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioRE" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleBioDC" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioDC" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
                                                     <MudStack Row>
@@ -187,13 +187,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Aq_Org_Passage_Switch1" Label="@GetFormattedLabel(nameof(Aq_Org_Passage_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleAOPS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleAOPRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleAOPDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleAOPDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
                                                     <MudStack Row>
@@ -201,13 +201,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Riparian_Switch1" Label="@GetFormattedLabel(nameof(Riparian_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleRipS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleRipS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox T="bool "CheckedChanged="toggleRipRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool "CheckedChanged="toggleRipRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox T="bool" CheckedChanged="toggleRipDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleRipDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
 
@@ -216,61 +216,51 @@
                                             </MudGrid>
 
                                         </MudCardContent>
-                                        <MudCardActions>
-                                        </MudCardActions>
 
                                     </MudCard>
 
-                                    <MudCard Elevation="0">
+                                    <MudCard Elevation="0" Class="gap-0 ma-0 pa-0">
 
-                                        <MudCardContent>
+                                        <MudCardContent Class="gap-0 ma-0 pa-0">
                                             <MudText Align="Align.Center">Metadata</MudText>
 
                                             @*                                     <MudSwitch T="bool" @bind-Checked="@Catalog_Number_Switch1" Label="@GetFormattedLabel(nameof(Catalog_Number_Switch1))" Color="Color.Info" />
                                             <MudSwitch T="bool" @bind-Checked="@Match_Ranking_Switch1" Label="@GetFormattedLabel(nameof(Match_Ranking_Switch1))" Color="Color.Info" /> *@
-                                            <MudSwitch T="bool" @bind-Checked="@Name_Switch1" Label="@GetFormattedLabel(nameof(Name_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Citation_Switch1" Label="@GetFormattedLabel(nameof(Citation_Switch1))" Color="Color.Info" />
-
-                                            <MudSwitch T="bool" @bind-Checked="@Sector_Switch1" Label="@GetFormattedLabel(nameof(Sector_Switch1))" Color="Color.Info" />
-
-
-                                            <MudSwitch T="bool" @bind-Checked="@Developer_Switch1" Label="@GetFormattedLabel(nameof(Developer_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Year_Switch1" Label="@GetFormattedLabel(nameof(Year_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Assessment_Type_Switch1" Label="@GetFormattedLabel(nameof(Assessment_Type_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Location_Assessment_Switch1" Label="@GetFormattedLabel(nameof(Location_Assessment_Switch1))" Color="Color.Info" />
-
-
-                                            <MudSwitch T="bool" @bind-Checked="@Programmatic_Use_Switch1" Label="@GetFormattedLabel(nameof(Programmatic_Use_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Citation_Switch1" Label="@GetFormattedLabel(nameof(Citation_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Sector_Switch1" Label="@GetFormattedLabel(nameof(Sector_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Developer_Switch1" Label="@GetFormattedLabel(nameof(Developer_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Year_Switch1" Label="@GetFormattedLabel(nameof(Year_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Assessment_Type_Switch1" Label="@GetFormattedLabel(nameof(Assessment_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Location_Assessment_Switch1" Label="@GetFormattedLabel(nameof(Location_Assessment_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Programmatic_Use_Switch1" Label="@GetFormattedLabel(nameof(Programmatic_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
 
                                         </MudCardContent>
-                                        <MudCardActions>
-                                        </MudCardActions>
 
                                     </MudCard>
-                                    <MudCard Elevation="0">
+                                    <MudCard Elevation="0" Class="gap-0 ma-0 pa-0">
 
-                                        <MudCardContent>
+                                        <MudCardContent Class="gap-0 ma-0 pa-0">
                                             <MudText Align="Align.Center">Technical Data</MudText>
-                                            <MudSwitch T="bool" @bind-Checked="@Stream_Type_Requirements_Switch1" Label="@GetFormattedLabel(nameof(Stream_Type_Requirements_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Geography_Switch1" Label="@GetFormattedLabel(nameof(Geography_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Stream_Type_Requirements_Switch1" Label="@GetFormattedLabel(nameof(Stream_Type_Requirements_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Geography_Switch1" Label="@GetFormattedLabel(nameof(Geography_Switch1))" Color="Color.Info" />
 
-                                            <MudSwitch T="bool" @bind-Checked="@Impact_Switch1" Label="@GetFormattedLabel(nameof(Impact_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Adaptable_Switch1" Label="@GetFormattedLabel(nameof(Adaptable_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Time_Required_Switch1" Label="@GetFormattedLabel(nameof(Time_Required_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Training_Switch1" Label="@GetFormattedLabel(nameof(Training_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Impact_Switch1" Label="@GetFormattedLabel(nameof(Impact_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Adaptable_Switch1" Label="@GetFormattedLabel(nameof(Adaptable_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Time_Required_Switch1" Label="@GetFormattedLabel(nameof(Time_Required_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Training_Switch1" Label="@GetFormattedLabel(nameof(Training_Switch1))" Color="Color.Info" />
 
 
 
                                             @* <MudSwitch T="bool" @bind-Checked="@Tier_Switch1" Label="@GetFormattedLabel(nameof(Tier_Switch1))" Color="Color.Info" /> *@
-                                            <MudSwitch T="bool" @bind-Checked="@Input_Type_Switch1" Label="@GetFormattedLabel(nameof(Input_Type_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Output_Type_Switch1" Label="@GetFormattedLabel(nameof(Output_Type_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Data_Availability_Switch1" Label="@GetFormattedLabel(nameof(Data_Availability_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Reference_Required_Switch1" Label="@GetFormattedLabel(nameof(Reference_Required_Switch1))" Color="Color.Info" />
-                                            <MudSwitch T="bool" @bind-Checked="@Performance_Standards_Switch1" Label="@GetFormattedLabel(nameof(Performance_Standards_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Input_Type_Switch1" Label="@GetFormattedLabel(nameof(Input_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Output_Type_Switch1" Label="@GetFormattedLabel(nameof(Output_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Data_Availability_Switch1" Label="@GetFormattedLabel(nameof(Data_Availability_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Reference_Required_Switch1" Label="@GetFormattedLabel(nameof(Reference_Required_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Performance_Standards_Switch1" Label="@GetFormattedLabel(nameof(Performance_Standards_Switch1))" Color="Color.Info" />
 
                                             @*                                     <MudSwitch T="bool" @bind-Checked="@URL_For_Tool_Or_Data_Storage_Switch1" Label="@GetFormattedLabel(nameof(URL_For_Tool_Or_Data_Storage_Switch1))" Color="Color.Info" />
                                             <MudSwitch T="bool" @bind-Checked="@URL_For_User_Guide_Switch1" Label="@GetFormattedLabel(nameof(URL_For_User_Guide_Switch1))" Color="Color.Info" />
@@ -280,8 +270,6 @@
                                             <MudSwitch T="bool" @bind-Checked="@Introductory_Description_Switch1" Label="@GetFormattedLabel(nameof(Introductory_Description_Switch1))" Color="Color.Info" /> *@
 
                                         </MudCardContent>
-                                        <MudCardActions>
-                                        </MudCardActions>
 
                                     </MudCard>
                                 </MudStack>
@@ -299,12 +287,12 @@
 
                 </MudGrid>
 
-                <MudDataGrid Class="" ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all;" T="MyAssessmentResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterMode="DataGridFilterMode.ColumnFilterMenu" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="true" QuickFilter="@_quickFilter"
+                <MudDataGrid ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all;" T="MyAssessmentResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterMode="DataGridFilterMode.ColumnFilterMenu" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="true" QuickFilter="@_quickFilter"
                              Hideable="false" Groupable="true" DragDropColumnReordering="true" DragIndicatorIcon="" DragIndicatorSize="0" HorizontalScrollbar="true" Outlined="true" SelectedItemChanged="@selectedItemChanged" Dense="true" Bordered="true" Striped="false" Hover="false" Virtualize="false" FixedHeader="false" ShowMenuIcon="true">
                     <ToolBarContent>
                         <MudGrid>
-                            <MudItem xs="2" />
-                            <MudItem xs="8">
+                            <MudItem xs="2" Class="gap-0 my-n3 pa-0" />
+                            <MudItem xs="8" Class="gap-0 my-n3 pa-0" >
                                 <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
 
                                     <MudTextField @bind-Value="_searchString" Clearable="true" Placeholder="Search" Margin="Margin.Dense" Adornment="Adornment.Start" Immediate="false"
@@ -315,7 +303,7 @@
                                     @* <MudIconButton Class="mt-4" Icon="@Icons.Material.Filled.Sort" Size="Size.Small" OnClick="@clearFilters" aria-label="filter"></MudIconButton> *@
                                 </MudStack>
                             </MudItem>
-                            <MudItem xs="2" />
+                            <MudItem xs="2" Class="gap-0 my-n3 pa-0" />
                         </MudGrid>
 
 
@@ -453,7 +441,7 @@
 
                         <PagerContent>
 
-                            <MudDataGridPager T=" MyAssessmentResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
+                            <MudDataGridPager Class="gap-0" T=" MyAssessmentResource" PageSizeOptions="new int[]{10, 25, 50, 100}" />
 
                         </PagerContent>
 
