@@ -5,6 +5,7 @@
 @inject HttpClient httpClient
 @using RiverEngineeringResources.Shared
 @inject SharedData SharedData
+@implements IAsyncDisposable
 
 <PageTitle>Assessment</PageTitle>
 
@@ -77,9 +78,9 @@
 
                         <MudItem>
 
-                            <MudPaper Class="gap-0 pl-3 mt-n6" Elevation="1">
+                            <MudPaper Class="gap-0 pl-3 mt-n4" Elevation="1">
                                 <MudStack Class="gap-0">
-                                    <MudText Class="gap-0 pa-0 mb-n3" Align="Align.Center">Database Columns</MudText>
+                                    <MudText Class="gap-0 pa-0 mb-n1" Align="Align.Center">Database Columns</MudText>
                                     <MudStack Row>
                                     <MudCard Class="gap-0 pa-0" Elevation="0">
 
@@ -219,7 +220,7 @@
 
                                     </MudCard>
 
-                                    <MudCard Elevation="0" Class="gap-0 ma-0 pa-0">
+                                    <MudCard Elevation="0" Class="gap-0 mx-3 pa-0">
 
                                         <MudCardContent Class="gap-0 ma-0 pa-0">
                                             <MudText Align="Align.Center">Metadata</MudText>
@@ -236,7 +237,7 @@
                                             <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
                                             <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
                                             <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n0"  T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
 
                                         </MudCardContent>
 
@@ -260,7 +261,7 @@
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Output_Type_Switch1" Label="@GetFormattedLabel(nameof(Output_Type_Switch1))" Color="Color.Info" />
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Data_Availability_Switch1" Label="@GetFormattedLabel(nameof(Data_Availability_Switch1))" Color="Color.Info" />
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Reference_Required_Switch1" Label="@GetFormattedLabel(nameof(Reference_Required_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Performance_Standards_Switch1" Label="@GetFormattedLabel(nameof(Performance_Standards_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n0" T="bool" @bind-Checked="@Performance_Standards_Switch1" Label="@GetFormattedLabel(nameof(Performance_Standards_Switch1))" Color="Color.Info" />
 
                                             @*                                     <MudSwitch T="bool" @bind-Checked="@URL_For_Tool_Or_Data_Storage_Switch1" Label="@GetFormattedLabel(nameof(URL_For_Tool_Or_Data_Storage_Switch1))" Color="Color.Info" />
                                             <MudSwitch T="bool" @bind-Checked="@URL_For_User_Guide_Switch1" Label="@GetFormattedLabel(nameof(URL_For_User_Guide_Switch1))" Color="Color.Info" />
@@ -448,6 +449,10 @@
                     </MudDataGrid>
 
                     @* <MudDivider DividerType="DividerType.FullWidth" Class="my-6"/> *@
+                    <MudPaper Class="d-flex justify-end flex-grow-1 gap-4" Elevation="0">
+                        <MudButton OnClick="@DownloadFile" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Download" Color="Color.Default">Download</MudButton>
+                    </MudPaper>
+                    
 
                     <MudStack Row>
 
@@ -608,6 +613,26 @@
 
 
     @code {
+    public ValueTask<object> PromptDownload(string filename, byte[] fileBytes)
+    {
+        // Construct the file path
+        string fileName = "2024-03-18_SAR.csv";
+        string filePath = Path.Combine("sample-data", fileName);
+
+        // See also BlazorServerHelpers.js for the promptDownload(...) method.
+        return module.InvokeAsync<object>("promptDownload", filename, Convert.ToBase64String(fileBytes));
+    }
+    private async Task DownloadFile()
+    {
+        // Construct the file path
+        string fileName = "2024-03-18_SAR.csv";
+        string filePath = Path.Combine("sample-data", fileName);
+
+        // Call JavaScript interop method to trigger file download
+        await module.InvokeVoidAsync("downloadFile", filePath, fileName);
+    }
+
+
     private IEnumerable<string> _value2 = new[] { "" };
     private string _value3 = "";
 
@@ -2041,97 +2066,33 @@ setFilter();
 
         MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240315.json");
 
-        //MyTagsArray = await Http.GetFromJsonAsync<customTag[]>("sample-data/Tags.json");
-        //MyTags = MyTagsArray.ToList();
-
-        // for (int i = 0; i <= MyResourcesArray.ToList().Count - 1; i++)
-        // {
-        //     //MyResources.addResource(ref MyResourcesArray[i]);
-
-        //     if (string.IsNullOrEmpty(MyResourcesArray[i].Tags))
-        //     {
-        //         continue;
-        //     }
-
-        //     List<string> affs = MyResourcesArray[i].Tags.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
-
-        //     MyResourcesArray[i].TagsCount = affs.Count();
-
-        //     if (affs != null && affs.Count > 0)
-        //     {
-        //         for (int j = 0; j <= affs.Count - 1; j++)
-        //         {
-        //             AssessmentAffiliation a = new AssessmentAffiliation(affs[j]);
-        //             MyResourcesArray[i].affiliations.Add(a);
-        //         }
-        //     }
-
-        //     //generate the last tags
-
-        //     int count = 0;
-        //     string tagsCombined = "";
-
-        //     if (mudDataGrid != null && MyResourcesArray[i] != null)
-        //     {
-
-        //         for (int j = 0; j <= MyResourcesArray[i].affiliations.Count - 1; j++)
-        //         {
-        //             //BreadcrumbItem newBC = new BreadcrumbItem(partList[i].ToString(), null);
-        //             //string classification = selectedResource.affiliations[i].classification.ToString();
-        //             string cat = MyResourcesArray[i].affiliations[j].category.ToString();
-        //             string subcat = MyResourcesArray[i].affiliations[j].subcategory.ToString();
-        //             if (!string.IsNullOrEmpty(subcat))
-        //             {
-        //                 if (!tagsCombined.Contains(subcat))
-        //                 {
-        //                     tagsCombined += subcat + ",";
-        //                 }
-        //             }
-        //             else if (!string.IsNullOrEmpty(cat))
-        //             {
-        //                 if (!tagsCombined.Contains(cat))
-        //                 {
-        //                     tagsCombined += cat + ",";
-        //                 }
-        //             }
-        //             else
-        //             {
-        //                 string classif = MyResourcesArray[i].affiliations[j].classification.ToString();
-        //                 if (!tagsCombined.Contains(classif))
-        //                 {
-        //                     tagsCombined += classif + ",";
-        //                 }
-        //             }
-        //         }
-
-        //         //string theTags = string.Join(",",selectedResource.affiliations)
-        //         if (tagsCombined.EndsWith(","))
-        //         {
-        //             tagsCombined = tagsCombined.Substring(0, tagsCombined.Length - 1);
-        //         }
-        //         count = MyResourcesArray[i].affiliations.Count() - 1;
-        //         tagsCombined = "Tags (" + count.ToString() + "): " + tagsCombined;
-
-        //     }
-        //     MyResourcesArray[i].LastTags = tagsCombined;
-
-
-        // }
-
-        // MyResourceList = MyResourcesArray.ToList();
-
-        // //myTree.updateTree(MyResourceList);
-
         MyResourceList = MyResourcesArray.ToList();
 
-        _selectedItems = MyResourceList.ToHashSet();
-        _filterItems = MyResourceList.ToHashSet();
-        _filterDefinition = new FilterDefinition<MyAssessmentResource>
-            {
-                FilterFunction = x => _filterItems.Contains(x)
-            };
-
         string f = "hi there";
+    }
+
+    private IJSObjectReference? module;
+    private IJSObjectReference? _chartReference;
+    private string? result;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./assess.js");
+            if (module != null)
+            {
+                result = await module.InvokeAsync<string>("load");
+                await module.InvokeVoidAsync("initializeDotnetHelper", DotNetObjectReference.Create(this));
+
+            }
+        }
+    }
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
     }
 
 
