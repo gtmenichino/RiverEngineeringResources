@@ -174,13 +174,13 @@
                                                             <MudSwitch Class="gap-0 mb-n2 mt-n1 py-0" T="bool" @bind-Checked="@Biology_Switch1" Label="@GetFormattedLabel(nameof(Biology_Switch1))" Color="Color.Info" />
                                                         </MudPaper>
                                                         <MudTooltip Text="Semi-Quantitative">
-                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioS" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioS" @bind-Value="@biology_and_habitat_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioRE" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioRE" @bind-Value="@biology_and_habitat_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
-                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioDC" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleBioDC" @bind-Value="@biology_and_habitat_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                     </MudStack>
                                                     <MudStack Row>
@@ -724,14 +724,14 @@
             mudDataGrid.AddFilterAsync(_physFD);
         }
 
-        if (biology_s ||
-            biology_re ||
-            biology_dc)
+        if (biology_and_habitat_s ||
+            biology_and_habitat_re ||
+            biology_and_habitat_dc)
         {
             _bioFD.FilterFunction = x =>
-(biology_s && x.Biology != null && x.Biology.ToLowerInvariant().Contains(semiQuant)) ||
-(biology_re && x.Biology != null && x.Biology.ToLowerInvariant().Contains(rapidEmp)) ||
-(biology_dc && x.Biology != null && x.Biology.ToLowerInvariant().Contains(detailed));
+(biology_and_habitat_s && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(semiQuant)) ||
+(biology_and_habitat_re && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(rapidEmp)) ||
+    (biology_and_habitat_dc && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_bioFD);
         }
 
@@ -826,19 +826,19 @@
     public void toggleBioS(bool toggled)
     {
 
-        biology_s = toggled;
+        biology_and_habitat_s = toggled;
         setFilter();
     }
     public void toggleBioRE(bool toggled)
     {
 
-        biology_re = toggled;
+        biology_and_habitat_re = toggled;
         setFilter();
     }
     public void toggleBioDC(bool toggled)
     {
 
-        biology_dc = toggled;
+        biology_and_habitat_dc = toggled;
         setFilter();
     }
 
@@ -1030,9 +1030,9 @@ setFilter();
     public bool physicochemical_s { get; set; } = false;
     public bool physicochemical_re { get; set; } = false;
     public bool physicochemical_dc { get; set; } = false;
-    public bool biology_s { get; set; } = false;
-    public bool biology_re { get; set; } = false;
-    public bool biology_dc { get; set; } = false;
+    public bool biology_and_habitat_s { get; set; } = false;
+    public bool biology_and_habitat_re { get; set; } = false;
+    public bool biology_and_habitat_dc { get; set; } = false;
     public bool aqorgpass_s { get; set; } = false;
     public bool aqorgpass_re { get; set; } = false;
     public bool aqorgpass_dc { get; set; } = false;
