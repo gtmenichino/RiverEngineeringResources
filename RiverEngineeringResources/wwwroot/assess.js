@@ -26,10 +26,22 @@ export function promptDownload(fileName, fileBytesBase64) {
     document.body.removeChild(hyperlink);
 }
 
+export function openFileNewTab(filePath) {
+    const anchor = document.createElement('a');
+    anchor.href = filePath;
+    anchor.target = '_blank'; // Ensures it opens in a new tab
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+}
+
 export function downloadFile(filePath, fileName) {
     const anchor = document.createElement('a');
     anchor.href = filePath;
-    anchor.download = fileName;
+    //anchor.download = fileName;
+    //alert("Hi");
+    anchor.target = '_blank'; // Ensures it opens in a new tab
     anchor.style.display = 'none';
     document.body.appendChild(anchor);
     anchor.click();
