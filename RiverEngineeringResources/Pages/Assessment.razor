@@ -616,7 +616,7 @@
     public ValueTask<object> PromptDownload(string filename, byte[] fileBytes)
     {
         // Construct the file path
-        string fileName = "2024-03-18_SAR.csv";
+        string fileName = "2024-04-26_SAR.csv";
         string filePath = Path.Combine("sample-data", fileName);
 
         // See also BlazorServerHelpers.js for the promptDownload(...) method.
@@ -625,7 +625,7 @@
     private async Task DownloadFile()
     {
         // Construct the file path
-        string fileName = "2024-03-18_SAR.csv";
+        string fileName = "2024-04-26_SAR.csv";
         string filePath = Path.Combine("sample-data", fileName);
 
         // Call JavaScript interop method to trigger file download
@@ -2064,7 +2064,7 @@ setFilter();
     {
         SharedData.SetAssessmentPageSelected();
 
-        MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240315.json");
+        MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240426.json");
 
         MyResourceList = MyResourcesArray.ToList();
 
