@@ -1,0 +1,79 @@
+/* /ClipboardServiceFolder/CopyToClipboardButton.razor.rz.scp.css */
+/*﻿.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}*/
+/* /Pages/Assessment.razor.rz.scp.css */
+a[b-rwaet60wx3] {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover[b-rwaet60wx3] {
+        font-weight: 900;
+    }
+
+
+.breadcrumb[b-rwaet60wx3] {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eed;
+}
+
+.breadcrumb-item[b-rwaet60wx3] {
+    display: inline;
+    font-size: 18px;
+}
+
+.breadcrumb li + li[b-rwaet60wx3]:before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
+.breadcrumb-item a[b-rwaet60wx3] {
+    color: #2e4053;
+    text-decoration: none;
+}
+
+    .breadcrumb-item a:hover[b-rwaet60wx3] {
+        color: red;
+    }
+/* /Pages/Engineering.razor.rz.scp.css */
+a[b-pbsysu1s6d] {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover[b-pbsysu1s6d] {
+        font-weight: 900;
+    }
+
+
+.breadcrumb[b-pbsysu1s6d] {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eed;
+}
+
+.breadcrumb-item[b-pbsysu1s6d] {
+    display: inline;
+    font-size: 18px;
+}
+
+.breadcrumb li + li[b-pbsysu1s6d]:before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
+.breadcrumb-item a[b-pbsysu1s6d] {
+    color: #2e4053;
+    text-decoration: none;
+}
+
+    .breadcrumb-item a:hover[b-pbsysu1s6d] {
+        color: red;
+    }
