@@ -73,11 +73,45 @@ namespace RiverEngineeringResources.Shared
         public int? TagsCount { get; set; }
         public string? LastTags { get; set; }
 
+        public int? Catalog_Number_Int
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Catalog_Number))
+                {
+                    return 0;
+                }
 
+                if (int.TryParse(Catalog_Number, out var result))
+                {
+                    return result;
+                }
 
+                // If the parsing fails, return 0
+                return 0;
+            }
+        }
+        public int? Year_Of_Publication_Or_Latest_Update_Int
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Year_of_publication_or_latest_update))
+                {
+                    return 0;
+                }
 
-        public int? Catalog_Number { get; set; }
-        public int? Match_Ranking { get; set; }
+                if (int.TryParse(Year_of_publication_or_latest_update, out var result))
+                {
+                    return result;
+                }
+
+                // If the parsing fails, return 0
+                return 0;
+            }
+        }
+
+        public string? Catalog_Number { get; set; }
+        public string? Match_Ranking { get; set; }
         public string? Resource_Name { get; set; }
         public string? Abbreviated_Citation { get; set; }
         public string? Perceived_Impact { get; set; }
@@ -86,7 +120,7 @@ namespace RiverEngineeringResources.Shared
         public string? Geographic_Applicability { get; set; }
         public string? Adaptable_To_Other_Locations { get; set; }
         public string? Agency_Or_Organization { get; set; }
-        public int? Year_Of_Publication_Or_Latest_Update { get; set; }
+        public string? Year_of_publication_or_latest_update { get; set; }
         public string? Assessment_Class { get; set; }
         public string? Hydrology { get; set; }
         public string? Hydraulics { get; set; }
@@ -119,6 +153,8 @@ namespace RiverEngineeringResources.Shared
         public string? Long_Citation { get; set; }
         public string? Issues { get; set; }
         public string? Introductory_Description { get; set; }
+
+
 
 
 

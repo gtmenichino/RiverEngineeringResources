@@ -26,6 +26,26 @@ export function promptDownload(fileName, fileBytesBase64) {
     document.body.removeChild(hyperlink);
 }
 
+export function downloadCsv(fileName, content) {
+    // Create a Blob from the CSV content with the correct MIME type for CSV
+    const blob = new Blob([content], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+
+    // Create an invisible anchor element to initiate the download
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = fileName;
+    anchor.style.display = 'none';
+
+    // Append the anchor to the body, click it, and remove it
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+
+    // Release the object URL after the download is complete
+    URL.revokeObjectURL(url);
+}
+
 export function downloadFile(filePath, fileName) {
     const anchor = document.createElement('a');
     anchor.href = filePath;
@@ -35,3 +55,4 @@ export function downloadFile(filePath, fileName) {
     anchor.click();
     document.body.removeChild(anchor);
 }
+

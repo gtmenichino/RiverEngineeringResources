@@ -2,6 +2,12 @@
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @using System.Net.Http.Json
+@using System.Text.Json
+@using System.Text.RegularExpressions
+@using CsvHelper
+@using CsvHelper.Configuration
+@using System.Globalization
+@using System.IO
 @inject HttpClient httpClient
 @using RiverEngineeringResources.Shared
 @inject SharedData SharedData
@@ -205,7 +211,7 @@
                                                             <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleRipS" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Rapid Empirical">
-                                                            <MudCheckBox Class="gap-0 my-n1" T="bool "CheckedChanged="toggleRipRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                                                            <MudCheckBox Class="gap-0 my-n1" T="bool " CheckedChanged="toggleRipRE" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
                                                         </MudTooltip>
                                                         <MudTooltip Text="Detailed Data Collection">
                                                             <MudCheckBox Class="gap-0 my-n1" T="bool" CheckedChanged="toggleRipDC" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
@@ -228,16 +234,16 @@
                                             @*                                     <MudSwitch T="bool" @bind-Checked="@Catalog_Number_Switch1" Label="@GetFormattedLabel(nameof(Catalog_Number_Switch1))" Color="Color.Info" />
                                             <MudSwitch T="bool" @bind-Checked="@Match_Ranking_Switch1" Label="@GetFormattedLabel(nameof(Match_Ranking_Switch1))" Color="Color.Info" /> *@
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Citation_Switch1" Label="@GetFormattedLabel(nameof(Citation_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Sector_Switch1" Label="@GetFormattedLabel(nameof(Sector_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Developer_Switch1" Label="@GetFormattedLabel(nameof(Developer_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Year_Switch1" Label="@GetFormattedLabel(nameof(Year_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Assessment_Type_Switch1" Label="@GetFormattedLabel(nameof(Assessment_Type_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Location_Assessment_Switch1" Label="@GetFormattedLabel(nameof(Location_Assessment_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Programmatic_Use_Switch1" Label="@GetFormattedLabel(nameof(Programmatic_Use_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n1"  T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
-                                            <MudSwitch Class="gap-0 my-n0"  T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Sector_Switch1" Label="@GetFormattedLabel(nameof(Sector_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Developer_Switch1" Label="@GetFormattedLabel(nameof(Developer_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Year_Switch1" Label="@GetFormattedLabel(nameof(Year_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Assessment_Type_Switch1" Label="@GetFormattedLabel(nameof(Assessment_Type_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Location_Assessment_Switch1" Label="@GetFormattedLabel(nameof(Location_Assessment_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Programmatic_Use_Switch1" Label="@GetFormattedLabel(nameof(Programmatic_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Region_Switch1" Label="@GetFormattedLabel(nameof(Region_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@State_Switch1" Label="@GetFormattedLabel(nameof(State_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@USACE_Division_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_Division_Use_Switch1))" Color="Color.Info" />
+                                            <MudSwitch Class="gap-0 my-n0" T="bool" @bind-Checked="@USACE_District_Use_Switch1" Label="@GetFormattedLabel(nameof(USACE_District_Use_Switch1))" Color="Color.Info" />
 
                                         </MudCardContent>
 
@@ -293,7 +299,7 @@
                     <ToolBarContent>
                         <MudGrid>
                             <MudItem xs="2" Class="gap-0 my-n3 pa-0" />
-                            <MudItem xs="8" Class="gap-0 my-n3 pa-0" >
+                            <MudItem xs="8" Class="gap-0 my-n3 pa-0">
                                 <MudStack Class="d-inline justify-center flex-grow-0" Row="true">
 
                                     <MudTextField @bind-Value="_searchString" Clearable="true" Placeholder="Search" Margin="Margin.Dense" Adornment="Adornment.Start" Immediate="false"
@@ -314,7 +320,7 @@
                     </NoRecordsContent>
                     <Columns>
                         <HierarchyColumn T="MyAssessmentResource" />
-                        <PropertyColumn Property="x => x.Catalog_Number" Title="Catalog Number" Hidden="@GetOpposite(Catalog_Number_Switch1)" Sortable="true" Filterable="false" />
+                        <PropertyColumn Property="x => x.Catalog_Number_Int" Title="Catalog Number" Hidden="@GetOpposite(Catalog_Number_Switch1)" Sortable="true" Filterable="false" />
                         <PropertyColumn Property="x => x.Match_Ranking" Title="Match Ranking" Hidden="@GetOpposite(Match_Ranking_Switch1)" Sortable="true" Filterable="false" />
                         <PropertyColumn Property="x => x.NameClip" Title="Name" StickyLeft="true" Hidden="@GetOpposite(Name_Switch1)" Sortable="true" Filterable="false" />
                         <PropertyColumn Property="x => x.Hydrology" Title="Hydrology" Hidden="@GetOpposite(Hydrology_Switch1)" DragAndDropEnabled="false" Groupable="false" Sortable="false" Filterable="false">
@@ -361,7 +367,7 @@
                         <PropertyColumn Property="x => x.Geographic_Applicability" Title="Geography" Hidden="@GetOpposite(Geography_Switch1)" Sortable="true" Filterable="true" />
                         <PropertyColumn Property="x => x.Adaptable_To_Other_Locations" Title="Adaptable" Hidden="@GetOpposite(Adaptable_Switch1)" Sortable="true" Filterable="true" />
                         <PropertyColumn Property="x => x.Agency_Or_Organization" Title="Developer" Hidden="@GetOpposite(Developer_Switch1)" Sortable="true" Filterable="true" />
-                        <PropertyColumn Property="x => x.Year_Of_Publication_Or_Latest_Update" Title="Year" Hidden="@GetOpposite(Year_Switch1)" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Year_Of_Publication_Or_Latest_Update_Int" Title="Year" Hidden="@GetOpposite(Year_Switch1)" Sortable="true" Filterable="true" />
                         <PropertyColumn Property="x => x.Assessment_Class" Title="Type" Hidden="@GetOpposite(Assessment_Type_Switch1)" Sortable="true" Filterable="true" />
                         <PropertyColumn Property="x => x.Time_Required_Tasks_Only" Title="Time" Hidden="@GetOpposite(Time_Required_Switch1)" Sortable="true" Filterable="true" />
                         <PropertyColumn Property="x => x.Training_Needed" Title="Training" Hidden="@GetOpposite(Training_Switch1)" Sortable="true" Filterable="true" />
@@ -396,7 +402,7 @@
                                 </MudStack>
 
                                 <MudStack Row="true">
-                                    <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Agency_Or_Organization - @context.Item.Year_Of_Publication_Or_Latest_Update</MudText>
+                                    <MudText Class="d-flex flex-wrap" Style="color:#006621; font-size:13px; font-weight:normal;font-family:Arial">@context.Item.Agency_Or_Organization - @context.Item.Year_Of_Publication_Or_Latest_Update_Int</MudText>
 
                                 </MudStack>
 
@@ -450,150 +456,150 @@
 
                     @* <MudDivider DividerType="DividerType.FullWidth" Class="my-6"/> *@
                     <MudPaper Class="d-flex justify-end flex-grow-1 gap-4" Elevation="0">
-                        <MudButton OnClick="@DownloadFile" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Download" Color="Color.Default">Download</MudButton>
+                        <MudButton OnClick="@DownloadCsv" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Download" Color="Color.Default">Download</MudButton>
                     </MudPaper>
-                    
+
 
                     <MudStack Row>
 
-@* 
+                    @*
                     <MudCard>
-                        <MudCardContent>
-                            <MudText Align="Align.Center" Class="mb-n4">Assessment Methods</MudText>
+                    <MudCardContent>
+                    <MudText Align="Align.Center" Class="mb-n4">Assessment Methods</MudText>
 
-                            <MudGrid Justify="Justify.Center" Style="align-items: center;">
-                                <MudItem>
-                                    <MudStack Row>
+                    <MudGrid Justify="Justify.Center" Style="align-items: center;">
+                    <MudItem>
+                    <MudStack Row>
 
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudStack>
-                                                <MudText Class="align-content-center gap-0" Color="Color.Transparent" Align="Align.Center">C</MudText>
-                                                <MudText Class="align-content-center" Align="Align.Center">Hydrology</MudText>
-                                            </MudStack>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudStack>
+                    <MudText Class="align-content-center gap-0" Color="Color.Transparent" Align="Align.Center">C</MudText>
+                    <MudText Class="align-content-center" Align="Align.Center">Hydrology</MudText>
+                    </MudStack>
 
-                                        </MudPaper>
-
-
-                                        <MudStack>
-                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">S</MudText>
-                                            <MudTooltip Text="Semi-Quantitative">
-                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                            </MudTooltip>
-                                        </MudStack>
+                    </MudPaper>
 
 
-                                        <MudStack>
-                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">RE</MudText>
-                                            <MudTooltip Text="Rapid Empirical">
-                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                            </MudTooltip>
-                                        </MudStack>
+                    <MudStack>
+                    <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">S</MudText>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
 
 
-                                        <MudStack>
-                                            <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">DC</MudText>
-                                            <MudTooltip Text="Detailed Data Collection">
-                                                <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                            </MudTooltip>
+                    <MudStack>
+                    <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">RE</MudText>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
 
-                                        </MudStack>
 
-                                    </MudStack>
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Hydraulics</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
+                    <MudStack>
+                    <MudText Class="align-content-center gap-0 mt-3 mb-n3" Align="Align.Center">DC</MudText>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @onclick="OnToggledChangedHydrology" @bind-Value="@hydrology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
 
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Geomorphology</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Physicochemical</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Biology</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Aq Org Passage</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@aqorgpass_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
-                                    <MudStack Row>
-                                        <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
-                                            <MudText Class="align-content-center" Align="Align.Center">Riparian</MudText>
-                                        </MudPaper>
-                                        <MudTooltip Text="Semi-Quantitative">
-                                            <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Rapid Empirical">
-                                            <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                        <MudTooltip Text="Detailed Data Collection">
-                                            <MudCheckBox T="bool" @bind-Value="@riparian_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
-                                        </MudTooltip>
-                                    </MudStack>
+                    </MudStack>
 
-                                </MudItem>
+                    </MudStack>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Hydraulics</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@hydraulics_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@hydraulics_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@hydraulics_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
 
-                            </MudGrid>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Geomorphology</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@geomorphology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@geomorphology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@geomorphology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Physicochemical</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@physicochemical_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@physicochemical_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@physicochemical_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Biology</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@biology_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@biology_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@biology_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Aq Org Passage</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@aqorgpass_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@aqorgpass_re" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@aqorgpass_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
+                    <MudStack Row>
+                    <MudPaper Class="d-flex align-content-center flex-wrap flex-grow-1 gap-0" Elevation="0">
+                    <MudText Class="align-content-center" Align="Align.Center">Riparian</MudText>
+                    </MudPaper>
+                    <MudTooltip Text="Semi-Quantitative">
+                    <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Rapid Empirical">
+                    <MudCheckBox T="bool" @bind-Value="@riparian_s" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    <MudTooltip Text="Detailed Data Collection">
+                    <MudCheckBox T="bool" @bind-Value="@riparian_dc" Color="Color.Primary" UnCheckedColor="Color.Default"></MudCheckBox>
+                    </MudTooltip>
+                    </MudStack>
 
-                        </MudCardContent>
-                        <MudCardActions>
-                        </MudCardActions>
+                    </MudItem>
+
+                    </MudGrid>
+
+                    </MudCardContent>
+                    <MudCardActions>
+                    </MudCardActions>
                     </MudCard>
- *@
+                    *@
 
                 </MudStack>
 
@@ -613,10 +619,26 @@
 
 
     @code {
+    private string csvContent;
+    //private string jsonContent;
+    private string errorMessage;
+
+    private async Task DownloadCsv()
+    {
+        // The name of the file that will be downloaded
+        string fileName = "Assessments.csv";
+
+        // Read the content of the file (if it is stored in the sample-data folder in wwwroot)
+        //var csvContent = await Http.GetStringAsync($"sample-data/{fileName}");
+
+        // Trigger the JavaScript function to download the file
+        await module.InvokeVoidAsync("downloadCsv", fileName, csvContent);
+    }
+
     public ValueTask<object> PromptDownload(string filename, byte[] fileBytes)
     {
         // Construct the file path
-        string fileName = "2024-04-26_SAR.csv";
+        string fileName = "2024-04-26_Assessments.csv";
         string filePath = Path.Combine("sample-data", fileName);
 
         // See also BlazorServerHelpers.js for the promptDownload(...) method.
@@ -625,7 +647,7 @@
     private async Task DownloadFile()
     {
         // Construct the file path
-        string fileName = "2024-04-26_SAR.csv";
+        string fileName = "2024-04-26_Assessments.csv";
         string filePath = Path.Combine("sample-data", fileName);
 
         // Call JavaScript interop method to trigger file download
@@ -659,7 +681,7 @@
         {
             mudDataGrid.FilterDefinitions.Remove(_hydraulicsFD);
         }
-                if (mudDataGrid.FilterDefinitions.Contains(_geoFD))
+        if (mudDataGrid.FilterDefinitions.Contains(_geoFD))
         {
             mudDataGrid.FilterDefinitions.Remove(_geoFD);
         }
@@ -667,15 +689,15 @@
         {
             mudDataGrid.FilterDefinitions.Remove(_physFD);
         }
-                        if (mudDataGrid.FilterDefinitions.Contains(_bioFD))
+        if (mudDataGrid.FilterDefinitions.Contains(_bioFD))
         {
             mudDataGrid.FilterDefinitions.Remove(_bioFD);
         }
-                        if (mudDataGrid.FilterDefinitions.Contains(_aopFD))
+        if (mudDataGrid.FilterDefinitions.Contains(_aopFD))
         {
             mudDataGrid.FilterDefinitions.Remove(_aopFD);
         }
-                        if (mudDataGrid.FilterDefinitions.Contains(_ripFD))
+        if (mudDataGrid.FilterDefinitions.Contains(_ripFD))
         {
             mudDataGrid.FilterDefinitions.Remove(_ripFD);
         }
@@ -685,20 +707,20 @@
             hydrology_dc)
         {
             _hydrologyFD.FilterFunction = x =>
-(hydrology_s && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(semiQuant)) ||
-(hydrology_re && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(rapidEmp)) ||
-(hydrology_dc && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(detailed));
+    (hydrology_s && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(semiQuant)) ||
+    (hydrology_re && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(rapidEmp)) ||
+    (hydrology_dc && x.Hydrology != null && x.Hydrology.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_hydrologyFD);
         }
 
-        if (hydraulics_s||
+        if (hydraulics_s ||
             hydraulics_re ||
             hydraulics_dc)
         {
             _hydraulicsFD.FilterFunction = x =>
-(hydraulics_s && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(semiQuant)) ||
-(hydraulics_re && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(rapidEmp)) ||
-(hydraulics_dc && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(detailed));
+    (hydraulics_s && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(semiQuant)) ||
+    (hydraulics_re && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(rapidEmp)) ||
+    (hydraulics_dc && x.Hydraulics != null && x.Hydraulics.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_hydraulicsFD);
         }
 
@@ -707,9 +729,9 @@
             geomorphology_dc)
         {
             _geoFD.FilterFunction = x =>
-(geomorphology_s && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(semiQuant)) ||
-(geomorphology_re && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(rapidEmp)) ||
-(geomorphology_dc && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(detailed));
+    (geomorphology_s && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(semiQuant)) ||
+    (geomorphology_re && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(rapidEmp)) ||
+    (geomorphology_dc && x.Geomorphology != null && x.Geomorphology.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_geoFD);
         }
 
@@ -718,9 +740,9 @@
             physicochemical_dc)
         {
             _physFD.FilterFunction = x =>
-(physicochemical_s && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(semiQuant)) ||
-(physicochemical_re && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(rapidEmp)) ||
-(physicochemical_dc && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(detailed));
+    (physicochemical_s && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(semiQuant)) ||
+    (physicochemical_re && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(rapidEmp)) ||
+    (physicochemical_dc && x.Physicochemical != null && x.Physicochemical.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_physFD);
         }
 
@@ -729,8 +751,8 @@
             biology_and_habitat_dc)
         {
             _bioFD.FilterFunction = x =>
-(biology_and_habitat_s && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(semiQuant)) ||
-(biology_and_habitat_re && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(rapidEmp)) ||
+    (biology_and_habitat_s && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(semiQuant)) ||
+    (biology_and_habitat_re && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(rapidEmp)) ||
     (biology_and_habitat_dc && x.Biology_And_Stream_Habitat != null && x.Biology_And_Stream_Habitat.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_bioFD);
         }
@@ -740,9 +762,9 @@
             aqorgpass_dc)
         {
             _aopFD.FilterFunction = x =>
-(aqorgpass_s && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(semiQuant)) ||
-(aqorgpass_re && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(rapidEmp)) ||
-(aqorgpass_dc && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(detailed));
+    (aqorgpass_s && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(semiQuant)) ||
+    (aqorgpass_re && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(rapidEmp)) ||
+    (aqorgpass_dc && x.Connectivity_Aquatic_Organism_Passage != null && x.Connectivity_Aquatic_Organism_Passage.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_aopFD);
         }
 
@@ -751,12 +773,12 @@
             riparian_dc)
         {
             _ripFD.FilterFunction = x =>
-(riparian_s && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(semiQuant)) ||
-(riparian_re && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(rapidEmp)) ||
-(riparian_dc && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(detailed));
+    (riparian_s && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(semiQuant)) ||
+    (riparian_re && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(rapidEmp)) ||
+    (riparian_dc && x.Riparian_Zone != null && x.Riparian_Zone.ToLowerInvariant().Contains(detailed));
             mudDataGrid.AddFilterAsync(_ripFD);
         }
-        
+
     }
 
     public void toggleHyS(bool toggled)
@@ -864,12 +886,12 @@
     public void toggleRipS(bool toggled)
     {
         riparian_s = toggled;
-setFilter();
+        setFilter();
     }
     public void toggleRipRE(bool toggled)
     {
         riparian_re = toggled;
-setFilter();
+        setFilter();
     }
     public void toggleRipDC(bool toggled)
     {
@@ -881,7 +903,7 @@ setFilter();
     HashSet<MyAssessmentResource> _filterItems = new();
 
     string hydrologySearch = "";
-    
+
 
     bool _selectAll = true;
     string _icon = Icons.Material.Outlined.FilterAlt;
@@ -2060,12 +2082,109 @@ setFilter();
     public List<MyAssessmentResource>? MyResourceList = new List<MyAssessmentResource>();
     //IEnumerable<MyAssessmentResource> MyAssessmentResources = new List<MyAssessmentResource>();
 
+    public static IEnumerable<string> CsvToJson(string fileName, char delim = '|')
+    {
+        var lines = File.ReadLines(fileName);
+        var hdr = new List<string>(lines.First().Trim().Split(delim));
+        foreach (var l in lines.Skip(1).Where(l => (l.Trim() != String.Empty)))
+        {
+            var val = l.Trim().Split(delim);
+            var ds = hdr.Zip(val, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            yield return JsonSerializer.Serialize(ds);
+        }
+    }
+
+    public static IEnumerable<string> CsvToJsonFromString(string csvContent, char delim = ',')
+    {
+        var lines = csvContent.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var hdr = ParseCsvLine(lines.First(), delim);
+
+        foreach (var line in lines.Skip(1).Where(l => !string.IsNullOrWhiteSpace(l)))
+        {
+            var fields = ParseCsvLine(line, delim);
+            var ds = hdr.Zip(fields, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            yield return JsonSerializer.Serialize(ds);
+        }
+    }
+
+    public static IEnumerable<string> CsvToJsonFromString2(string csvContent, char delim = ',')
+    {
+        using (var reader = new StringReader(csvContent))
+        using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Delimiter = delim.ToString(),
+                BadDataFound = null // Suppress bad data warnings if needed
+            }))
+        {
+            var records = csv.GetRecords<dynamic>();
+            foreach (var record in records)
+            {
+                var ds = ((IDictionary<string, object>)record)
+                         .ToDictionary(k => k.Key, v => v.Value?.ToString());
+                yield return JsonSerializer.Serialize(ds);
+            }
+        }
+    }
+
+    private static List<string> ParseCsvLine(string line, char delim)
+    {
+        var pattern = $"(?<=^|{delim})(\"(?:[^\"]|\"\")*\"|[^{delim}]*)";
+        var matches = Regex.Matches(line, pattern);
+
+        return matches.Select(m => m.Value.Trim().Trim('"').Replace("\"\"", "\"")).ToList();
+    }
+
+
+
+    // private async Task LoadCsvData()
+    // {
+    //     try
+    //     {
+    //         var csvUrl = "https://github.com/USACE-WRISES/RiverEngineeringResourcesDB/raw/refs/heads/main/Assessments.csv";
+    //         csvContent = await Http.GetStringAsync(csvUrl);
+
+    //         // Process the CSV content to JSON
+    //         var jsonLines = CsvToJsonFromString(csvContent, ','); // Adjust delimiter if needed
+
+    //         // Combine JSON lines into a single JSON array for display
+    //         jsonContent = "[" + string.Join(",\n", jsonLines) + "]";
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         jsonContent = $"Error loading CSV: {ex.Message}";
+    //     }
+    // }
+
     protected override async Task OnInitializedAsync()
     {
         SharedData.SetAssessmentPageSelected();
+        try
+        {
+            //var csvUrl = "https://github.com/USACE-WRISES/RiverEngineeringResourcesDB/raw/refs/heads/main/Assessments.csv";
+            var csvUrl = "https://raw.githubusercontent.com/USACE-WRISES/RiverEngineeringResourcesDB/refs/heads/main/Assessments.csv";
+            csvContent = await Http.GetStringAsync(csvUrl);
 
-        MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240426.json");
+            // Convert CSV to JSON
+            var jsonLines = CsvToJsonFromString2(csvContent, ',');
+            string jsonContent = "[" + string.Join(",\n", jsonLines) + "]";
+            //Console.WriteLine(jsonContent);
 
+            // Deserialize the JSON content into MyResourcesArray
+            MyResourcesArray = JsonSerializer.Deserialize<MyAssessmentResource[]>(jsonContent);
+        }
+        catch (Exception ex)
+        {
+            // Show a popup warning using JavaScript interop
+            errorMessage = "Failed to download or convert CSV.";
+
+            //await module.InvokeVoidAsync("alert", "Failed to download or convert CSV. Using fallback JSON data.");
+
+            // Load the fallback JSON from the local file
+            //MyResourcesArray = await Http.GetFromJsonAsync<MyAssessmentResource[]>("sample-data/SAR20240426.json");
+            //MyResourcesArray = null;
+        }
+
+        // Convert the array to a list for further use
         MyResourceList = MyResourcesArray.ToList();
 
         string f = "hi there";

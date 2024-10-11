@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ChartJs.Blazor.Fork" Version="2.0.2" />
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
     <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
     <PackageReference Include="leaflet" Version="0.7.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
