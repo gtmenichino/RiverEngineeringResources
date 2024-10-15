@@ -1,0 +1,16 @@
+{
+  "name": "River Engineering Resources",
+  "short_name": "River Engineering Resources",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d8ae0",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
