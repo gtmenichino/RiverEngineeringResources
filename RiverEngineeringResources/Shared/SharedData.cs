@@ -1,9 +1,19 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RiverEngineeringResources.Shared;
 
 namespace RiverEngineeringResources
 {
     public class SharedData
     {
+        public List<MyEngineeringResource>? MyEngineeringResourceList = new List<MyEngineeringResource>();
+        public string csvDocumentsContent;
+        public string csvDataToolsContent;
+        public string csvEngineeringErrorMessage;
+
+        public List<MyAssessmentResource>? MyAssessmentResourceList = new List<MyAssessmentResource>();
+        public string csvAssessmentContent;
+        public string assessmentErrorMessage;
+
         public bool EngineeringPageSelected { get; private set; }
         public bool Resources2PageSelected { get; private set; }
         public bool AssessmentPageSelected { get; private set; }

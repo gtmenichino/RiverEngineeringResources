@@ -294,7 +294,7 @@
 
                 </MudGrid>
 
-                <MudDataGrid ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all;" T="MyAssessmentResource" @ref="mudDataGrid" Items="@MyResourceList" SortMode="SortMode.Single" Filterable="true" FilterMode="DataGridFilterMode.ColumnFilterMenu" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="true" QuickFilter="@_quickFilter"
+                <MudDataGrid ReadOnly="false" EditMode="DataGridEditMode.Form" Elevation="0" Style="column-fill:balance-all;" T="MyAssessmentResource" @ref="mudDataGrid" Items="@SharedData.MyAssessmentResourceList" SortMode="SortMode.Single" Filterable="true" FilterMode="DataGridFilterMode.ColumnFilterMenu" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" ShowFilterIcons="true" QuickFilter="@_quickFilter"
                              Hideable="false" Groupable="true" DragDropColumnReordering="true" DragIndicatorIcon="" DragIndicatorSize="0" HorizontalScrollbar="true" Outlined="true" SelectedItemChanged="@selectedItemChanged" Dense="true" Bordered="true" Striped="false" Hover="false" Virtualize="false" FixedHeader="false" ShowMenuIcon="true">
                     <ToolBarContent>
                         <MudGrid>
@@ -456,7 +456,8 @@
 
                     @* <MudDivider DividerType="DividerType.FullWidth" Class="my-6"/> *@
                     <MudPaper Class="d-flex justify-end flex-grow-1 gap-4" Elevation="0">
-                        <MudButton OnClick="@DownloadCsv" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Download" Color="Color.Default">Download</MudButton>
+                        <MudIconButton OnClick="@RefreshDatabase" Variant="Variant.Outlined" Icon="@Icons.Material.Outlined.Refresh" Color="Color.Default"></MudIconButton>
+                        <MudIconButton OnClick="@DownloadCsv" Variant="Variant.Outlined" Icon="@Icons.Material.Outlined.Download" Color="Color.Default"></MudIconButton>
                     </MudPaper>
 
 
@@ -619,9 +620,17 @@
 
 
     @code {
-    private string csvContent;
+
     //private string jsonContent;
-    private string errorMessage;
+
+
+    private async Task RefreshDatabase()
+    {
+
+        SharedData.MyAssessmentResourceList = new List<MyAssessmentResource>();
+        SharedData.csvAssessmentContent = string.Empty;
+        await OnInitializedAsync();
+    }
 
     private async Task DownloadCsv()
     {
@@ -632,7 +641,7 @@
         //var csvContent = await Http.GetStringAsync($"sample-data/{fileName}");
 
         // Trigger the JavaScript function to download the file
-        await module.InvokeVoidAsync("downloadCsv", fileName, csvContent);
+        await module.InvokeVoidAsync("downloadCsv", fileName, SharedData.csvAssessmentContent);
     }
 
     public ValueTask<object> PromptDownload(string filename, byte[] fileBytes)
@@ -922,7 +931,7 @@
         else
             _selectedItems.Remove(item);
 
-        if (_selectedItems.Count == MyResourceList.Count())
+        if (_selectedItems.Count == SharedData.MyAssessmentResourceList.Count())
             _selectAll = true;
         else
             _selectAll = false;
@@ -930,8 +939,8 @@
 
     private async Task ClearFilterAsync(FilterContext<MyAssessmentResource> context)
     {
-        _selectedItems = MyResourceList.ToHashSet();
-        _filterItems = MyResourceList.ToHashSet();
+        _selectedItems = SharedData.MyAssessmentResourceList.ToHashSet();
+        _filterItems = SharedData.MyAssessmentResourceList.ToHashSet();
         _icon = Icons.Material.Outlined.FilterAlt;
         await context.Actions.ClearFilterAsync(_filterDefinition);
         _filterOpen = false;
@@ -940,7 +949,7 @@
     private async Task ApplyFilterAsync(FilterContext<MyAssessmentResource> context)
     {
         _filterItems = _selectedItems.ToHashSet();
-        _icon = _filterItems.Count == MyResourceList.Count() ? Icons.Material.Outlined.FilterAlt : Icons.Material.Filled.FilterAlt;
+        _icon = _filterItems.Count == SharedData.MyAssessmentResourceList.Count() ? Icons.Material.Outlined.FilterAlt : Icons.Material.Filled.FilterAlt;
         await context.Actions.ApplyFilterAsync(_filterDefinition);
         _filterOpen = false;
     }
@@ -951,7 +960,7 @@
 
         if (value)
         {
-            _selectedItems = MyResourceList.ToHashSet();
+            _selectedItems = SharedData.MyAssessmentResourceList.ToHashSet();
         }
         else
         {
@@ -2079,7 +2088,7 @@
 
     private DocsTreeview myTree;
     private MyAssessmentResource[]? MyResourcesArray;
-    public List<MyAssessmentResource>? MyResourceList = new List<MyAssessmentResource>();
+
     //IEnumerable<MyAssessmentResource> MyAssessmentResources = new List<MyAssessmentResource>();
 
     public static IEnumerable<string> CsvToJson(string fileName, char delim = '|')
@@ -2158,14 +2167,25 @@
     protected override async Task OnInitializedAsync()
     {
         SharedData.SetAssessmentPageSelected();
+
+        if (SharedData.MyAssessmentResourceList != null && SharedData.MyAssessmentResourceList.Count > 0)
+        {
+            return;
+        }
+
         try
         {
-            //var csvUrl = "https://github.com/USACE-WRISES/RiverEngineeringResourcesDB/raw/refs/heads/main/Assessments.csv";
-            var csvUrl = "https://raw.githubusercontent.com/USACE-WRISES/RiverEngineeringResourcesDB/refs/heads/main/Assessments.csv";
-            csvContent = await Http.GetStringAsync(csvUrl);
+            if (string.IsNullOrEmpty(SharedData.csvAssessmentContent))
+            {
+                //var csvUrl = "https://raw.githubusercontent.com/USACE-WRISES/RiverEngineeringResourcesDB/refs/heads/main/Assessments.csv";
+                var csvUrl = "https://usace-wrises.github.io/RiverEngineeringResourcesDB/Assessments.csv";
+                // Append a timestamp to the URL to prevent caching
+                csvUrl += "?t=" + DateTime.UtcNow.Ticks;
+                SharedData.csvAssessmentContent = await Http.GetStringAsync(csvUrl);
+            }
 
             // Convert CSV to JSON
-            var jsonLines = CsvToJsonFromString2(csvContent, ',');
+            var jsonLines = CsvToJsonFromString2(SharedData.csvAssessmentContent, ',');
             string jsonContent = "[" + string.Join(",\n", jsonLines) + "]";
             //Console.WriteLine(jsonContent);
 
@@ -2175,7 +2195,7 @@
         catch (Exception ex)
         {
             // Show a popup warning using JavaScript interop
-            errorMessage = "Failed to download or convert CSV.";
+            SharedData.assessmentErrorMessage = "Failed to download or convert CSV.";
 
             //await module.InvokeVoidAsync("alert", "Failed to download or convert CSV. Using fallback JSON data.");
 
@@ -2185,9 +2205,10 @@
         }
 
         // Convert the array to a list for further use
-        MyResourceList = MyResourcesArray.ToList();
+        SharedData.MyAssessmentResourceList = MyResourcesArray.ToList();
 
         string f = "hi there";
+
     }
 
     private IJSObjectReference? module;
