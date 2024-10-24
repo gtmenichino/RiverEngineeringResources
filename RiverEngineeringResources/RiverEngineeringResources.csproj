@@ -7,6 +7,7 @@
     <!--<RunAOTCompilation>true</RunAOTCompilation>-->
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\Assessment - Copy.razor.css" />
     <None Remove="Pages\Assessment.razor.css" />
     <None Remove="Pages\Engineering.razor.css" />
   </ItemGroup>

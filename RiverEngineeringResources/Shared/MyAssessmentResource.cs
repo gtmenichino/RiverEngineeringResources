@@ -110,7 +110,7 @@ namespace RiverEngineeringResources.Shared
             }
         }
 
-        public string? Catalog_Number { get; set; }
+        public string? Catalog_Number { get; set; } = "-";
         public string? Match_Ranking { get; set; }
         public string? Resource_Name { get; set; }
         public string? Abbreviated_Citation { get; set; }

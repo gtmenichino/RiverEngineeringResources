@@ -1,0 +1,95 @@
+﻿@page "/staf"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using System.Net.Http.Json
+@using System.Text.Json
+@using System.Text.RegularExpressions
+@using CsvHelper
+@using CsvHelper.Configuration
+@using System.Globalization
+@using System.IO
+@inject HttpClient httpClient
+@using RiverEngineeringResources.Shared
+@inject SharedData SharedData
+@implements IAsyncDisposable
+
+<PageTitle>STAF</PageTitle>
+
+<style>
+    input {
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: darkgray
+    }
+
+        input:focus {
+            border-color: dodgerblue;
+            border-width: 0 0 2px;
+            outline: 1px dotted #ffffff
+        }
+</style>
+
+
+<MudPaper Elevation="0" Class="d-flex flex-row flex-grow-1 gap-4 mx-n16" Outlined="false">
+
+    <STAFTableComponent />
+
+</MudPaper>
+
+
+
+
+<style>
+    .selected {
+        background-color: #1E88E5 !important;
+    }
+
+        .selected > td {
+            color: white !important;
+        }
+
+            .selected > td .mud-input {
+                color: white !important;
+            }
+</style>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        SharedData.SetSTAFPageSelected();
+
+    }
+
+    private IJSObjectReference? module;
+    private IJSObjectReference? _chartReference;
+    private string? result;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./assess.js");
+            if (module != null)
+            {
+                result = await module.InvokeAsync<string>("load");
+                await module.InvokeVoidAsync("initializeDotnetHelper", DotNetObjectReference.Create(this));
+
+            }
+        }
+    }
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+
+}
+
+
+
+
+
+
+

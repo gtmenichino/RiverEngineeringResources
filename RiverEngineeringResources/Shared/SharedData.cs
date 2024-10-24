@@ -17,6 +17,7 @@ namespace RiverEngineeringResources
         public bool EngineeringPageSelected { get; private set; }
         public bool Resources2PageSelected { get; private set; }
         public bool AssessmentPageSelected { get; private set; }
+        public bool STAFPageSelected { get; private set; }
 
         public event Action OnChange;
 
@@ -25,6 +26,7 @@ namespace RiverEngineeringResources
             EngineeringPageSelected = true;
             Resources2PageSelected = false;
             AssessmentPageSelected = false;
+            STAFPageSelected = false;
             NotifyStateChanged();
         }
 
@@ -33,6 +35,7 @@ namespace RiverEngineeringResources
             Resources2PageSelected = true;
                     EngineeringPageSelected = false;
             AssessmentPageSelected = false;
+            STAFPageSelected = false;
             NotifyStateChanged();
         }
 
@@ -41,6 +44,16 @@ namespace RiverEngineeringResources
             Resources2PageSelected = false;
             EngineeringPageSelected = false;
             AssessmentPageSelected = true;
+            STAFPageSelected = false;
+            NotifyStateChanged();
+        }
+
+        public void SetSTAFPageSelected()
+        {
+            Resources2PageSelected = false;
+            EngineeringPageSelected = false;
+            AssessmentPageSelected = false;
+            STAFPageSelected = true;
             NotifyStateChanged();
         }
 
@@ -49,6 +62,7 @@ namespace RiverEngineeringResources
             EngineeringPageSelected = false;
             Resources2PageSelected = false;
             AssessmentPageSelected = false;
+            STAFPageSelected = false;
             NotifyStateChanged();
         }
 

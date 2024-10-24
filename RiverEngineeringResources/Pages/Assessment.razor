@@ -27,6 +27,28 @@
             border-width: 0 0 2px;
             outline: 1px dotted #ffffff
         }
+
+    /*     .button-link {
+                        color: #2896F3;
+                        text-transform: none;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-weight: normal;
+
+                    }
+
+                        .button-link:hover {
+                            text-decoration: underline;
+                            box-shadow: none;
+                        } */
+
+    .button-link {
+        text-transform: none;
+        font-weight: normal;
+    }
+
+        .button-link:hover {
+            text-decoration: underline;
+        }
 </style>
 
 
@@ -92,7 +114,16 @@
 
                                         <MudCardContent Class="gap-0 pa-0">
                                             <MudText Class="gap-0 pa-0" Align="Align.Center">Functional Categories</MudText>
-
+                                            @*                                             <MudText Align="Align.Center">
+                                            <MudButton OnClick="@SelectAllFC" Class="mr-2 button-link" Style="cursor:pointer;font-size:medium" DisableRipple="true">Select All</MudButton> |
+                                            <MudButton OnClick="@UnselectAllFC" Class="ml-2 button-link" Style="cursor:pointer;font-size:small" DisableRipple="true">Unselect All</MudButton>
+                                            </MudText> *@
+                                            <MudPaper Elevation="0" Class="d-flex align-items-center justify-center p-1">
+                                                <MudText Align="Align.Center">
+                                                    <MudLink OnClick="@SelectAllFC" Class="mr-2" Style="cursor:pointer;font-size:14px">Select All</MudLink> |
+                                                    <MudLink OnClick="@UnselectAllFC" Class="ml-2" Style="cursor:pointer;font-size:14px">Unselect All</MudLink>
+                                                </MudText>
+                                            </MudPaper>
 
                                             <MudGrid Justify="Justify.Center" Style="align-items: center;">
                                                 <MudItem>
@@ -231,6 +262,12 @@
                                         <MudCardContent Class="gap-0 ma-0 pa-0">
                                             <MudText Align="Align.Center">Metadata</MudText>
 
+                                            <MudPaper Elevation="0" Class="d-flex align-items-center justify-center p-1">
+                                                <MudText Align="Align.Center">
+                                                    <MudLink OnClick="SelectAllMetadata" Class="mr-2" Style="cursor:pointer; font-size:14px">Select All</MudLink> |
+                                                    <MudLink OnClick="UnselectAllMetadata" Class="ml-2" Style="cursor:pointer; font-size:14px">Unselect All</MudLink>
+                                                </MudText>
+                                            </MudPaper>
                                             @*                                     <MudSwitch T="bool" @bind-Checked="@Catalog_Number_Switch1" Label="@GetFormattedLabel(nameof(Catalog_Number_Switch1))" Color="Color.Info" />
                                             <MudSwitch T="bool" @bind-Checked="@Match_Ranking_Switch1" Label="@GetFormattedLabel(nameof(Match_Ranking_Switch1))" Color="Color.Info" /> *@
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Citation_Switch1" Label="@GetFormattedLabel(nameof(Citation_Switch1))" Color="Color.Info" />
@@ -252,6 +289,13 @@
 
                                         <MudCardContent Class="gap-0 ma-0 pa-0">
                                             <MudText Align="Align.Center">Technical Data</MudText>
+                                            <MudPaper Elevation="0" Class="d-flex align-items-center justify-center p-1">
+                                                <MudText Align="Align.Center">
+                                                    <MudLink OnClick="SelectAllTechnicalData" Class="mr-2" Style="cursor:pointer; font-size:14px">Select All</MudLink> |
+                                                    <MudLink OnClick="UnselectAllTechnicalData" Class="ml-2" Style="cursor:pointer; font-size:14px">Unselect All</MudLink>
+                                                </MudText>
+                                            </MudPaper>
+
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Stream_Type_Requirements_Switch1" Label="@GetFormattedLabel(nameof(Stream_Type_Requirements_Switch1))" Color="Color.Info" />
                                             <MudSwitch Class="gap-0 my-n1" T="bool" @bind-Checked="@Geography_Switch1" Label="@GetFormattedLabel(nameof(Geography_Switch1))" Color="Color.Info" />
 
@@ -620,6 +664,155 @@
 
 
     @code {
+    private void SelectAllFC()
+    {
+        // Hydrology
+        Hydrology_Switch1 = true;
+        // hydrology_s = true;
+        // hydrology_re = true;
+        // hydrology_dc = true;
+
+        // Hydraulics
+        Hydraulics_Switch1 = true;
+        // hydraulics_s = true;
+        // hydraulics_re = true;
+        // hydraulics_dc = true;
+
+        // Geomorphology
+        Geomorphology_Switch1 = true;
+        // geomorphology_s = true;
+        // geomorphology_re = true;
+        // geomorphology_dc = true;
+
+        // Physicochemical
+        Physicochemical_Switch1 = true;
+        // physicochemical_s = true;
+        // physicochemical_re = true;
+        // physicochemical_dc = true;
+
+        // Biology
+        Biology_Switch1 = true;
+        // biology_and_habitat_s = true;
+        // biology_and_habitat_re = true;
+        // biology_and_habitat_dc = true;
+
+        // Aquatic Organism Passage
+        Aq_Org_Passage_Switch1 = true;
+        // aqorgpass_dc = true;
+        // aqorgpass_re = true;
+        // aqorgpass_s = true;
+
+        // Riparian
+        Riparian_Switch1 = true;
+        // riparian_dc = true;
+        // riparian_re = true;
+        // riparian_s = true;
+    }
+
+    private void UnselectAllFC()
+    {
+        // Hydrology
+        Hydrology_Switch1 = false;
+        // hydrology_s = false;
+        // hydrology_re = false;
+        // hydrology_dc = false;
+
+        // Hydraulics
+        Hydraulics_Switch1 = false;
+        // hydraulics_s = false;
+        // hydraulics_re = false;
+        // hydraulics_dc = false;
+
+        // Geomorphology
+        Geomorphology_Switch1 = false;
+        // geomorphology_s = false;
+        // geomorphology_re = false;
+        // geomorphology_dc = false;
+
+        // Physicochemical
+        Physicochemical_Switch1 = false;
+        // physicochemical_s = false;
+        // physicochemical_re = false;
+        // physicochemical_dc = false;
+
+        // Biology
+        Biology_Switch1 = false;
+        // biology_and_habitat_s = false;
+        // biology_and_habitat_re = false;
+        // biology_and_habitat_dc = false;
+
+        // Aquatic Organism Passage
+        Aq_Org_Passage_Switch1 = false;
+        // aqorgpass_dc = false;
+        // aqorgpass_re = false;
+        // aqorgpass_s = false;
+
+        // Riparian
+        Riparian_Switch1 = false;
+        // riparian_dc = false;
+        // riparian_re = false;
+        // riparian_s = false;
+
+    }
+    public void SelectAllMetadata()
+    {
+        Citation_Switch1 = true;
+        Sector_Switch1 = true;
+        Developer_Switch1 = true;
+        Year_Switch1 = true;
+        Assessment_Type_Switch1 = true;
+        Location_Assessment_Switch1 = true;
+        Programmatic_Use_Switch1 = true;
+        Region_Switch1 = true;
+        State_Switch1 = true;
+        USACE_Division_Use_Switch1 = true;
+        USACE_District_Use_Switch1 = true;
+    }
+
+    public void UnselectAllMetadata()
+    {
+        Citation_Switch1 = false;
+        Sector_Switch1 = false;
+        Developer_Switch1 = false;
+        Year_Switch1 = false;
+        Assessment_Type_Switch1 = false;
+        Location_Assessment_Switch1 = false;
+        Programmatic_Use_Switch1 = false;
+        Region_Switch1 = false;
+        State_Switch1 = false;
+        USACE_Division_Use_Switch1 = false;
+        USACE_District_Use_Switch1 = false;
+    }
+
+    public void SelectAllTechnicalData()
+    {
+        Stream_Type_Requirements_Switch1 = true;
+        Geography_Switch1 = true;
+        Impact_Switch1 = true;
+        Adaptable_Switch1 = true;
+        Time_Required_Switch1 = true;
+        Training_Switch1 = true;
+        Input_Type_Switch1 = true;
+        Output_Type_Switch1 = true;
+        Data_Availability_Switch1 = true;
+        Reference_Required_Switch1 = true;
+        Performance_Standards_Switch1 = true;
+    }
+
+    public void UnselectAllTechnicalData()
+    {
+        Stream_Type_Requirements_Switch1 = false;
+        Geography_Switch1 = false;
+        Impact_Switch1 = false;
+        Adaptable_Switch1 = false;
+        Time_Required_Switch1 = false;
+        Training_Switch1 = false;
+        Input_Type_Switch1 = false;
+        Output_Type_Switch1 = false;
+        Data_Availability_Switch1 = false;
+        Reference_Required_Switch1 = false;
+        Performance_Standards_Switch1 = false;
+    }
 
     //private string jsonContent;
 

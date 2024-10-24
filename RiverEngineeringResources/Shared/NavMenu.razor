@@ -35,6 +35,8 @@
 
     <a type="button" href="assessment" class="@submitBtnStyleValue()" _bl_34=""><span class="mud-button-label">Assessment</span></a>
 
+    @* <a type="button" href="staf" class="@stafBtnStyleValue()" _bl_34=""><span class="mud-button-label">STAF</span></a> *@
+
     @*<a type="button" href="spreadsheet" class="@res2BtnStyleValue()" _bl_34=""><span class="mud-button-label">Spreadsheet</span></a>*@
 
 
@@ -129,6 +131,18 @@ public void Dispose()
     private string submitBtnStyleValue()
     {
         if (SharedData.AssessmentPageSelected == false)
+        {
+            return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mx-1 px-3";
+        }
+        else
+        {
+            return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mud-chip-text mud-chip-color-primary mx-1 px-3";
+        }
+    }
+
+    private string stafBtnStyleValue()
+    {
+        if (SharedData.STAFPageSelected == false)
         {
             return "mud-button-root mud-button mud-button-text mud-button-text-inherit mud-button-text-size-medium mud-ripple mx-1 px-3";
         }
